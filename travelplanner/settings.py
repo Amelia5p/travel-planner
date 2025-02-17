@@ -44,9 +44,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'travelplanner',
-    "users",
-    "trips",
-    "itinerary",
+    'core',
+    'users',
+    'trips',
+    'itinerary',
 ]
 
 MIDDLEWARE = [
