@@ -7,13 +7,24 @@ body {
 
 .navbar{
     background-color: #517664;
-    color: #d7d7d7;
+    color: #fff3cd
 
 }
+
+nav .nav-link{
+color: #fff3cd;
+}
+
 
 .navbar .navbar-brand {
     color: #fff3cd;
 
+}
+
+nav .navbar-toggler{
+    color: #fff3cd;
+    background-color: #fff3cd;
+    border: 1px #517664;
 }
 
 /* Login Page */
@@ -25,6 +36,6 @@ form .btn {
 
 /*Sign up*/
 
-form .errorlist {
+form.errorlist {
     color: red;
 }
