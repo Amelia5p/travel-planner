@@ -26,3 +26,6 @@ def signup(request):
 def profile(request):
     return render(request, 'users/profile.html')
 
+
+def home(request):
+    return render(request, 'home.html')
