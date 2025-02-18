@@ -6,5 +6,8 @@ from django.contrib.auth.models import User
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
+    age = models.PositiveBigIntegerField(null=True, blank=True)
+    location = models.CharField(max_length= 50, null=True, blank=True)
     bio = models.TextField(blank=True, null=True)
+    
 

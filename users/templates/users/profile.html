@@ -8,17 +8,28 @@
             <div class="card shadow p-4 text-center">
                 <!-- User Info -->
                 <h2>{{ user.username }}</h2>
+
+                {% if user.profile.age %}
+                    <p><strong>Age:</strong> {{ user.profile.age }}</p>
+                {% endif %}
+
+                {% if user.profile.location %}
+                    <p><strong>Location:</strong> {{ user.profile.location }}</p>
+                {% endif %}
+
                 {% if user.profile.bio %}
                     <p class="text-muted">{{ user.profile.bio }}</p>
                 {% else %}
                     <p class="text-muted">No bio added.</p>
                 {% endif %}
 
-                <a href="{% url 'profile' %}" class="btn btn-danger mt-2">Profile</a>
+               
+                <a href="{% url 'logout' %}" class="btn btn-danger mt-2">Logout</a>
             </div>
         </div>
     </div>
 </div>
 {% endblock %}
+
 
 
