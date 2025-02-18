@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow p-4 text-center">
+                <!-- User Info -->
+                <h2>{{ user.username }}</h2>
+                {% if user.profile.bio %}
+                    <p class="text-muted">{{ user.profile.bio }}</p>
+                {% else %}
+                    <p class="text-muted">No bio added.</p>
+                {% endif %}
+
+                <a href="{% url 'profile' %}" class="btn btn-danger mt-2">Profile</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+

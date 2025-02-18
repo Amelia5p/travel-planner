@@ -1,5 +1,5 @@
 
-/*Base HTML styles */
+/*Base HTML */
 
 body {
     background-color: rgb(198, 198, 174)
@@ -14,4 +14,17 @@ body {
 .navbar .navbar-brand {
     color: #fff3cd;
 
+}
+
+/* Login Page */
+
+form .btn {
+    background-color: #517664;
+    color: #fff3cd; ;
+}
+
+/*Sign up*/
+
+form .errorlist {
+    color: red;
 }
