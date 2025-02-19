@@ -94,7 +94,7 @@ DATABASES = {
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 LOGIN_REDIRECT_URL = 'profile'  # Redirect after login
-LOGOUT_REDIRECT_URL = 'login'   # Redirect after logout
+LOGOUT_REDIRECT_URL = 'home'   # Redirect after logout
 
 
 # Password validation
