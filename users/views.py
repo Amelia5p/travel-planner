@@ -7,13 +7,11 @@ from django.contrib import messages
 from .models import Profile
 from .forms import ProfileUpdateForm
 
-# Create your views here.
-
-# Sign up view, if the form is valid the user will be saved,
-# Automatically logged in, redirected to profile page.
-
 
 def signup(request):
+    """ Sign up view, if the form is valid the user will be saved,
+        Automatically logged in, redirected to profile page. 
+    """
     if request.method == "POST":
         form = UserCreationForm(request.POST)
         if form.is_valid():
@@ -54,6 +52,8 @@ def edit_profile(request):
         form = ProfileUpdateForm(instance=profile)
 
     return render(request, 'users/edit_profile.html', {'form': form})
+
+# Delete profile view, form
 
 @login_required
 def delete_profile(request):
