@@ -4,6 +4,8 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import ProfileUpdateForm
 from django.contrib import messages 
+from .models import Profile
+from .forms import ProfileUpdateForm
 
 # Create your views here.
 
@@ -36,10 +38,6 @@ def home(request):
     return render(request, 'home.html')
 
 # Edit profile view, form
-from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
-from .models import Profile
-from .forms import ProfileUpdateForm
 
 @login_required  
 def edit_profile(request):
@@ -50,9 +48,24 @@ def edit_profile(request):
         form = ProfileUpdateForm(request.POST, instance=profile)
         if form.is_valid():
             form.save()
+            messages.success(request, "Your updated profile have been saved!")
             return redirect('profile')
     else:
         form = ProfileUpdateForm(instance=profile)
 
     return render(request, 'users/edit_profile.html', {'form': form})
+
+@login_required
+def delete_profile(request):
+    if request.method == 'POST':
+        user = request.user
+        user.profile.delete()
+        user.delete()
+        messages.success(request, "Your profile has been deleted successfully.")  
+        logout(request)
+        return redirect('home')
+ 
+    return render(request, 'users/delete_profile.html')
+
+
 
