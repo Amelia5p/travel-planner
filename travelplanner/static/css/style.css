@@ -27,6 +27,11 @@ nav .navbar-toggler{
     border: 1px #517664;
 }
 
+.container .edit-profile{
+    background-color: #517664;
+    color: #fff3cd;
+}
+
 /* Login Page */
 
 form .btn {
