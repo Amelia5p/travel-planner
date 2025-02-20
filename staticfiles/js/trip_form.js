@@ -1,29 +1,24 @@
 document.addEventListener("DOMContentLoaded", function() {
-    let currentStep = 0; // Start at Step 0 (Step 1 in UI)
-    
-    // Select all form steps, progress bar, and navigation buttons
+    console.log("Multi-step form JavaScript loaded!");
+
+    let currentStep = 0;
     const formSteps = document.querySelectorAll(".form-step");
     const progressBar = document.getElementById("progressBar");
-    const nextButtons = document.querySelectorAll(".next-step");
-    const prevButtons = document.querySelectorAll(".prev-step");
-
+    const nextButtons = document.querySelectorAll("button.next-step");
+    const prevButtons = document.querySelectorAll("button.prev-step");
 
     function showStep(step) {
         formSteps.forEach((formStep, index) => {
-            formStep.classList.toggle("active", index === step);
+            formStep.style.display = index === step ? "block" : "none";
         });
-        updateProgressBar(); // Update the progress bar after changing steps
+        updateProgressBar();
     }
 
-    /**
-     * Function to update the progress bar based on the current step.
-     */
     function updateProgressBar() {
         const stepPercentage = ((currentStep + 1) / formSteps.length) * 100;
         progressBar.style.width = stepPercentage + "%";
         progressBar.textContent = `Step ${currentStep + 1} of ${formSteps.length}`;
     }
-
 
     function validateStep(step) {
         let valid = true;
@@ -32,7 +27,7 @@ document.addEventListener("DOMContentLoaded", function() {
         inputs.forEach(input => {
             if (input.hasAttribute("required") && !input.value.trim()) {
                 valid = false;
-                input.classList.add("is-invalid"); 
+                input.classList.add("is-invalid");
             } else {
                 input.classList.remove("is-invalid");
             }
@@ -41,30 +36,25 @@ document.addEventListener("DOMContentLoaded", function() {
         return valid;
     }
 
-    /**
-     * Event listeners for "Next" buttons.
-     * - Validates the current step before allowing the user to proceed.
-     */
     nextButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            if (validateStep(currentStep)) {
+            console.log("Next button clicked");
+            if (validateStep(currentStep) && currentStep < formSteps.length - 1) {
                 currentStep++;
                 showStep(currentStep);
             }
         });
     });
 
-    /**
-     * Event listeners for "Back" buttons.
-     * - Allows users to navigate back without validation.
-     */
     prevButtons.forEach((button) => {
         button.addEventListener("click", () => {
-            currentStep--;
-            showStep(currentStep);
+            console.log("Back button clicked");
+            if (currentStep > 0) {
+                currentStep--;
+                showStep(currentStep);
+            }
         });
     });
 
-    // Initialise the form by showing only the first step
     showStep(currentStep);
 });

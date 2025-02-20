@@ -31,6 +31,9 @@
             {{ form.start_date|as_crispy_field }}
             {{ form.end_date|as_crispy_field }}
             {{ form.budget|as_crispy_field }}
+                     
+        <label for="total_budget">Total Budget:</label>
+        <input type="text" id="total_budget" class="form-control" disabled>
             <button type="button" class="btn btn-secondary prev-step">Back</button>
             <button type="button" class="btn btn-primary next-step">Next</button>
         </div>
@@ -51,7 +54,7 @@
             <label for="itinerary">Daily Itinerary</label>
             <textarea class="form-control" name="itinerary" id="itinerary" rows="3"></textarea>
 
-            <label for="wishlist">Wishlist (Select Multiple)</label>
+            <label for="wishlist">Wishlist</label>
             <select class="form-control" name="wishlist" id="wishlist" multiple>
             </select>
 
@@ -71,5 +74,5 @@
 {% endblock %}
 
 {% block extra_js %}
-    <script src="{% static 'js/multi_step_form.js' %}"></script>
+    <script src="{% static 'js/trip_form.js' %}"></script>
 {% endblock %}

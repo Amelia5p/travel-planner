@@ -1,4 +1,80 @@
+
+/*Base HTML */
+
 body {
-    background-color: yellow !important;  
+    background-color: rgb(198, 198, 174)
+}
+
+.navbar{
+    background-color: #517664;
+    color: #fff3cd
+
+}
+
+nav .nav-link{
+color: #fff3cd;
+}
+
+
+.navbar .navbar-brand {
+    color: #fff3cd;
+
+}
+
+nav .navbar-toggler{
+    color: #fff3cd;
+    background-color: #fff3cd;
+    border: 1px #517664;
+}
+
+.container .edit-profile{
+    background-color: #517664;
+    color: #fff3cd;
+}
+
+/* Login Page */
+
+form .btn {
+    background-color: #517664;
+    color: #fff3cd; ;
+}
+
+/*Sign up*/
+
+form.errorlist {
+    color: red;
+}
+
+/* Create Trip */
+/* Hide all form steps by default */
+.form-step {
+    display: none;  
+    padding: 20px;
+    border-radius: 8px;
+    background: #f9f9f9;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+
+/* Show only the active step */
+.form-step.active {
+    display: block;
+}
+
+/* Style the progress bar */
+.progress {
+    height: 10px;
+    border-radius: 5px;
+}
+
+#progressBar {
+    width: 20%;
+    background-color: #517664;
+}
+
+#tripForm .next-step{
+    margin:20px;
+    
+    
 }
 
