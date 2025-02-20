@@ -61,7 +61,11 @@ form.errorlist {
 }
 
 #tripForm .next-step{
-    margin:10px;
+    margin:20px;
     
     
+}
+
+.progress {
+    margin-bottom:20px
 }
