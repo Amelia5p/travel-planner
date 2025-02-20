@@ -1,5 +1,6 @@
-# trips/urls.py
 from django.urls import path
-from . import views
+from .views import create_trip
 
-urlpatterns = []  
+urlpatterns = [
+    path("create/", create_trip, name="create_trip"),  
+]
