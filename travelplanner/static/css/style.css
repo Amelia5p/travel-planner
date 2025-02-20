@@ -55,6 +55,13 @@ form.errorlist {
     display: block; 
 }
 
-.progess-bar {
+#progressBar {
     width: 20%;
+    background-color: #517664;
+}
+
+#tripForm .next-step{
+    margin:10px;
+    
+    
 }

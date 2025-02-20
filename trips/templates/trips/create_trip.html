@@ -20,7 +20,6 @@
             {{ form.country|as_crispy_field }}
             <label for="cities">Cities (Select Multiple)</label>
             <select class="form-control" name="cities" id="cities" multiple>
-                <!-- Cities will be populated dynamically later -->
             </select>
             <button type="button" class="btn btn-primary next-step">Next</button>
         </div>
@@ -40,8 +39,7 @@
             <h4>Step 3: Accommodation & Transport</h4>
             {{ form.accommodation_name|as_crispy_field }}
             {{ form.accommodation_type|as_crispy_field }}
-            {{ form.transport_mode|as_crispy_field }}
-            {{ form.transport_booking_ref|as_crispy_field }}
+            {{ form.transport_mode|as_crispy_field }}¸
             <button type="button" class="btn btn-secondary prev-step">Back</button>
             <button type="button" class="btn btn-primary next-step">Next</button>
         </div>
