@@ -20,7 +20,7 @@ class Trip(models.Model):
     )
 
     transport_name = models.CharField(max_length=255, null= True, blank= True)
-    transport_type= models.CharField(
+    transport_mode= models.CharField(
         max_length=50, 
         choices =[("Flight","Flight"),("Train","Train"),("Bus","Bus"),("Car/Taxi","Car,Taxi")],
         default="Flight"

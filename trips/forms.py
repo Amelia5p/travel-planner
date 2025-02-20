@@ -1,11 +1,11 @@
 from django import forms
-from models import Trip
+from .models import Trip
 
 class TripForm(forms.ModelForm):
     class Meta:
         model = Trip
         fields = ["trip_name", "country", "cities", "start_date", "end_date", "budget", 
-                  "accommodation_name", "accommodation_type", "transport_mode", "transport_booking_ref", 
+                  "accommodation_name", "accommodation_type", "transport_mode", 
                   "itinerary", "wishlist"]
         widgets = {
             "start_date": forms.DateInput(attrs={"type": "date"}),
