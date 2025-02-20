@@ -44,3 +44,17 @@ form .btn {
 form.errorlist {
     color: red;
 }
+
+/* Create Trip */
+
+.form-step{
+  display: none; 
+}
+
+.form-step.active {
+    display: block; 
+}
+
+.progess-bar {
+    width: 20%;
+}

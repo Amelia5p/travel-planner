@@ -1,14 +1,73 @@
 {% extends "base.html" %}
-{% load crispy_forms_tags %} 
+{% load crispy_forms_tags %}
 
 {% block content %}
-<div class="container mt-4">
-    <h2>Create a New Trip</h2>
-    <form method="POST">
+<div class="container mt-5">
+    <h2 class="text-center">Create a New Trip</h2>
+    
+    <!-- Progress Bar -->
+    <div class="progress mt-4">
+        <div class="progress-bar" role="progressbar"  id="progressBar">Step 1 of 5</div>
+    </div>
+
+    <form method="POST" id="tripForm">
         {% csrf_token %}
-        {{ form|crispy }}  
-        
-        <button type="submit" class="btn btn-primary">Create Trip</button>
+
+        <!-- Step 1: Basic Trip Details -->
+        <div class="form-step active">
+            <h4>Step 1: Basic Trip Details</h4>
+            {{ form.trip_name|as_crispy_field }}
+            {{ form.country|as_crispy_field }}
+            <label for="cities">Cities (Select Multiple)</label>
+            <select class="form-control" name="cities" id="cities" multiple>
+                <!-- Cities will be populated dynamically later -->
+            </select>
+            <button type="button" class="btn btn-primary next-step">Next</button>
+        </div>
+
+        <!-- Step 2: Travel Dates & Budget -->
+        <div class="form-step">
+            <h4>Step 2: Travel Dates & Budget</h4>
+            {{ form.start_date|as_crispy_field }}
+            {{ form.end_date|as_crispy_field }}
+            {{ form.budget|as_crispy_field }}
+            <button type="button" class="btn btn-secondary prev-step">Back</button>
+            <button type="button" class="btn btn-primary next-step">Next</button>
+        </div>
+
+        <!-- Step 3: Accommodation & Transport -->
+        <div class="form-step">
+            <h4>Step 3: Accommodation & Transport</h4>
+            {{ form.accommodation_name|as_crispy_field }}
+            {{ form.accommodation_type|as_crispy_field }}
+            {{ form.transport_mode|as_crispy_field }}
+            {{ form.transport_booking_ref|as_crispy_field }}
+            <button type="button" class="btn btn-secondary prev-step">Back</button>
+            <button type="button" class="btn btn-primary next-step">Next</button>
+        </div>
+
+        <!-- Step 4: Itinerary & Wishlist -->
+        <div class="form-step">
+            <h4>Step 4: Itinerary & Wishlist</h4>
+            <label for="itinerary">Daily Itinerary</label>
+            <textarea class="form-control" name="itinerary" id="itinerary" rows="3"></textarea>
+
+            <label for="wishlist">Wishlist (Select Multiple)</label>
+            <select class="form-control" name="wishlist" id="wishlist" multiple>
+          
+            </select>
+
+            <button type="button" class="btn btn-secondary prev-step">Back</button>
+            <button type="button" class="btn btn-primary next-step">Next</button>
+        </div>
+
+        <!-- Step 5: Review & Submit -->
+        <div class="form-step">
+            <h4>Step 5: Review & Submit</h4>
+            <p>Review your trip details before submitting.</p>
+            <button type="button" class="btn btn-secondary prev-step">Back</button>
+            <button type="submit" class="btn btn-success">Submit Trip</button>
+        </div>
     </form>
 </div>
 {% endblock %}
