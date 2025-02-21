@@ -14,16 +14,25 @@
     <form method="POST" id="tripForm">
         {% csrf_token %}
 
-        <!-- Step 1: Basic Trip Details -->
-        <div class="form-step active">
-            <h4>Step 1: Basic Trip Details</h4>
-            {{ form.trip_name|as_crispy_field }}
-            {{ form.country|as_crispy_field }}
-            <label for="cities">Cities (Select Multiple)</label>
-            <select class="form-control" name="cities" id="cities" multiple>
-            </select>
-            <button type="button" class="btn btn-primary next-step">Next</button>
-        </div>
+<!-- Step 1: Basic Trip Details -->
+<div class="form-step active">
+    <h4>Step 1: Basic Trip Details</h4>
+    {{ form.trip_name|as_crispy_field }}
+   
+    <label for="id_country">Country:</label>
+    <input type="text" id="id_country" class="form-control" placeholder="Start typing a country..." required>
+    
+    <label for="cities">Select Cities:</label>
+    <input type="text" id="cities" class="form-control" placeholder="Start typing a city..." required>
+
+    <ul id="selected-cities" class="list-group mt-2"></ul>
+    <input type="hidden" name="selected-cities" id="selected-cities_input">
+    
+    <!-- Validation errors -->
+    <span id="city-error" class="text-danger"></span>  
+
+    <button type="button" class="btn btn-primary next-step">Next</button>
+</div>
 
         <!-- Step 2: Travel Dates & Budget -->
         <div class="form-step">
@@ -32,8 +41,7 @@
             {{ form.end_date|as_crispy_field }}
             {{ form.budget|as_crispy_field }}
                      
-        <label for="total_budget">Total Budget:</label>
-        <input type="text" id="total_budget" class="form-control" disabled>
+
             <button type="button" class="btn btn-secondary prev-step">Back</button>
             <button type="button" class="btn btn-primary next-step">Next</button>
         </div>
@@ -54,9 +62,10 @@
             <label for="itinerary">Daily Itinerary</label>
             <textarea class="form-control" name="itinerary" id="itinerary" rows="3"></textarea>
 
-            <label for="wishlist">Wishlist</label>
-            <select class="form-control" name="wishlist" id="wishlist" multiple>
-            </select>
+            <label for="wishlist">Add places to your wishlist:</label>
+            <input type="text" id="wishlist" class="form-control" placeholder="Search places..." required>
+
+
 
             <button type="button" class="btn btn-secondary prev-step">Back</button>
             <button type="button" class="btn btn-primary next-step">Next</button>
@@ -71,12 +80,12 @@
         </div>
     </form>
 </div>
-{% block extra_js %}
-    <!-- Load Google Places API -->
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuHQiyh8ylT9-xkVuR_Hlojei41NKEj00&libraries=places"></script>
-
-    <!-- JavaScript Form -->
-    <script src="{% static 'js/multi_step_form.js' %}"></script>
 {% endblock %}
 
+{% block extra_js %}
+{% if google_api_key %}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&libraries=places"></script>
+{% endif %}
+
+    <script src="{% static 'js/trip_form.js' %}"></script>
 {% endblock %}

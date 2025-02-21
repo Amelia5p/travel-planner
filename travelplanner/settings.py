@@ -14,6 +14,11 @@ from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 import os
+from django.conf import settings
+
+
+
+
 
 
 # Load environment variables from .env file
@@ -50,6 +55,7 @@ INSTALLED_APPS = [
     'users',
     'trips',
 ]
+
 CRISPY_ALLOWED_TEMPLATE_PACKS = ["bootstrap5"]
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
@@ -150,3 +156,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# Load environment variables from .env
+load_dotenv()
+
+# Retrieve Google API Key
+GOOGLE_PLACES_API_KEY = os.getenv("GOOGLE_PLACES_API_KEY")
