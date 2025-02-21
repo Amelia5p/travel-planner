@@ -71,8 +71,12 @@
         </div>
     </form>
 </div>
+{% block extra_js %}
+    <!-- Load Google Places API -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDuHQiyh8ylT9-xkVuR_Hlojei41NKEj00&libraries=places"></script>
+
+    <!-- JavaScript Form -->
+    <script src="{% static 'js/multi_step_form.js' %}"></script>
 {% endblock %}
 
-{% block extra_js %}
-    <script src="{% static 'js/trip_form.js' %}"></script>
 {% endblock %}
