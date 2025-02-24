@@ -2,7 +2,7 @@
 {% block content %}
 <div class="container mt-5">
     <h2 class="text-center">{{ trip.trip_name }}</h2>
-
+    <!--Displays all trip details-->
     <div class="card shadow-sm p-4">
         <p><strong>Country:</strong> {{ trip.country }}</p>
         <p><strong>Dates:</strong> {{ trip.start_date }} → {{ trip.end_date }}</p>
@@ -21,15 +21,6 @@
                 <li><strong>Evening:</strong> {{ details.evening }}</li>
             </ul>
         {% endfor %}
-
-        <h4>Wishlist</h4>
-        <ul>
-            {% for place in trip.wishlist %}
-                <li>{{ place }}</li>
-            {% empty %}
-                <p>No wishlist items added.</p>
-            {% endfor %}
-        </ul>
 
         <!-- Action Buttons -->
         <div class="mt-4">

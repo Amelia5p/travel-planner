@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container mt-5">
-    <h2 class="text-center">Create a New Trip</h2>
+    <h2 class="text-center">{% if editing %}Edit Trip{% else %}Create a New Trip{% endif %}</h2>
     
     <!-- Progress Bar -->
     <div class="progress mt-4">
@@ -72,31 +72,51 @@
             <button type="button" class="btn btn-primary next-step">Next</button>
         </fieldset>
 
-        <!--Itinerary & Wishlist -->
+        <!-- Itinerary-->
         <fieldset class="form-step">
-            <legend>Step 4: Itinerary & Wishlist</legend>
+            <legend>Step 4: Itinerary</legend>
 
-            <div class="mb-3">
-                <label for="itinerary">Daily Itinerary</label>
-                <textarea class="form-control" name="itinerary" id="itinerary" rows="3"></textarea>
+            <h5>Itinerary</h5>
+            <div id="itinerary-container">
+                <!-- Day 1 shows -->
+                <div class="itinerary-day" id="day-1">
+                    <h6>Day 1</h6>
+                    <label>Morning:</label>
+                    <input type="text" class="form-control" name="itinerary[1][morning]">
+
+                    <label>Afternoon:</label>
+                    <input type="text" class="form-control" name="itinerary[1][afternoon]">
+
+                    <label>Evening:</label>
+                    <input type="text" class="form-control" name="itinerary[1][evening]">
+                </div>
             </div>
+            <button type="button" class="btn btn-sm btn-success mt-2" id="add-day">+ Add Day</button>
+            <!--Hidden until button clicked-->
+            <template id="day-template">
+                <div class="itinerary-day">
+                    <h6>Day <span class="day-number"></span></h6>
+                    <label>Morning:</label>
+                    <input type="text" class="form-control" name="morning">
+        
+                    <label>Afternoon:</label>
+                    <input type="text" class="form-control" name="afternoon">
+        
+                    <label>Evening:</label>
+                    <input type="text" class="form-control" name="evening">
+        
+                    <button type="button" class="btn btn-danger btn-sm remove-day mt-2">Remove Day</button>
+                </div>
+            </template>
 
-            <div class="mb-3">
-                <label for="wishlist">Add places to your wishlist:</label>
-                <input type="text" id="wishlist" class="form-control" placeholder="Search places..." required>
-            </div>
 
-            <button type="button" class="btn btn-secondary prev-step">Back</button>
-            <button type="button" class="btn btn-primary next-step">Next</button>
-        </fieldset>
-
-        <!--Review & Submit -->
+        <!-- Review & Submit -->
         <fieldset class="form-step">
             <legend>Step 5: Review & Submit</legend>
             <p>Review your trip details before submitting.</p>
 
             <button type="button" class="btn btn-secondary prev-step">Back</button>
-            <button type="submit" class="btn btn-success">Submit Trip</button>
+            <button type="submit" class="btn btn-success">{% if editing %}Update Trip{% else %}Submit Trip{% endif %}</button>
         </fieldset>
     </form>
 </div>

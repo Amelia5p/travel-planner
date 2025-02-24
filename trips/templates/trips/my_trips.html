@@ -3,6 +3,7 @@
 <div class="container mt-5">
     <h2 class="text-center">My Trips</h2>
     <div class="row">
+        <!--Displays Trips-->
         {% for trip in trips %}
         <div class="col-md-4">
             <div class="card mb-4 shadow-sm">
@@ -14,6 +15,7 @@
                 </div>
             </div>
         </div>
+        <!--If no trips are found-->
         {% empty %}
         <p class="text-center">No trips found. <a href="{% url 'create_trip' %}">Plan a new trip</a>!</p>
         {% endfor %}
