@@ -14,70 +14,90 @@
     <form method="POST" id="tripForm">
         {% csrf_token %}
 
-<!-- Step 1: Basic Trip Details -->
-<div class="form-step active">
-    <h4>Step 1: Basic Trip Details</h4>
-    {{ form.trip_name|as_crispy_field }}
-   
-    <label for="id_country">Country:</label>
-    <input type="text" id="id_country" class="form-control" placeholder="Start typing a country..." required>
-    
-    <label for="cities">Select Cities:</label>
-    <input type="text" id="cities" class="form-control" placeholder="Start typing a city..." required>
+        <!-- Step 1: Basic Trip Details -->
+        <fieldset class="form-step active">
+            <legend>Step 1: Basic Trip Details</legend>
 
-    <ul id="selected-cities" class="list-group mt-2"></ul>
-    <input type="hidden" name="selected-cities" id="selected-cities_input">
-    
-    <!-- Validation errors -->
-    <span id="city-error" class="text-danger"></span>  
+            <div class="mb-3">
+                {{ form.trip_name|as_crispy_field }}
+            </div>
 
-    <button type="button" class="btn btn-primary next-step">Next</button>
-</div>
+            <div class="mb-3">
+                <label for="id_country">Country:</label>
+                <input type="text" id="id_country" class="form-control" placeholder="Start typing a country..." required>
+            </div>
+
+            <div class="mb-3">
+                <label for="cities">Select Cities:</label>
+                <input type="text" id="cities" class="form-control" placeholder="Start typing a city..." required>
+                <ul id="selected-cities" class="list-group mt-2"></ul>
+                <input type="hidden" name="selected-cities" id="selected-cities_input">
+                <span id="city-error" class="text-danger"></span>  
+            </div>
+
+            <button type="button" class="btn btn-primary next-step">Next</button>
+        </fieldset>
 
         <!-- Step 2: Travel Dates & Budget -->
-        <div class="form-step">
-            <h4>Step 2: Travel Dates & Budget</h4>
-            {{ form.start_date|as_crispy_field }}
-            {{ form.end_date|as_crispy_field }}
-            {{ form.budget|as_crispy_field }}
-                     
+        <fieldset class="form-step">
+            <legend>Step 2: Travel Dates & Budget</legend>
+
+            <div class="row">
+                <div class="col-md-6">
+                    <label for="start_date">Start Date:</label>
+                    <input type="date" id="start_date" name="start_date" class="form-control" required>
+                </div>
+                <div class="col-md-6">
+                    <label for="end_date">End Date:</label>
+                    <input type="date" id="end_date" name="end_date" class="form-control" required>
+                </div>
+            </div>
+
+            <div class="mt-3">
+                {{ form.budget|as_crispy_field }}
+            </div>
 
             <button type="button" class="btn btn-secondary prev-step">Back</button>
             <button type="button" class="btn btn-primary next-step">Next</button>
-        </div>
+        </fieldset>
 
         <!-- Step 3: Accommodation & Transport -->
-        <div class="form-step">
-            <h4>Step 3: Accommodation & Transport</h4>
+        <fieldset class="form-step">
+            <legend>Step 3: Accommodation & Transport</legend>
             {{ form.accommodation_name|as_crispy_field }}
             {{ form.accommodation_type|as_crispy_field }}
             {{ form.transport_mode|as_crispy_field }}
+
             <button type="button" class="btn btn-secondary prev-step">Back</button>
             <button type="button" class="btn btn-primary next-step">Next</button>
-        </div>
+        </fieldset>
 
         <!-- Step 4: Itinerary & Wishlist -->
-        <div class="form-step">
-            <h4>Step 4: Itinerary & Wishlist</h4>
-            <label for="itinerary">Daily Itinerary</label>
-            <textarea class="form-control" name="itinerary" id="itinerary" rows="3"></textarea>
+        <fieldset class="form-step">
+            <legend>Step 4: Itinerary & Wishlist</legend>
 
-            <label for="wishlist">Add places to your wishlist:</label>
-            <input type="text" id="wishlist" class="form-control" placeholder="Search places..." required>
+            <div class="mb-3">
+                <label for="itinerary">Daily Itinerary</label>
+                <textarea class="form-control" name="itinerary" id="itinerary" rows="3"></textarea>
+            </div>
 
-
+            <div class="mb-3">
+                <label for="wishlist">Add places to your wishlist:</label>
+                <input type="text" id="wishlist" class="form-control" placeholder="Search places..." required>
+            </div>
 
             <button type="button" class="btn btn-secondary prev-step">Back</button>
             <button type="button" class="btn btn-primary next-step">Next</button>
-        </div>
+        </fieldset>
 
         <!-- Step 5: Review & Submit -->
-        <div class="form-step">
-            <h4>Step 5: Review & Submit</h4>
+        <fieldset class="form-step">
+            <legend>Step 5: Review & Submit</legend>
             <p>Review your trip details before submitting.</p>
+
             <button type="button" class="btn btn-secondary prev-step">Back</button>
             <button type="submit" class="btn btn-success">Submit Trip</button>
-        </div>
+        </fieldset>
     </form>
 </div>
 {% endblock %}
@@ -87,5 +107,5 @@
     <script src="https://maps.googleapis.com/maps/api/js?key={{ google_api_key }}&libraries=places"></script>
 {% endif %}
 
-    <script src="{% static 'js/trip_form.js' %}"></script>
+<script src="{% static 'js/trip_form.js' %}"></script>
 {% endblock %}

@@ -4,6 +4,7 @@ Form create trip inspo: https://www.youtube.com/watch?v=X8ECf3Ow3ww&t=1116s
 JS progress bar: https://stackoverflow.com/questions/49460091/javascript-progressbar-update-on-the-fly
 and https://www.youtube.com/watch?v=CCtgLbL4qE8 
 JS Dynamic form: https://medium.com/@AlexanderObregon/beginners-guide-to-creating-dynamic-forms-with-javascript-10aef6a8843d
+Date picker: https://stackoverflow.com/questions/47066555/remove-time-after-converting-date-toisostring
 
 
 

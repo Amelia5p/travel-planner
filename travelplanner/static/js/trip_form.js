@@ -170,3 +170,23 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 });
 
+// Ensure end date can't be before start date on form
+document.addEventListener("DOMContentLoaded", function () {
+    const startDateInput = document.getElementById("start_date");
+    const endDateInput = document.getElementById("end_date");
+
+    if (startDateInput && endDateInput) {
+        const today = new Date().toISOString().split("T")[0];
+        startDateInput.min = today;
+        endDateInput.min = today;
+
+        startDateInput.addEventListener("change", function () {
+            if (startDateInput.value) {
+                endDateInput.min = startDateInput.value;
+                if (endDateInput.value && endDateInput.value < startDateInput.value) {
+                    endDateInput.value = startDateInput.value;
+                }
+            }
+        });
+    }
+});
