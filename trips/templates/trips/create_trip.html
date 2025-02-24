@@ -14,7 +14,7 @@
     <form method="POST" id="tripForm">
         {% csrf_token %}
 
-        <!-- Step 1: Basic Trip Details -->
+        <!-- Basic Trip Details -->
         <fieldset class="form-step active">
             <legend>Step 1: Basic Trip Details</legend>
 
@@ -38,7 +38,7 @@
             <button type="button" class="btn btn-primary next-step">Next</button>
         </fieldset>
 
-        <!-- Step 2: Travel Dates & Budget -->
+        <!-- Travel Dates & Budget -->
         <fieldset class="form-step">
             <legend>Step 2: Travel Dates & Budget</legend>
 
@@ -61,7 +61,7 @@
             <button type="button" class="btn btn-primary next-step">Next</button>
         </fieldset>
 
-        <!-- Step 3: Accommodation & Transport -->
+        <!-- Accommodation & Transport -->
         <fieldset class="form-step">
             <legend>Step 3: Accommodation & Transport</legend>
             {{ form.accommodation_name|as_crispy_field }}
@@ -72,7 +72,7 @@
             <button type="button" class="btn btn-primary next-step">Next</button>
         </fieldset>
 
-        <!-- Step 4: Itinerary & Wishlist -->
+        <!--Itinerary & Wishlist -->
         <fieldset class="form-step">
             <legend>Step 4: Itinerary & Wishlist</legend>
 
@@ -90,7 +90,7 @@
             <button type="button" class="btn btn-primary next-step">Next</button>
         </fieldset>
 
-        <!-- Step 5: Review & Submit -->
+        <!--Review & Submit -->
         <fieldset class="form-step">
             <legend>Step 5: Review & Submit</legend>
             <p>Review your trip details before submitting.</p>
@@ -100,6 +100,7 @@
         </fieldset>
     </form>
 </div>
+
 {% endblock %}
 
 {% block extra_js %}

@@ -29,3 +29,9 @@ def create_trip(request):
         "form": form,
         "google_api_key": google_api_key,
     })
+
+@login_required
+def my_trips():
+    """Allow users to view their trips on dashboard """
+    trips = Trip.objects.filter(user=request.user)
+    return render(request, "trips/my_trips.html", {"trips": trips})

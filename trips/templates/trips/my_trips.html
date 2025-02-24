@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">My Trips</h2>
+    <div class="row">
+        {% for trip in trips %}
+        <div class="col-md-4">
+            <div class="card mb-4 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title">{{ trip.trip_name }}</h5>
+                    <p class="card-text"><strong>Country:</strong> {{ trip.country }}</p>
+                    <p class="card-text"><strong>Dates:</strong> {{ trip.start_date }} → {{ trip.end_date }}</p>
+                    <a href="{% url 'trip_detail' trip.id %}" class="btn btn-primary">View Trip</a>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No trips found. <a href="{% url 'create_trip' %}">Plan a new trip</a>!</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
