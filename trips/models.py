@@ -27,7 +27,7 @@ class Trip(models.Model):
     )
 
     itinerary = models.TextField(null=True, blank=True, help_text="Enter itinerary details for each day.")
-    wishlist = models.TextField(null=True, blank=True, help_text="List of places/activities you want to visit.")
+
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

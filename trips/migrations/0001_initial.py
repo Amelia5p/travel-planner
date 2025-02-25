@@ -29,7 +29,6 @@ class Migration(migrations.Migration):
                 ('transport_name', models.CharField(blank=True, max_length=255, null=True)),
                 ('transport_type', models.CharField(choices=[('Flight', 'Flight'), ('Train', 'Train'), ('Bus', 'Bus'), ('Car/Taxi', 'Car,Taxi')], default='Flight', max_length=50)),
                 ('itinerary', models.TextField(blank=True, help_text='Enter itinerary details for each day.', null=True)),
-                ('wishlist', models.TextField(blank=True, help_text='List of places/activities you want to visit.', null=True)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
                 ('updated_at', models.DateTimeField(auto_now=True)),
                 ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='trips', to=settings.AUTH_USER_MODEL)),
