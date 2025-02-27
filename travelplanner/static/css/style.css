@@ -77,7 +77,7 @@ form.errorlist {
     
 }
 
-/* Hero Section */
+/* Home page */
 .hero-section {
     background: url("/static/images/travel-hero-img1920.jpg") no-repeat center center/cover;
     height: 70vh;
@@ -86,6 +86,8 @@ form.errorlist {
     align-items: center;
     text-align: center;
     position: relative;
+    margin-top:3rem;
+    margin-bottom: 3rem;
 }
 
 .hero-section .container {
@@ -97,6 +99,14 @@ form.errorlist {
 .hero-section .btn{
     background-color: #517664;
     color:#fff3cd
+}
+
+div .row{
+    padding: 1rem;
+}
+
+div .row .btn{
+    background-color: #517664;
 }
 
 /* Responsive */

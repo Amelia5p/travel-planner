@@ -190,3 +190,64 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 });
+
+// Itinerary section 
+document.addEventListener("DOMContentLoaded", function () {
+    let dayCount = document.querySelectorAll(".itinerary-day").length || 1; 
+
+    const itineraryContainer = document.getElementById("itinerary-container");
+    const addDayButton = document.getElementById("add-day");
+    const dayTemplate = document.getElementById("day-template");
+
+   
+    if (!addDayButton.dataset.listenerAdded) {
+        addDayButton.addEventListener("click", function () {
+            addNewDay();
+        });
+        addDayButton.dataset.listenerAdded = "true"; 
+    }
+
+    function addNewDay() {
+      
+        dayCount = document.querySelectorAll(".itinerary-day").length + 1;
+
+       
+        const templateClone = dayTemplate.content.cloneNode(true);
+        const newDayElement = templateClone.querySelector(".itinerary-day");
+
+       
+        newDayElement.id = `day-${dayCount}`;
+        newDayElement.querySelector(".day-number").textContent = dayCount;
+
+        
+        newDayElement.querySelector("input[name='morning']").name = `itinerary[${dayCount}][morning]`;
+        newDayElement.querySelector("input[name='afternoon']").name = `itinerary[${dayCount}][afternoon]`;
+        newDayElement.querySelector("input[name='evening']").name = `itinerary[${dayCount}][evening]`;
+
+        newDayElement.querySelector(".remove-day").addEventListener("click", function () {
+            newDayElement.remove();
+            renumberDays(); 
+        });
+
+        itineraryContainer.appendChild(newDayElement);
+    }
+
+    function renumberDays() {
+        let days = document.querySelectorAll(".itinerary-day");
+        let newDayNumber = 1; 
+
+        days.forEach((day) => {
+            day.id = `day-${newDayNumber}`;
+            day.querySelector(".day-number").textContent = newDayNumber;
+
+            
+            day.querySelector("input[name^='itinerary']").name = `itinerary[${newDayNumber}][morning]`;
+            day.querySelectorAll("input")[1].name = `itinerary[${newDayNumber}][afternoon]`;
+            day.querySelectorAll("input")[2].name = `itinerary[${newDayNumber}][evening]`;
+
+            newDayNumber++;
+        });
+
+        dayCount = days.length; 
+    }
+});
