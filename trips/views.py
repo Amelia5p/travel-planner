@@ -52,6 +52,12 @@ def my_trips(request):
     user_trips = Trip.objects.filter(user=request.user).order_by('-start_date')
     return render(request, 'trips/my_trips.html', {'trips': user_trips})
 
+@login_required
+def trip_details(request, trip_id):
+    trip = get_object_or_404(Trip, id=trip_id, user=request.user)
+    return render(request, 'trips/trip_details.html', {'trip': trip})
+
+
 
 @login_required
 def delete_trip(request, trip_id):
