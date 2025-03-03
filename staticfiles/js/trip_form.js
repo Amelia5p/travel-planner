@@ -5,8 +5,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const nextButtons = document.querySelectorAll("button.next-step");
     const prevButtons = document.querySelectorAll("button.prev-step");
     let selectedCountryCode = null;
+    let selectedCities = [];
 
-    //  Show step
     function showStep(step) {
         formSteps.forEach((formStep, index) => {
             formStep.style.display = index === step ? "block" : "none";
@@ -14,14 +14,12 @@ document.addEventListener("DOMContentLoaded", function () {
         updateProgressBar();
     }
 
-    // Update progress bar
     function updateProgressBar() {
         const stepPercentage = ((currentStep + 1) / formSteps.length) * 100;
-        progressBar.style.width = stepPercentage + "%"; 
+        progressBar.style.width = stepPercentage + "%";
         progressBar.textContent = `Step ${currentStep + 1} of ${formSteps.length}`;
     }
 
-    // Validation
     function validateStep(step) {
         let valid = true;
         const inputs = formSteps[step].querySelectorAll("input, select, textarea");
@@ -30,6 +28,14 @@ document.addEventListener("DOMContentLoaded", function () {
             if (input.hasAttribute("required") && !input.value.trim()) {
                 valid = false;
                 input.classList.add("is-invalid");
+
+                const parentDiv = input.closest('.form-group');
+                if (parentDiv && !parentDiv.querySelector('.invalid-feedback')) {
+                    const feedback = document.createElement('div');
+                    feedback.className = 'invalid-feedback';
+                    feedback.textContent = 'This field is required.';
+                    parentDiv.appendChild(feedback);
+                }
             } else {
                 input.classList.remove("is-invalid");
             }
@@ -38,155 +44,135 @@ document.addEventListener("DOMContentLoaded", function () {
         return valid;
     }
 
-    // Next button
     nextButtons.forEach((button) => {
         button.addEventListener("click", () => {
             if (validateStep(currentStep) && currentStep < formSteps.length - 1) {
                 currentStep++;
                 showStep(currentStep);
+                document.getElementById('tripForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
 
-    // Back button
     prevButtons.forEach((button) => {
         button.addEventListener("click", () => {
             if (currentStep > 0) {
                 currentStep--;
                 showStep(currentStep);
+                document.getElementById('tripForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
             }
         });
     });
 
-
     showStep(currentStep);
 
-    
-    function initAutocomplete() {
-        const countryInput = document.getElementById("id_country");
-        const cityInput = document.getElementById("cities");
-        const cityError = document.getElementById("city-error");
-        const selectedCitiesList = document.getElementById("selected-cities");
-        const selectedCitiesInput = document.getElementById("selected_cities_input");
-        let selectedCities = [];
+    const tripForm = document.getElementById('tripForm');
+    if (tripForm) {
+        tripForm.addEventListener('submit', function (e) {
+            if (!validateStep(currentStep)) {
+                e.preventDefault();
+                alert('Please fill in all required fields.');
+            }
+        });
+    }
 
-        // Country
-        if (countryInput) {
-            let countryAutocomplete = new google.maps.places.Autocomplete(countryInput, {
-                types: ["(regions)"], 
+    function initPlacesAutocomplete() {
+        const countryField = document.getElementById('id_country');
+        const cityField = document.getElementById('city-input');
+        const citiesList = document.getElementById('selected-cities-list');
+        const citiesField = document.getElementById('id_cities');
+
+        if (!countryField || !citiesList || !citiesField) return;
+
+        const countryAutocomplete = new google.maps.places.Autocomplete(countryField, {
+            types: ['(regions)'],
+            fields: ['address_components', 'formatted_address', 'name']
+        });
+
+        countryAutocomplete.addListener('place_changed', function () {
+            const place = countryAutocomplete.getPlace();
+            if (place.address_components) {
+                const countryComponent = place.address_components.find(component =>
+                    component.types.includes('country')
+                );
+
+                if (countryComponent) {
+                    selectedCountryCode = countryComponent.short_name;
+                    countryField.value = countryComponent.long_name;
+                    selectedCities = [];
+                    updateSelectedCitiesList();
+                    initCityAutocomplete();
+                    cityField.disabled = false;
+                    cityField.placeholder = `Add cities in ${countryComponent.long_name}...`;
+                }
+            }
+        });
+
+        function initCityAutocomplete() {
+            if (!cityField) return;
+
+            const cityAutocomplete = new google.maps.places.Autocomplete(cityField, {
+                types: ['(cities)'],
+                fields: ['address_components', 'formatted_address', 'name']
             });
 
-            countryAutocomplete.addListener("place_changed", function () {
-                let place = countryAutocomplete.getPlace();
+            cityAutocomplete.setComponentRestrictions({ country: [selectedCountryCode] });
+
+            cityAutocomplete.addListener('place_changed', function () {
+                const place = cityAutocomplete.getPlace();
+
                 if (place.address_components) {
-                    let countryComponent = place.address_components.find(component => 
-                        component.types.includes("country")
+                    const localityComponent = place.address_components.find(component =>
+                        component.types.includes('locality')
                     );
-                    selectedCountryCode = countryComponent ? countryComponent.short_name : null;
-                    countryInput.value = place.formatted_address || place.name;
-                    clearCityInput(); 
-                    cityInput.disabled = false; 
-                }
-            });
-        }
 
-        // City
-        if (cityInput) {
-            let cityAutocomplete = new google.maps.places.Autocomplete(cityInput, {
-                types: ["(cities)"],
-            });
+                    const cityName = localityComponent ? localityComponent.long_name : place.name;
 
-            cityAutocomplete.addListener("place_changed", function () {
-                let place = cityAutocomplete.getPlace();
-                let cityName = place.name;
-
-                if (!selectedCountryCode) {
-                    cityError.textContent = "Please select a country first.";
-                    cityInput.value = "";
-                    return;
-                }
-
-                let cityCountryCode = place.address_components.find(component =>
-                    component.types.includes("country")
-                ).short_name;
-
-                if (cityCountryCode !== selectedCountryCode) {
-                    cityError.textContent = `Please select a city in ${countryInput.value}.`;
-                    cityInput.value = ""; 
-                } else {
-                    cityError.textContent = ""; 
-
-                    // check if the city already there
                     if (!selectedCities.includes(cityName)) {
-                        selectedCities.push(cityName); 
-                        updateSelectedCities();
-                        cityInput.value = "";
-                        cityAutocomplete.set("place", null);
+                        selectedCities.push(cityName);
+                        updateSelectedCitiesList();
+                        cityField.value = '';
                     } else {
-                        cityError.textContent = `${cityName} is already selected.`;
+                        alert(`${cityName} is already added.`);
                     }
                 }
             });
         }
 
-         // Update cities 
-        function updateSelectedCities() {
-            selectedCitiesList.innerHTML = ""; 
+        function updateSelectedCitiesList() {
+            citiesList.innerHTML = '';
+            citiesField.value = selectedCities.join(', ');
 
             selectedCities.forEach((city, index) => {
-                let li = document.createElement("li");
-                li.className = "list-group-item d-flex justify-content-between align-items-center";
-                li.textContent = city;
+                const listItem = document.createElement('li');
+                listItem.className = 'list-group-item d-flex justify-content-between align-items-center';
 
-                
-                let removeBtn = document.createElement("button");
-                removeBtn.className = "btn btn-danger btn-sm";
-                removeBtn.textContent = "X";
-                removeBtn.onclick = function () {
+                const cityText = document.createElement('span');
+                cityText.textContent = city;
+
+                const removeButton = document.createElement('button');
+                removeButton.type = 'button';
+                removeButton.className = 'btn btn-sm btn-danger';
+                removeButton.textContent = '×';
+                removeButton.addEventListener('click', function () {
                     selectedCities.splice(index, 1);
-                    updateSelectedCities();
-                };
+                    updateSelectedCitiesList();
+                });
 
-                li.appendChild(removeBtn);
-                selectedCitiesList.appendChild(li);
+                listItem.appendChild(cityText);
+                listItem.appendChild(removeButton);
+                citiesList.appendChild(listItem);
             });
-
-            // Store hidden cities
-            selectedCitiesInput.value = selectedCities.join(",");
         }
 
-        // Clear selected cities
-        function clearCityInput() {
-            selectedCities = []; //
-            updateSelectedCities();
-            cityError.textContent = "";
-            cityInput.disabled = true; 
-        }
+        initCityAutocomplete();
     }
+
     if (typeof google !== "undefined" && google.maps && google.maps.places) {
-        initAutocomplete();
+        initPlacesAutocomplete();
     } else {
-        console.error("Google Places API is not loaded.");
+        console.error("Google Places API not loaded.");
     }
 });
 
-// Ensure end date can't be before start date on form
-document.addEventListener("DOMContentLoaded", function () {
-    const startDateInput = document.getElementById("start_date");
-    const endDateInput = document.getElementById("end_date");
 
-    if (startDateInput && endDateInput) {
-        const today = new Date().toISOString().split("T")[0];
-        startDateInput.min = today;
-        endDateInput.min = today;
-
-        startDateInput.addEventListener("change", function () {
-            if (startDateInput.value) {
-                endDateInput.min = startDateInput.value;
-                if (endDateInput.value && endDateInput.value < startDateInput.value) {
-                    endDateInput.value = startDateInput.value;
-                }
-            }
-        });
-    }
-});
