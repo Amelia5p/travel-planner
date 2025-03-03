@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 class Trip(models.Model):
     user = models.ForeignKey(User, on_delete =models.CASCADE, related_name= 'trips')
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=255, null=True, blank=True)
     start_date = models.DateField()
     end_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
