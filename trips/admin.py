@@ -3,7 +3,7 @@ from .models import Trip, TripLocation, TripDetails, TripBudget, ItineraryDay
 
 @admin.register(Trip)
 class TripAdmin(admin.ModelAdmin):
-    list_display = ('name', 'user', 'start_date', 'end_date', 'created_at')
+    list_display = ('trip_name', 'user', 'start_date', 'end_date', 'created_at')
     search_fields = ('name', 'user__username')
     list_filter = ('start_date', 'end_date', 'user')
 

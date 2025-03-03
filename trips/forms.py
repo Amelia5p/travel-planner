@@ -1,12 +1,12 @@
 from django import forms
-from models import Trip
+from .models import Trip
 from datetime import timedelta
 
 
-class tripDetails(forms.modelForm):
+class TripDetailsForm(forms.ModelForm):
     class Meta:
           model = Trip
-          fields= ['name', 'start_date', 'end_date']
+          fields= ['trip_name', 'start_date', 'end_date']
           widgets= {
             'start_date': forms.DateInput(attrs={'type': 'date'}),
             'end_date': forms.DateInput(attrs={'type': 'date'}),

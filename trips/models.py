@@ -3,13 +3,13 @@ from django.contrib.auth.models import User
 
 class Trip(models.Model):
     user = models.ForeignKey(User, on_delete =models.CASCADE, related_name= 'trips')
-    name = models.CharField(max_length=255, null=True, blank=True)
+    trip_name = models.CharField(max_length=255, null=True, blank=True)
     start_date = models.DateField()
     end_date = models.DateField()
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f"{self.name} ({self.start_date} to {self.end_date})"
+        return f"{self.trip_name} ({self.start_date} to {self.end_date})"
     
     def duration_days(self):
         return (self.end_date - self.start_date).days + 1
