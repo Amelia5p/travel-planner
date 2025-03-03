@@ -1,9 +1,9 @@
 from django import forms
-from .models import Trip
+from .models import Trip, TripLocation
 from datetime import timedelta
 
 
-class TripDetailsForm(forms.ModelForm):
+class TripForm(forms.ModelForm):
     class Meta:
           model = Trip
           fields= ['trip_name', 'start_date', 'end_date']
@@ -21,3 +21,11 @@ class TripDetailsForm(forms.ModelForm):
             raise forms.ValidationError("End date cannot be before start date")
         
         return cleaned_data
+    
+class TripLocationForm(forms.ModelForm):
+     class Meta:
+          model= TripLocation
+          fields= ['country', 'cities']
+
+
+
