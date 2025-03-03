@@ -233,6 +233,7 @@ and https://www.youtube.com/watch?v=CCtgLbL4qE8
 JS Dynamic form: https://medium.com/@AlexanderObregon/beginners-guide-to-creating-dynamic-forms-with-javascript-10aef6a8843d
 Date picker: https://stackoverflow.com/questions/47066555/remove-time-after-converting-date-toisostring
 https://javascript.plainenglish.io/why-cloning-html-templates-is-a-must-know-trick-425be9ee664b
+EVENTUALLY USED: https://www.youtube.com/watch?v=8xb9s3jnRF8&t=499s  wizard
 
 USED:
 https://www.pexels.com/search/vacation/?color=fff3cd&orientation=landscape

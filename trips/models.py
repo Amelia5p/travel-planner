@@ -49,14 +49,14 @@ class TripDetails(models.Model):
     transport_type = models.CharField(max_length=100, choices=TRANSPORT_CHOICES)
 
     def __str__(self):
-        return f"Details for {self.trip.name}"
+        return f"Details for {self.trip.trip_name}"
 
 class TripBudget(models.Model):
     trip = models.OneToOneField(Trip, on_delete=models.CASCADE, related_name='budget')
     budget= models.DecimalField(max_digits=10, decimal_places=2)
 
     def __str__(self):
-        return f"{self.budget} for {self.trip.name}"
+        return f"{self.budget} for {self.trip.trip_name}"
 
 
 class ItineraryDay(models.Model):
@@ -73,4 +73,4 @@ class ItineraryDay(models.Model):
     
     
     def __str__(self):
-        return f"Day {self.day_number} of {self.trip.name}"
+        return f"Day {self.day_number} of {self.trip.trip_name}"

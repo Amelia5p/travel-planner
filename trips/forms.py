@@ -1,5 +1,5 @@
 from django import forms
-from .models import Trip, TripLocation
+from .models import Trip, TripLocation, TripDetails,TripBudget, ItineraryDay
 from datetime import timedelta
 
 
@@ -28,4 +28,24 @@ class TripLocationForm(forms.ModelForm):
           fields= ['country', 'cities']
 
 
+class TripDetailsForm(forms.ModelForm):
+     class Meta:
+          model= TripDetails
+          fields =['accommodation_type', 'transport_type']
 
+
+class TripBudgetForm(forms.ModelForm):
+     class Meta:
+          model= TripBudget
+          fields=['budget']
+
+
+class ItineraryDayForm(forms.ModelForm):
+    class Meta:
+        model = ItineraryDay
+        fields = ['day_number', 'morning', 'afternoon', 'evening']
+        widgets = {
+            'morning': forms.Textarea(attrs={'rows': 3}),
+            'afternoon': forms.Textarea(attrs={'rows': 3}),
+            'evening': forms.Textarea(attrs={'rows': 3}),
+        }

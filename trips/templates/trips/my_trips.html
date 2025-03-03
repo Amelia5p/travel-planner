@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">My Trips</h2>
+
+    {% if trips %}
+        <div class="row">
+            {% for trip in trips %}
+                <div class="col-md-4">
+                    <div class="card shadow-lg border-0 mb-4">
+                        <div class="card-body text-center">
+                            <h5 class="card-title font-weight-bold">{{ trip.trip_name }}</h5>
+                            <p class="card-text text-muted">
+                                <strong>{{ trip.location.country }}</strong><br>
+                                {{ trip.start_date|date:"M d, Y" }} - {{ trip.end_date|date:"M d, Y" }}
+                            </p>
+                            <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm btn-outline-danger">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-center text-muted">You haven't created any trips yet.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{% url 'create_trip' %}" class="btn btn-success">Create a New Trip</a>
+    </div>
+</div>
+{% endblock %}
+
+
