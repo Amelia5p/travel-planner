@@ -4,8 +4,13 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .forms import TripForm, TripLocationForm, TripDetailsForm, TripBudgetForm, ItineraryDayFormSet
 from .models import Trip, TripLocation, TripDetails, TripBudget, ItineraryDay
+from django.forms import inlineformset_factory
+from .models import Trip, ItineraryDay
+from .forms import TripForm, ItineraryDayFormSet
+from django.contrib.auth.mixins import LoginRequiredMixin
 
-class PlanningWizardView(SessionWizardView):
+class PlanningWizardView(LoginRequiredMixin, SessionWizardView):
+
     form_list = [
         ('0', TripForm),
         ('1', TripLocationForm),
@@ -106,12 +111,6 @@ def my_trips(request):
     """Display the user's saved trips."""
     user_trips = Trip.objects.filter(user=request.user).order_by('created_at')
     return render(request, 'trips/my_trips.html', {'trips': user_trips})
-
-from django.shortcuts import render, redirect, get_object_or_404
-from django.contrib.auth.decorators import login_required
-from django.forms import inlineformset_factory
-from .models import Trip, ItineraryDay
-from .forms import TripForm, ItineraryDayFormSet
 
 @login_required
 def trip_details(request, trip_id):

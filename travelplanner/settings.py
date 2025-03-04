@@ -108,6 +108,9 @@ DATABASES = {
 DATABASE_URL = os.getenv("DATABASE_URL")
 LOGIN_REDIRECT_URL = 'profile'  # Redirect after login
 LOGOUT_REDIRECT_URL = 'home'   # Redirect after logout
+LOGIN_URL = '/users/login/'  # Redirects to your defined login page
+LOGIN_REDIRECT_URL = 'my_trips'  # Redirects after login
+
 
 
 # Password validation
