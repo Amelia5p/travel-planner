@@ -1,56 +1,72 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let currentStep = 0;
-    const formSteps = document.querySelectorAll(".form-step");
-    const progressBar = document.getElementById("progressBar");
-    const nextButtons = document.querySelectorAll("button.next-step");
-    const prevButtons = document.querySelectorAll("button.prev-step");
-   
+(function() {
+    // Prevent add button from adding 2 days at a time.
+    if (window.tripFormInitialized) return;
+    window.tripFormInitialized = true;
 
-    function showStep(step) {
-        formSteps.forEach((formStep, index) => {
-            formStep.style.display = index === step ? "block" : "none";
-        });
-        updateProgressBar();
-    }
+    document.addEventListener('DOMContentLoaded', function() {
+        const addButton = document.getElementById('add-form');
+        const formsContainer = document.getElementById('itinerary-forms');
 
-    function updateProgressBar() {
-        const stepPercentage = ((currentStep + 1) / formSteps.length) * 100;
-        progressBar.style.width = stepPercentage + "%";
-        progressBar.textContent = `Step ${currentStep + 1} of ${formSteps.length}`;
-    }
+        if (!addButton || !formsContainer) return;
 
-    function validateStep(step) {
-        let valid = true;
-        const inputs = formSteps[step].querySelectorAll( "select, textarea");
+        // Credit: Brennan Tymrak 2019-2024, see read me
+        const totalFormsInput = document.querySelector('[name$="-TOTAL_FORMS"]');
 
-        inputs.forEach(input => {
-            if (input.hasAttribute("required") && !input.value.trim()) {
-                valid = false;
-                input.classList.add("is-invalid");
-            } else {
-                input.classList.remove("is-invalid");
+        if (!totalFormsInput) return;
+
+        addButton.addEventListener('click', function() {
+            
+            const forms = formsContainer.querySelectorAll('.itinerary-form');
+            const formCount = forms.length;
+
+            // Clone form
+            const lastForm = forms[formCount - 1];
+            const newForm = lastForm.cloneNode(true);
+
+           
+            newForm.querySelectorAll('input, select, textarea').forEach(input => {
+                if (input.name.includes('TOTAL_FORMS') || 
+                    input.name.includes('INITIAL_FORMS') || 
+                    input.name.includes('MAX_NUM_FORMS')) {
+                    return;
+                }
+
+                // Update form
+                const nameMatch = input.name.match(/(.+?)-(\d+)-(.+)/);
+                if (nameMatch) {
+                    input.name = input.name.replace(`-${nameMatch[2]}-`, `-${formCount}-`);
+                    
+                    if (input.id) {
+                        input.id = input.id.replace(`-${nameMatch[2]}-`, `-${formCount}-`);
+                    }
+                }
+
+                // Clear input
+                if (input.type === 'text' || input.type === 'date' || input.tagName.toLowerCase() === 'textarea') {
+                    input.value = '';
+                }
+
+                if (input.tagName.toLowerCase() === 'select') {
+                    input.selectedIndex = 0;
+                }
+            });
+
+            // Increase the day number
+            const dayInput = newForm.querySelector('[name*="day"]'); 
+            if (dayInput) {
+                const previousDayInput = lastForm.querySelector('[name*="day"]');
+                if (previousDayInput) {
+                    dayInput.value = parseInt(previousDayInput.value) + 1 || 1;
+                } else {
+                    dayInput.value = 1;
+                }
             }
-        });
 
-        return valid;
-    }
+            
+            formsContainer.appendChild(newForm);
 
-    nextButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            if (validateStep(currentStep) && currentStep < formSteps.length - 1) {
-                currentStep++;
-                showStep(currentStep);
-            }
+            
+            totalFormsInput.value = formCount + 1;
         });
     });
-
-    prevButtons.forEach((button) => {
-        button.addEventListener("click", () => {
-            if (currentStep > 0) {
-                currentStep--;
-                showStep(currentStep);
-            }
-        });
-    });
-
-    showStep(currentStep);})
+})();

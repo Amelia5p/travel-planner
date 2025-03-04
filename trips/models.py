@@ -61,7 +61,7 @@ class TripBudget(models.Model):
 
 class ItineraryDay(models.Model):
     trip = models.ForeignKey(Trip, on_delete= models.CASCADE, related_name='itinerary_days')
-    day_number = models.IntegerField()
+    day_number = models.PositiveIntegerField(null=False, blank=False, default=1)
     date = models.DateField(null=True, blank=True)
     morning = models.TextField(blank=True, null=True)
     afternoon = models.TextField(blank=True, null=True)

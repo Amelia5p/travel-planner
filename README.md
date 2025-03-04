@@ -223,6 +223,7 @@ To clone this repository follow the below steps:
 
 
 
+credits (Brennan Tymrak, https://www.brennantymrak.com/articles/django-dynamic-formsets-javascript)
 
 
 
@@ -234,6 +235,7 @@ JS Dynamic form: https://medium.com/@AlexanderObregon/beginners-guide-to-creatin
 Date picker: https://stackoverflow.com/questions/47066555/remove-time-after-converting-date-toisostring
 https://javascript.plainenglish.io/why-cloning-html-templates-is-a-must-know-trick-425be9ee664b
 EVENTUALLY USED: https://www.youtube.com/watch?v=8xb9s3jnRF8&t=499s  wizard
+https://awstip.com/django-inline-formset-factory-with-examples-27576b915b5a (https://archive.ph/20241031172621/https://awstip.com/django-inline-formset-factory-with-examples-27576b915b5a)
 
 USED:
 https://www.pexels.com/search/vacation/?color=fff3cd&orientation=landscape

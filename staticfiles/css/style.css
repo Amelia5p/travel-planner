@@ -1,11 +1,7 @@
-
-
-
 /*Base HTML */
 
 body {
     background-color: rgb(198, 198, 174);
-    font-family: 'Poppins', sans-serif;
 }
 
 .navbar{
@@ -81,21 +77,23 @@ form.errorlist {
     
 }
 
-/* Hero Section */
+/* Home page */
 .hero-section {
-    background: url("/static/images/hero1.jpg") no-repeat center center/cover;
+    background: url("/static/images/travel-hero-img1920.jpg") no-repeat center center/cover;
     height: 70vh;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
     position: relative;
+    margin-top:3rem;
+    margin-bottom: 3rem;
 }
 
 .hero-section .container {
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, 0.5);
     padding: 2rem;
-    border-radius: 10px;
+    
 }
 
 .hero-section .btn{
@@ -103,9 +101,23 @@ form.errorlist {
     color:#fff3cd
 }
 
+div .row{
+    padding: 1rem;
+}
+
+div .row .btn{
+    background-color: #517664;
+}
+
 /* Responsive */
-@media (max-width: 768px) {
-    .hero-section {
-        height: 50vh;
+@media (max-width: 1200px) {
+    .hero {
+        background-image: url("/static/images/travel-hero-img1200.jpg");
+    }
+}
+
+@media (max-width: 600px) {
+    .hero {
+        background-image: url("/static/images/travel-hero-img600.jpg");
     }
 }

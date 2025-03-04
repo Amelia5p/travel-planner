@@ -1,6 +1,7 @@
 from django import forms
 from .models import Trip, TripLocation, TripDetails,TripBudget, ItineraryDay
 from datetime import timedelta
+from django.forms import inlineformset_factory
 
 
 class TripForm(forms.ModelForm):
@@ -40,12 +41,10 @@ class TripBudgetForm(forms.ModelForm):
           fields=['budget']
 
 
-class ItineraryDayForm(forms.ModelForm):
-    class Meta:
-        model = ItineraryDay
-        fields = ['day_number', 'morning', 'afternoon', 'evening']
-        widgets = {
-            'morning': forms.Textarea(attrs={'rows': 3}),
-            'afternoon': forms.Textarea(attrs={'rows': 3}),
-            'evening': forms.Textarea(attrs={'rows': 3}),
-        }
+ItineraryDayFormSet = inlineformset_factory(
+    Trip, ItineraryDay,
+    fields=['day_number', 'morning', 'afternoon', 'evening'],
+    extra=1, 
+    can_delete=True,
+    
+)

@@ -16,31 +16,32 @@
             <p><strong>Accommodation Type:</strong> {{ trip.details.get_accommodation_type_display }}</p>
             <p><strong>Transport Type:</strong> {{ trip.details.get_transport_type_display }}</p>
 
-            {% if trip.itinerary_days.all %}
+            {% if itinerary_days %}
             <hr>
             <h4>Itinerary</h4>
             <ul class="list-group">
-                {% for day in trip.itinerary_days.all %}
+                {% for day in itinerary_days %}
                 <li class="list-group-item">
                     <h5>Day {{ day.day_number }} {% if day.date %} ({{ day.date }}) {% endif %}</h5>
                     {% if day.morning %}<p><strong>Morning:</strong> {{ day.morning }}</p>{% endif %}
                     {% if day.afternoon %}<p><strong>Afternoon:</strong> {{ day.afternoon }}</p>{% endif %}
                     {% if day.evening %}<p><strong>Evening:</strong> {{ day.evening }}</p>{% endif %}
                 </li>
-                {% empty %}
-                <p>No itinerary details available.</p>
                 {% endfor %}
             </ul>
+            {% else %}
+            <p>No itinerary details available.</p>
             {% endif %}
-            
+
+            <hr>
+           
+            </form>
+
             <div class="mt-4">
                 <a href="{% url 'my_trips' %}" class="btn btn-secondary">Back to My Trips</a>
                 <form action="{% url 'delete_trip' trip.id %}" method="post" class="d-inline">
                     {% csrf_token %}
-                    <button type="submit" class="btn btn-danger"
-                        onclick="return confirm('Are you sure you want to delete this trip?');">
-                        Delete Trip
-                    </button>
+                    <button type="submit" class="btn btn-danger">Delete Trip</button>
                 </form>
             </div>
         </div>
