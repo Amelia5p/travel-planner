@@ -21,18 +21,37 @@
                     </div>
                 </div>
             {% endfor %}
+            
         </div>
         <button type="button" class="btn btn-secondary mb-3" id="add-form">Add Another Day</button>
     {% else %}
         {{ wizard.form|crispy }}
     {% endif %}
+    <div id="itinerary-forms">
+        {% if itinerary_formset %}  {# Ensure the formset exists #}
+        <h3>Itinerary Days</h3>
+        {{ itinerary_formset.management_form }}  {# Required for Django Formsets #}
+        <div id="itinerary-forms">
+            {% for form in itinerary_formset.forms %}
+                <div class="card mb-3 itinerary-form">
+                    <div class="card-body">
+                        {{ form|crispy }}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <button type="button" class="btn btn-secondary mb-3" id="add-form">Add Another Day</button>
+    {% endif %}
+    
+    </div>
 
     {% if wizard.steps.prev %}
         <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.first }}" class="btn btn-secondary">{% translate "First Step" %}</button>
         <button name="wizard_goto_step" type="submit" value="{{ wizard.steps.prev }}" class="btn btn-secondary">{% translate "Previous" %}</button>
     {% endif %}
     
-    <input type="submit" value="{% if wizard.steps.step1 == wizard.steps.count %}{% translate "Submit" %}{% else %}{% translate "Next" %}{% endif %}" class="btn btn-primary"/>
+    <input type="submit" value="{% if wizard.steps.current == wizard.steps.count %}{% translate 'Submit' %}{% else %}{% translate 'Next' %}{% endif %}" class="btn btn-primary"/>
+
 </form>
 
 <script src="{% static 'js/trip_form.js' %}"></script> 

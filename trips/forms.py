@@ -41,10 +41,22 @@ class TripBudgetForm(forms.ModelForm):
           fields=['budget']
 
 
+class ItineraryDayForm(forms.ModelForm):
+    class Meta:
+        model = ItineraryDay
+        fields = ['day_number', 'morning', 'afternoon', 'evening']
+        widgets = {
+            'morning': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
+            'afternoon': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
+            'evening': forms.Textarea(attrs={'rows': 3, 'class': 'form-control'}),
+            'day_number': forms.NumberInput(attrs={'class': 'form-control'})
+        }
+
+# Create the formset factory
 ItineraryDayFormSet = inlineformset_factory(
-    Trip, ItineraryDay,
-    fields=['day_number', 'morning', 'afternoon', 'evening'],
-    extra=1, 
-    can_delete=True,
-    
+    Trip,  # Parent model
+    ItineraryDay,  # Child model
+    form=ItineraryDayForm,
+    extra=1,
+    can_delete=True
 )

@@ -27,15 +27,17 @@
                         {{ budget_form|crispy }}
 
                         <h5 class="text-primary mt-3">Itinerary</h5>
-                        <div id="itinerary-formset">
-                            {{ itinerary_formset.management_form }}
-                            {% for form in itinerary_formset %}
-                            
-                                <div class="card mb-3 p-3">
-                                    {{ form|crispy }}
-                                </div>
-                            {% endfor %}
-                        </div>
+                        {% if is_formset %}
+                        <h3>Itinerary</h3>
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ formset.management_form }}
+                            {{ formset.as_p }}
+                            <button type="submit">Save Itinerary</button>
+                        </form>
+                    {% endif %}
+                    
+                    
 
                         <div class="d-flex justify-content-between mt-3">
                             <a href="{% url 'trip_details' trip.id %}" class="btn btn-outline-secondary">Cancel</a>

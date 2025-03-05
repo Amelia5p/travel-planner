@@ -1,3 +1,4 @@
+
 (function() {
     // Prevent add button from adding 2 days at a time.
     if (window.tripFormInitialized) return;

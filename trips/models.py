@@ -75,4 +75,3 @@ class ItineraryDay(models.Model):
     def __str__(self):
         return f"Day {self.day_number} of {self.trip.trip_name}"
 
-

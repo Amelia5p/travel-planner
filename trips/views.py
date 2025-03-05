@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from formtools.wizard.views import SessionWizardView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import TripForm, TripLocationForm, TripDetailsForm, TripBudgetForm, ItineraryDayFormSet
+from .forms import TripForm, TripLocationForm, TripDetailsForm, TripBudgetForm, ItineraryDayFormSet, ItineraryDayForm
 from .models import Trip, TripLocation, TripDetails, TripBudget, ItineraryDay
 from django.forms import inlineformset_factory
 from .models import Trip, ItineraryDay
@@ -10,9 +10,7 @@ from .forms import TripForm, ItineraryDayFormSet
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
-# Create trip views
-class PlanningWizardView(LoginRequiredMixin, SessionWizardView):
-
+class PlanningWizardView(SessionWizardView):
     form_list = [
         ('0', TripForm),
         ('1', TripLocationForm),
@@ -23,89 +21,83 @@ class PlanningWizardView(LoginRequiredMixin, SessionWizardView):
     template_name = 'trips/create_trip.html'
 
     def get_form(self, step=None, data=None, files=None):
-        form = None
-        
         if step is None:
             step = self.steps.current
-            
-        if step == '4':  
-            
-            if data:
-                form = ItineraryDayFormSet(data, prefix=self.get_form_prefix(step))
-            else:
-                form = ItineraryDayFormSet(prefix=self.get_form_prefix(step))
-            return form
-        
-        return super().get_form(step, data, files)
-    
-    def get_context_data(self, form, **kwargs):
-        context = super().get_context_data(form=form, **kwargs)
-        
-        
-        if self.steps.current == '4':
-            context['is_formset'] = True
-        
-        return context
 
+        if step == '4':  
+            trip = self.get_trip()
+            prefix = self.get_form_prefix(step)  
+
+            if data:
+                return ItineraryDayFormSet(data, instance=trip, prefix=prefix)
+            return ItineraryDayFormSet(instance=trip, prefix=prefix)
+
+        return super().get_form(step, data, files)
+
+    
     def done(self, form_list, **kwargs):
-        
+        """ Save all forms and formsets properly """
         user = self.request.user 
-        
+    
         # Get all form data
         form_data = [form.cleaned_data for form in form_list[:4]]
-        
-     
+    
         trip_form_data = form_data[0]
         trip_location_form_data = form_data[1]
         trip_details_form_data = form_data[2]
         trip_budget_form_data = form_data[3]
-        itinerary_formset = form_list[4] 
-        
-       
+        itinerary_formset = form_list[4]  
+    
         trip = Trip.objects.create(
             user=user,
             trip_name=trip_form_data['trip_name'],
             start_date=trip_form_data['start_date'],
             end_date=trip_form_data['end_date']
         )
-        
-      
+    
         TripLocation.objects.create(
             trip=trip,
             country=trip_location_form_data['country'],
             cities=trip_location_form_data['cities']
-        )
-        
-        # Create and save TripDetails
+            )
+    
+    # Create and save TripDetails
         TripDetails.objects.create(
             trip=trip,
             accommodation_type=trip_details_form_data['accommodation_type'],
             transport_type=trip_details_form_data['transport_type']
         )
-        
-        # Create and save TripBudget
+    
+    # Create and save TripBudget
         TripBudget.objects.create(
             trip=trip,
             budget=trip_budget_form_data['budget']
         )
-        
-        # Get the formset data and save it
-        itinerary_formset = self.get_form(
-            step='4',
-            data=self.storage.get_step_data('4'),
-            files=self.storage.get_step_files('4')
-        )
-        
+    
+        # Save the formset
         if itinerary_formset.is_valid():
-            # Link each form in the formset to the trip
             instances = itinerary_formset.save(commit=False)
             for instance in instances:
                 instance.trip = trip
                 instance.save()
-        
+        else:
+           
+            print(itinerary_formset.errors)
+    
         messages.success(self.request, "Your trip has been successfully created!")
         return redirect('my_trips')
-    
+        
+    def get_trip(self):
+        """ Fetch the trip instance for editing or creating. """
+        if not hasattr(self, 'trip'):
+            trip_id = self.kwargs.get('trip_id')
+            if trip_id:
+                self.trip = get_object_or_404(Trip, id=trip_id, user=self.request.user)
+            else:
+                # Create a new trip if no trip exists
+                self.trip = Trip(user=self.request.user)
+        return self.trip
+
 # My Trips View
 @login_required
 def my_trips(request):
@@ -172,7 +164,7 @@ def delete_trip(request, trip_id):
 ItineraryDayFormSet = inlineformset_factory(
     Trip, ItineraryDay,
     fields=['day_number', 'morning', 'afternoon', 'evening'],
-    extra=0, 
+    extra=1,  
     can_delete=True
 )
 
@@ -190,21 +182,34 @@ class EditTripWizardView(LoginRequiredMixin, SessionWizardView):
         if step is None:
             step = self.steps.current
 
-        if step == '4':
-            trip = self.get_trip()
+        if step == '4':  
+            trip = self.get_trip()  
             if data:
                 return ItineraryDayFormSet(data, instance=trip, prefix=self.get_form_prefix(step))
             return ItineraryDayFormSet(instance=trip, prefix=self.get_form_prefix(step))
 
         return super().get_form(step, data, files)
 
-    def get_context_data(self, form, **kwargs):
-        context = super().get_context_data(form=form, **kwargs)
-        
-        if self.steps.current == '4':
-            context['is_formset'] = True
-        
-        return context
+    def get_form(self, step=None, data=None, files=None):
+        if step is None:
+            step = self.steps.current
+
+        if step == '4':  
+            trip = self.get_trip()
+            prefix = self.get_form_prefix(step)
+
+            if data:
+                formset = ItineraryDayFormSet(data, instance=trip, prefix=prefix)
+            else:
+                formset = ItineraryDayFormSet(instance=trip, prefix=prefix)
+
+            print("Formset created:", formset)  
+            print("Formset errors:", formset.errors if formset.is_bound else "Not bound yet")
+
+            return formset
+
+        return super().get_form(step, data, files)
+
 
     def get_trip(self):
         if not hasattr(self, 'trip'):
