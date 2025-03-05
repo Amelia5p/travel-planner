@@ -1,7 +1,7 @@
 from django import forms
 from .models import Trip, TripLocation, TripDetails,TripBudget, ItineraryDay
 from datetime import timedelta
-from django.forms import inlineformset_factory
+from django.forms import inlineformset_factory, BaseInlineFormSet
 
 
 class TripForm(forms.ModelForm):
@@ -52,11 +52,27 @@ class ItineraryDayForm(forms.ModelForm):
             'day_number': forms.NumberInput(attrs={'class': 'form-control'})
         }
 
-# Create the formset factory
 ItineraryDayFormSet = inlineformset_factory(
-    Trip,  # Parent model
-    ItineraryDay,  # Child model
+    Trip,  
+    ItineraryDay,  
     form=ItineraryDayForm,
+    extra=1,
+    can_delete=True
+)
+
+
+class BaseItineraryDayFormSet(BaseInlineFormSet):
+    def __init__(self, *args, **kwargs):
+        super(BaseItineraryDayFormSet, self).__init__(*args, **kwargs)
+        # When editing don't show an extra blank form.
+        if self.instance.pk:
+            self.extra = 0
+
+ItineraryDayFormSet = inlineformset_factory(
+    Trip,
+    ItineraryDay,
+    formset=BaseItineraryDayFormSet,
+    fields=['day_number', 'morning', 'afternoon', 'evening'],
     extra=1,
     can_delete=True
 )

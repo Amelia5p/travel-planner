@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from formtools.wizard.views import SessionWizardView
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import TripForm, TripLocationForm, TripDetailsForm, TripBudgetForm, ItineraryDayFormSet, ItineraryDayForm
+from .forms import TripForm, TripLocationForm, TripDetailsForm, TripBudgetForm, ItineraryDayFormSet
 from .models import Trip, TripLocation, TripDetails, TripBudget, ItineraryDay
 from django.forms import inlineformset_factory
 from .models import Trip, ItineraryDay
@@ -110,13 +110,7 @@ def my_trips(request):
 def trip_details(request, trip_id):
     trip = get_object_or_404(Trip, id=trip_id, user=request.user)
     
-    
-    ItineraryDayFormSet = inlineformset_factory(
-        Trip, ItineraryDay,
-        fields=['day_number','morning', 'afternoon', 'evening'],
-        extra=1,  
-        can_delete=True
-    )
+
     
     formset = ItineraryDayFormSet(request.POST or None, instance=trip)
 
@@ -161,12 +155,7 @@ def delete_trip(request, trip_id):
 
 # Edit Trip View
 
-ItineraryDayFormSet = inlineformset_factory(
-    Trip, ItineraryDay,
-    fields=['day_number', 'morning', 'afternoon', 'evening'],
-    extra=1,  
-    can_delete=True
-)
+
 
 class EditTripWizardView(LoginRequiredMixin, SessionWizardView):
     form_list = [
@@ -176,7 +165,7 @@ class EditTripWizardView(LoginRequiredMixin, SessionWizardView):
         ('3', TripBudgetForm),
         ('4', ItineraryDayFormSet)  
     ]
-    template_name = 'trips/create_trip.html'
+    template_name = 'trips/edit_trip.html'
 
     def get_form(self, step=None, data=None, files=None):
         if step is None:
@@ -202,9 +191,6 @@ class EditTripWizardView(LoginRequiredMixin, SessionWizardView):
                 formset = ItineraryDayFormSet(data, instance=trip, prefix=prefix)
             else:
                 formset = ItineraryDayFormSet(instance=trip, prefix=prefix)
-
-            print("Formset created:", formset)  
-            print("Formset errors:", formset.errors if formset.is_bound else "Not bound yet")
 
             return formset
 
