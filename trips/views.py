@@ -154,9 +154,6 @@ def delete_trip(request, trip_id):
     return render(request, 'trips/delete_trip.html', {'trip': trip})
 
 # Edit Trip View
-
-
-
 class EditTripWizardView(LoginRequiredMixin, SessionWizardView):
     form_list = [
         ('0', TripForm),
@@ -166,18 +163,6 @@ class EditTripWizardView(LoginRequiredMixin, SessionWizardView):
         ('4', ItineraryDayFormSet)  
     ]
     template_name = 'trips/edit_trip.html'
-
-    def get_form(self, step=None, data=None, files=None):
-        if step is None:
-            step = self.steps.current
-
-        if step == '4':  
-            trip = self.get_trip()  
-            if data:
-                return ItineraryDayFormSet(data, instance=trip, prefix=self.get_form_prefix(step))
-            return ItineraryDayFormSet(instance=trip, prefix=self.get_form_prefix(step))
-
-        return super().get_form(step, data, files)
 
     def get_form(self, step=None, data=None, files=None):
         if step is None:
@@ -292,6 +277,9 @@ class EditTripWizardView(LoginRequiredMixin, SessionWizardView):
             for instance in instances:
                 instance.trip = trip
                 instance.save()
+            
+            for obj in itinerary_formset.deleted_objects:
+                obj.delete()
         
         messages.success(self.request, "Your trip has been successfully updated!")
         return redirect('trip_details', trip_id=trip.id)

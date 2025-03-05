@@ -52,17 +52,15 @@
                                             </div>
                                         </div>
                                         
-                                        <div class="position-absolute top-0 end-0 m-2">
+                                        <div class="text-end my-2">
                                             <div class="form-check">
-                                                {{ form.DELETE }}
-                                                <label 
-                                                    for="{{ form.DELETE.id_for_label }}" 
-                                                    class="form-check-label text-danger"
-                                                >
-                                                    Delete Day
-                                                </label>
+                                              {{ form.DELETE }}
+                                              <label for="{{ form.DELETE.id_for_label }}" class="btn btn-danger btn-sm">
+                                                Delete Day
+                                              </label>
                                             </div>
-                                        </div>
+                                          </div>
+                                          
                                         
                                         {{ form.id }}
                                     </div>
