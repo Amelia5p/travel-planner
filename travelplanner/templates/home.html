@@ -13,35 +13,69 @@
     </div>
 </header>
 
-<!-- Features -->
-<div class="row">
-    <div class="col-12 col-md-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Create trips</h5>
-                <p class="card-text">Organise trips with us seamlessly</p>
-                <a href="#" class="btn w-50 w-sm-auto">Create</a>
+
+<div class="features-background">
+    <div class="features-section py-5">
+        <div class="row text-center my-5">
+            <div class="col-12 col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Create Trips</h5>
+                        <p class="card-text">Organise trips with us seamlessly.</p>
+                        <a href="#" class="btn" id="home-btn">Create</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">All Your Trips in One Place</h5>
+                        <p class="card-text">View multiple trips on your dashboard.</p>
+                        <a href="#" class="btn" id="home-btn" >View</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-body" id="home-card">
+                        <h5 class="card-title">Plan Every Detail</h5>
+                        <p class="card-text">Save and manage all trip details effortlessly.</p>
+                        <a href="#" class="btn" id="home-btn">Details</a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Keep my trips in the one place</h5>
-                <p class="card-text">View multiple trips on your own trip dashboard</p>
-                <a href="#" class="btn w-50 w-sm-auto">View</a>
+</div>
+
+<!-- Testimonials Section -->
+<div class="container my-5">
+    <h2 class="text-center mb-4">What Our Users Say</h2>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="testimonial text-center p-3">
+                <p>"This app made my travels so much easier! Highly recommended."</p>
+                <h6>- Sarah L.</h6>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="testimonial text-center p-3">
+                <p>"Love how I can keep track of my expenses while planning my trip!"</p>
+                <h6>- Mike D.</h6>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="testimonial text-center p-3">
+                <p>"A must-have app for any traveler! Super helpful."</p>
+                <h6>- Emma W.</h6>
             </div>
         </div>
     </div>
-    <div class="col-12 col-md-4 mb-3">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Plan each and every detail</h5>
-                <p class="card-text">Trip details are saved</p>
-                <a href="#" class="btn w-50 w-sm-auto">Details</a>
-            </div>
-        </div>
-    </div>
+</div>
+
+<div class="text-center my-5">
+    <h3>Join thousands of travelers planning stress-free trips!</h3>
+    <a href="{% url 'create_trip' %}" class="btn btn-lg btn-success mt-3">Start Planning</a>
 </div>
 
 {% endblock %}

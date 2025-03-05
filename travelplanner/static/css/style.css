@@ -1,80 +1,33 @@
-/*Base HTML */
-
+/* Base HTML */
 body {
-    background-color: rgb(198, 198, 174);
+    background-color: #ffffff;
+    font-family: Arial, sans-serif;
 }
 
-.navbar{
+.navbar {
     background-color: #517664;
     color: #fff3cd;
-
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-nav .nav-link{
-color: #fff3cd;
+.navbar .nav-link {
+    color: #fff3cd;
+    margin-right: 15px;
+    text-decoration: none;
 }
-
 
 .navbar .navbar-brand {
     color: #fff3cd;
-
+    font-size: 1.5rem;
 }
 
-nav .navbar-toggler{
-    color: #fff3cd;
+.navbar .navbar-toggler {
     background-color: #fff3cd;
-    border: 1px #517664;
-}
-
-.container .edit-profile{
-    background-color: #517664;
-    color: #fff3cd;
-}
-
-/* Login Page */
-
-form .btn {
-    background-color: #517664;
-    color: #fff3cd; ;
-}
-
-/*Sign up*/
-
-form.errorlist {
-    color: red;
-}
-
-/* Create Trip */
-/* Hide all form steps by default */
-.form-step {
-    display: none;  
-    padding: 20px;
-    border-radius: 8px;
-    background: #f9f9f9;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-/* Show only the active step */
-.form-step.active {
-    display: block;
-}
-
-/* Style the progress bar */
-.progress {
-    height: 10px;
-    border-radius: 5px;
-}
-
-#progressBar {
-    width: 20%;
-    background-color: #517664;
-}
-
-#tripForm .next-step{
-    margin:20px;
-    
-    
+    border: 1px solid #517664;
+    color: #517664;
 }
 
 /* Home page */
@@ -86,38 +39,146 @@ form.errorlist {
     align-items: center;
     text-align: center;
     position: relative;
-    margin-top:3rem;
+    margin-top: 3rem;
     margin-bottom: 3rem;
 }
 
 .hero-section .container {
     background: rgba(0, 0, 0, 0.5);
     padding: 2rem;
+}
+
+.hero-section .btn {
+    background-color: #517664;
+    color: #fff3cd;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero-section .btn:hover {
+    background-color: #40614b;
+}
+
+/* Features Section */
+.features-background {
+    background-color: #f0f0f0;
+    padding: 50px 0;
+}
+
+.features-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.features-section .card {
+    width: 30%;
+    height: 100%; 
+    min-width: 300px;
+    max-width: 350px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #dbcfb6;
+    text-align: center;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
     
 }
 
-.hero-section .btn{
+.features-section .card-body {
+    padding: 20px;
+    flex-grow: 1; 
+}
+
+.features-section .card-title {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.features-section .card-text {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.features-section .btn {
     background-color: #517664;
-    color:#fff3cd
+    color: #fff3cd;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-weight: normal;
+    border: none;
+    text-transform: none;
+    cursor: pointer;
+    margin-top: auto; 
 }
 
-div .row{
-    padding: 1rem;
+.features-section .btn:hover {
+    background-color: #40614b;
 }
 
-div .row .btn{
+/* Testimonials Section */
+.testimonial {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+    font-style: italic;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.testimonial h6 {
+    font-size: 1rem;
+    color: #517664;
+}
+
+/* CTA */
+.text-center h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.text-center .btn {
     background-color: #517664;
+    color: #fff3cd;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-/* Responsive */
-@media (max-width: 1200px) {
-    .hero {
-        background-image: url("/static/images/travel-hero-img1200.jpg");
+.text-center .btn:hover {
+    background-color: #40614b;
+}
+
+/* Responsive Design */
+@media (max-width: 767px) {
+    .features-section .card {
+        width: 100%;
+        max-width: 100%;
     }
-}
 
-@media (max-width: 600px) {
-    .hero {
-        background-image: url("/static/images/travel-hero-img600.jpg");
+    .hero-section {
+        background: url("/static/images/travel-hero-img600.jpg") no-repeat center center/cover;
+    }
+
+    .features-background {
+        padding: 40px 0;
+    }
+
+    .testimonial {
+        margin-bottom: 20px;
     }
 }
