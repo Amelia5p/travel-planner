@@ -77,5 +77,13 @@
     <h3>Join thousands of travelers planning stress-free trips!</h3>
     <a href="{% url 'create_trip' %}" class="btn btn-lg btn-success mt-3">Start Planning</a>
 </div>
+{% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+          <li class="{{ message.tags }}">{{ message }}</li>
+      {% endfor %}
+  </ul>
+{% endif %}
+
 
 {% endblock %}

@@ -67,6 +67,9 @@ def delete_profile(request):
  
     return render(request, 'users/delete_profile.html')
 
-
+def logout_view(request):
+    logout(request)
+    messages.success(request, "Successfully logged out.")
+    return redirect('home')
 
 
