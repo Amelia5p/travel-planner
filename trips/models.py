@@ -75,3 +75,10 @@ class ItineraryDay(models.Model):
     def __str__(self):
         return f"Day {self.day_number} of {self.trip.trip_name}"
 
+class ActivitySuggestion(models.Model):
+    itinerary_day = models.ForeignKey(ItineraryDay, on_delete=models.CASCADE, related_name='suggestions')
+    suggested_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
+    suggestion = models.TextField()
+
+    def __str__(self):
+        return f"Suggestion for Day {self.itinerary_day.day_number}: {self.suggestion[:20]}"

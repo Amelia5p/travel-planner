@@ -1,7 +1,9 @@
+
+
 /* Base HTML */
 body {
     background-color: #ffffff;
-    font-family: Arial, sans-serif;
+    font-family: lato, sans-serif;
 }
 
 .navbar {
@@ -17,11 +19,17 @@ body {
     color: #fff3cd;
     margin-right: 15px;
     text-decoration: none;
+    font-family: Poppins,sans-serif;
+}
+
+.navbar .nav-link:hover {
+    background-color: #40614b;
 }
 
 .navbar .navbar-brand {
     color: #fff3cd;
     font-size: 1.5rem;
+    font-family: Poppins,sans-serif;
 }
 
 .navbar .navbar-toggler {
@@ -41,6 +49,14 @@ body {
     position: relative;
     margin-top: 3rem;
     margin-bottom: 3rem;
+}
+
+#hero-title{
+    font-family: Poppins, sans-serif;
+    font-size: calc(1.475rem + 2.7vw);
+    font-weight: 300;
+    line-height: 1.2;
+
 }
 
 .hero-section .container {
@@ -99,8 +115,8 @@ body {
 
 .features-section .card-title {
     font-size: 1.25rem;
-    font-weight: bold;
     margin-bottom: 20px;
+    font-family: Poppins,sans-serif;
 }
 
 .features-section .card-text {
@@ -123,6 +139,7 @@ body {
 .features-section .btn:hover {
     background-color: #40614b;
 }
+
 
 /* Testimonials Section */
 .testimonial {
@@ -152,16 +169,53 @@ body {
 .text-center .btn {
     background-color: #517664;
     color: #fff3cd;
-    padding: 12px 20px;
-    font-size: 1.1rem;
+    font-size: 1rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-weight: 500;
 }
 
 .text-center .btn:hover {
     background-color: #40614b;
 }
+
+
+/* My Trips Page*/
+#my-trips-title {
+    font-family: Poppins,sans-serif;
+    padding-bottom: 20px ;
+}
+#trips-card-title {
+font-family: Poppins,sans-serif;
+}
+
+#strong-color{
+    color: black;
+}
+
+/* Create Trips Page*/
+.trip-form {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.trip-header{
+    color:#fff3cd;
+    background-color:#517664;
+}
+
+.trip-btn{
+    background-color:#517664;
+    color: #fff3cd;
+}
+
+.trip-title{
+    font-family: Poppins,sans-serif;
+}
+
+/* .card-body input{
+    background-color: #adc7bc;
+} */
 
 /* Responsive Design */
 @media (max-width: 767px) {

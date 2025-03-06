@@ -3,7 +3,7 @@
 {% block content %}
 <div class="container mt-4">
     <div class="card shadow-lg">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header trip-header">
             <h2 class="text-center">{{ trip.trip_name }}</h2>
         </div>
         <div class="card-body">
@@ -39,10 +39,8 @@
 
             <div class="mt-4">
                 <a href="{% url 'my_trips' %}" class="btn btn-secondary">Back to My Trips</a>
-                <form action="{% url 'delete_trip' trip.id %}" method="post" class="d-inline">
-                    {% csrf_token %}
-                    <button type="submit" class="btn btn-danger">Delete Trip</button>
-                </form>
+                <a href="{% url 'delete_trip' trip.id %}" class="btn btn-danger">Delete Trip</a>
+
             </div>
         </div>
     </div>

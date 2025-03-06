@@ -4,10 +4,10 @@
 {% block content %}
 <div class="container py-4">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-8 trip-form">
             <div class="card shadow-sm">
-                <div class="card-header bg-primary text-white">
-                    <h2 class="mb-0">
+                <div class="card-header trip-header">
+                    <h2 class="mb-0 trip-title">
                         {% if wizard.steps.current == '0' %}
                             Create New Trip
                         {% elif wizard.steps.current == '1' %}
@@ -82,19 +82,19 @@
                                     type="submit" 
                                     name="wizard_goto_step" 
                                     value="{{ wizard.steps.prev }}" 
-                                    class="btn btn-secondary"
+                                    class="btn trip-btn"
                                 >
-                                    <i class="fas fa-arrow-left"></i> Previous
+                                    <i class="fas fa-arrow-left trip-btn"></i> Previous
                                 </button>
                             {% else %}
                                 <div></div>
                             {% endif %}
 
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn trip-btn">
                                 {% if wizard.steps.next %}
-                                    Next <i class="fas fa-arrow-right"></i>
+                                    Next <i class="fas fa-arrow-right trip-btn"></i>
                                 {% else %}
-                                    Create Trip <i class="fas fa-check"></i>
+                                    Create Trip <i class="fas fa-check trip-btn"></i>
                                 {% endif %}
                             </button>
                         </div>

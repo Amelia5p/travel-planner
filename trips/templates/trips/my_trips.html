@@ -2,7 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container mt-5">
-    <h2 class="text-center mb-4">My Trips</h2>
+    <h2 class="text-center mb-4" id ="my-trips-title">My Trips</h2>
 
     {% if trips %}
         <div class="row">
@@ -10,14 +10,14 @@
                 <div class="col-md-4">
                     <div class="card shadow-lg border-0 mb-4">
                         <div class="card-body text-center">
-                            <h5 class="card-title font-weight-bold">{{ trip.trip_name }}</h5>
+                            <h5 class="card-title" id="trips-card-title">{{ trip.trip_name }}</h5>
                             <p class="card-text text-muted">
-                                <strong>{{ trip.location.country }}</strong><br>
+                                <strong id="strong-color">{{ trip.location.country }}</strong><br>
                                 {{ trip.start_date|date:"M d, Y" }} - {{ trip.end_date|date:"M d, Y" }}
                             </p>
-                            <a href="{% url 'trip_details' trip.id %}" class="btn btn-primary btn-sm">View Trip</a>
-                            <a href="{% url 'edit_trip_wizard' trip.id %}" class="btn btn-warning btn-sm">Edit Trip</a>
-                            <a href="{% url 'delete_trip' trip.id %}" class="btn btn-danger btn-sm">Delete Trip</a>
+                            <a href="{% url 'trip_details' trip.id %}" class="btn btn-sm" id="trip-btn">View Trip</a>
+                            <a href="{% url 'edit_trip_wizard' trip.id %}" class="btn btn-sm" id="trip-btn">Edit Trip</a>
+                            <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm" id="trip-btn">Delete Trip</a>
                         </div>
                     </div>
                 </div>

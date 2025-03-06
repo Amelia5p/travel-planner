@@ -223,7 +223,8 @@ To clone this repository follow the below steps:
 
 
 
-credits (Brennan Tymrak, https://www.brennantymrak.com/articles/django-dynamic-formsets-javascript)
+credits for code/ code logic: cloning the form, updating the form field names and IDs, clearing the input values, and incrementing the day number(Brennan Tymrak, https://www.brennantymrak.com/articles/django-dynamic-formsets-javascript)
+for overriding instance in itinerary: https://docs.djangoproject.com/en/5.1/topics/forms/modelforms/#inline-formsets
 
 
 
