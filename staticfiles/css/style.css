@@ -1,29 +1,41 @@
-/*Base HTML */
 
+
+/* Base HTML */
 body {
     background-color: #ffffff;
+    font-family: lato, sans-serif;
 }
 
-.navbar{
+.navbar {
     background-color: #517664;
     color: #fff3cd;
-
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-nav .nav-link{
-color: #fff3cd;
+.navbar .nav-link {
+    color: #fff3cd;
+    margin-right: 15px;
+    text-decoration: none;
+    font-family: Poppins,sans-serif;
 }
 
+.navbar .nav-link:hover {
+    background-color: #40614b;
+}
 
 .navbar .navbar-brand {
     color: #fff3cd;
-
+    font-size: 1.5rem;
+    font-family: Poppins,sans-serif;
 }
 
-nav .navbar-toggler{
-    color: #fff3cd;
+.navbar .navbar-toggler {
     background-color: #fff3cd;
-    border: 1px #517664;
+    border: 1px solid #517664;
+    color: #517664;
 }
 
 /* Home page */
@@ -35,57 +47,190 @@ nav .navbar-toggler{
     align-items: center;
     text-align: center;
     position: relative;
-    margin-top:3rem;
+    margin-top: 3rem;
     margin-bottom: 3rem;
+}
+
+#hero-title{
+    font-family: Poppins, sans-serif;
+    font-size: calc(1.475rem + 2.7vw);
+    font-weight: 300;
+    line-height: 1.2;
+
 }
 
 .hero-section .container {
     background: rgba(0, 0, 0, 0.5);
     padding: 2rem;
+}
+
+.hero-section .btn {
+    background-color: #517664;
+    color: #fff3cd;
+    padding: 12px 20px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.hero-section .btn:hover {
+    background-color: #40614b;
+}
+
+/* Features Section */
+.features-background {
+    background-color: #f0f0f0;
+    padding: 50px 0;
+}
+
+.features-section {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.features-section .card {
+    width: 30%;
+    height: 100%; 
+    min-width: 300px;
+    max-width: 350px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #dbcfb6;
+    text-align: center;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; 
     
 }
 
-.hero-section .btn{
+.features-section .card-body {
+    padding: 20px;
+    flex-grow: 1; 
+}
+
+.features-section .card-title {
+    font-size: 1.25rem;
+    margin-bottom: 20px;
+    font-family: Poppins,sans-serif;
+}
+
+.features-section .card-text {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.features-section .btn {
     background-color: #517664;
-    color:#fff3cd
+    color: #fff3cd;
+    border-radius: 5px;
+    padding: 8px 16px;
+    font-weight: normal;
+    border: none;
+    text-transform: none;
+    cursor: pointer;
+    margin-top: auto; 
 }
 
-div .card-body{
-    background-color: #dbcfb6;
+.features-section .btn:hover {
+    background-color: #40614b;
 }
 
-#home-btn {
+
+/* Testimonials Section */
+.testimonial {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.testimonial p {
+    font-style: italic;
+    font-size: 1rem;
+    margin-bottom: 10px;
+}
+
+.testimonial h6 {
+    font-size: 1rem;
+    color: #517664;
+}
+
+/* CTA */
+.text-center h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.text-center .btn {
     background-color: #517664;
+    color: #fff3cd;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 500;
 }
 
-.features-background {
-    background-color: #f0f0f0; /* Light grey or any color you prefer */
-    padding: 20px 0; /* Optional: Adjust padding if needed */
+.text-center .btn:hover {
+    background-color: #40614b;
 }
 
 
-/* My Trips*/
+/* My Trips Page*/
+#my-trips-title {
+    font-family: "Poppins",sans-serif;
+    padding-bottom: 20px ;
+}
+#trips-card-title {
+font-family: "Poppins",sans-serif;
+}
+
+#strong-color{
+    color: black;
+}
+
+/* Create Trips Page*/
+.trip-form {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.trip-header{
+    color:#fff3cd;
+    background-color:#517664;
+}
+
+.trip-btn{
+    background-color:#517664;
+    color: #fff3cd;
+}
+
+.trip-title{
+    font-family: Poppins,sans-serif;
+}
 
 
 
-
-
-
-
-
-
-
-
-
-/* Responsive */
-@media (max-width: 1200px) {
-    .hero {
-        background-image: url("/static/images/travel-hero-img1200.jpg");
+/* Responsive Design */
+@media (max-width: 767px) {
+    .features-section .card {
+        width: 100%;
+        max-width: 100%;
     }
-}
 
-@media (max-width: 600px) {
-    .hero {
-        background-image: url("/static/images/travel-hero-img600.jpg");
+    .hero-section {
+        background: url("/static/images/travel-hero-img600.jpg") no-repeat center center/cover;
+    }
+
+    .features-background {
+        padding: 40px 0;
+    }
+
+    .testimonial {
+        margin-bottom: 20px;
     }
 }

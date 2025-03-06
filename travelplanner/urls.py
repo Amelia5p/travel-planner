@@ -16,10 +16,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.urls import path
+from .views import custom_404, custom_500, custom_403
+from django.conf import settings
+from django.conf.urls import handler403, handler404, handler500
+from django.shortcuts import render
+
+
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include('users.urls')),        
-    path('trips/', include('trips.urls')),   
-    path('', include('core.urls')) , 
+    path('users/', include('users.urls')),
+    path('trips/', include('trips.urls')),
+    path('', include('core.urls')),
 ]
+
+ 
+handler403 = custom_403
+handler404 = custom_404
+handler500 = custom_500
+
+
+
+

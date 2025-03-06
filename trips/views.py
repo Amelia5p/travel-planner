@@ -319,3 +319,4 @@ def suggest_activity(request, day_id):
         form = ActivitySuggestionForm()
 
     return render(request, 'trips/suggest_activity.html', {'form': form, 'day': day})
+

@@ -15,9 +15,9 @@
                                 <strong id="strong-color">{{ trip.location.country }}</strong><br>
                                 {{ trip.start_date|date:"M d, Y" }} - {{ trip.end_date|date:"M d, Y" }}
                             </p>
-                            <a href="{% url 'trip_details' trip.id %}" class="btn btn-sm" id="trip-btn">View Trip</a>
-                            <a href="{% url 'edit_trip_wizard' trip.id %}" class="btn btn-sm" id="trip-btn">Edit Trip</a>
-                            <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm" id="trip-btn">Delete Trip</a>
+                            <a href="{% url 'trip_details' trip.id %}" class="btn btn-sm trip-btn">View Trip</a>
+                            <a href="{% url 'edit_trip_wizard' trip.id %}" class="btn btn-sm trip-btn">Edit Trip</a>
+                            <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm trip-btn">Delete Trip</a>
                         </div>
                     </div>
                 </div>

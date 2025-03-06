@@ -183,11 +183,11 @@ body {
 
 /* My Trips Page*/
 #my-trips-title {
-    font-family: Poppins,sans-serif;
+    font-family: "Poppins",sans-serif;
     padding-bottom: 20px ;
 }
 #trips-card-title {
-font-family: Poppins,sans-serif;
+font-family: "Poppins",sans-serif;
 }
 
 #strong-color{
@@ -213,9 +213,7 @@ font-family: Poppins,sans-serif;
     font-family: Poppins,sans-serif;
 }
 
-/* .card-body input{
-    background-color: #adc7bc;
-} */
+
 
 /* Responsive Design */
 @media (max-width: 767px) {
