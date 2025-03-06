@@ -1,13 +1,14 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from formtools.wizard.views import SessionWizardView
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.contrib import messages
-from .forms import TripForm, TripLocationForm, TripDetailsForm, TripBudgetForm, ItineraryDayFormSet
+from .forms import TripForm, TripLocationForm, TripDetailsForm, TripBudgetForm, ItineraryDayFormSet, ActivitySuggestionForm
 from .models import Trip, TripLocation, TripDetails, TripBudget, ItineraryDay
 from django.forms import inlineformset_factory
 from .models import Trip, ItineraryDay
 from .forms import TripForm, ItineraryDayFormSet
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.db.models import Max
 
 
 class PlanningWizardView(SessionWizardView):
@@ -98,48 +99,53 @@ class PlanningWizardView(SessionWizardView):
                 self.trip = Trip(user=self.request.user)
         return self.trip
 
-# My Trips View
+# Trip details
+@login_required
+def trip_details(request, trip_id):
+    trip = get_object_or_404(Trip, id=trip_id)
+
+    if trip.user != request.user and not request.user.groups.filter(name='Admin').exists():
+        raise Http404("You do not have permission to view this trip.")
+
+    formset = ItineraryDayFormSet(request.POST or None, instance=trip)
+
+    if request.method == "POST":
+        if formset.is_valid():
+            instances = formset.save(commit=False)
+            for instance in instances:
+                instance.trip = trip
+
+                if not instance.day_number:
+                    max_day = trip.itinerary_days.aggregate(Max('day_number'))['day_number__max'] or 0
+                    instance.day_number = max_day + 1
+
+                instance.save()
+
+            formset.save_m2m()
+            return redirect("trip_details", trip_id=trip.id)
+
+    itinerary_days = trip.itinerary_days.all().order_by('day_number')
+    is_admin = request.user.groups.filter(name='Admin').exists()
+
+    return render(
+        request,
+        "trips/trip_details.html",
+        {
+            "trip": trip,
+            "itinerary_days": itinerary_days,
+            "formset": formset,
+            "is_admin": is_admin
+        }
+    )
+
+ #My Trips View
 @login_required
 def my_trips(request):
     """Display the user's saved trips."""
     user_trips = Trip.objects.filter(user=request.user).order_by('created_at')
     return render(request, 'trips/my_trips.html', {'trips': user_trips})
 
-# Trip details view
-@login_required
-def trip_details(request, trip_id):
-    trip = get_object_or_404(Trip, id=trip_id, user=request.user)
-    
 
-    
-    formset = ItineraryDayFormSet(request.POST or None, instance=trip)
-
-    if request.method == "POST":
-        if formset.is_valid():
-           
-            instances = formset.save(commit=False)
-            for instance in instances:
-               
-                instance.trip = trip
-                
-               
-                if not instance.day_number:
-                    max_day = trip.itinerary_days.aggregate(models.Max('day_number'))['day_number__max'] or 0
-                    instance.day_number = max_day + 1
-                
-                instance.save()
-            
-            formset.save_m2m()
-            return redirect("trip_details", trip_id=trip.id)
-
-    
-    itinerary_days = trip.itinerary_days.all().order_by('day_number')
-
-    return render(
-        request, 
-        "trips/trip_details.html", 
-        {"trip": trip, "itinerary_days": itinerary_days, "formset": formset}
-    )
 
 # Delete trip view
 @login_required
@@ -283,3 +289,33 @@ class EditTripWizardView(LoginRequiredMixin, SessionWizardView):
         
         messages.success(self.request, "Your trip has been successfully updated!")
         return redirect('trip_details', trip_id=trip.id)
+
+
+# Admin only view
+@login_required
+@user_passes_test(lambda u: u.groups.filter(name='Admin').exists())
+def all_trips(request):
+    trips = Trip.objects.all().order_by('-created_at')
+    return render(request, 'trips/all_trips.html', {'trips': trips})
+
+def is_admin(user):
+    return user.groups.filter(name='Admin').exists()
+
+@login_required
+@user_passes_test(is_admin)
+def suggest_activity(request, day_id):
+    day = get_object_or_404(ItineraryDay, id=day_id)
+    
+    if request.method == "POST":
+        form = ActivitySuggestionForm(request.POST)
+        if form.is_valid():
+            suggestion = form.save(commit=False)
+            suggestion.itinerary_day = day
+            suggestion.suggested_by = request.user
+            suggestion.save()
+            messages.success(request, "Activity suggestion added successfully!")
+            return redirect('trip_details', trip_id=day.trip.id)
+    else:
+        form = ActivitySuggestionForm()
+
+    return render(request, 'trips/suggest_activity.html', {'form': form, 'day': day})

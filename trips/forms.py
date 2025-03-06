@@ -1,5 +1,5 @@
 from django import forms
-from .models import Trip, TripLocation, TripDetails,TripBudget, ItineraryDay
+from .models import Trip, TripLocation, TripDetails,TripBudget, ItineraryDay, ActivitySuggestion
 from datetime import timedelta
 from django.forms import inlineformset_factory, BaseInlineFormSet
 
@@ -76,3 +76,11 @@ ItineraryDayFormSet = inlineformset_factory(
     extra=1,
     can_delete=True
 )
+
+class ActivitySuggestionForm(forms.ModelForm):
+    class Meta:
+        model = ActivitySuggestion
+        fields = ['suggestion']
+        widgets = {
+            'suggestion': forms.Textarea(attrs={'rows': 2, 'class': 'form-control'}),
+        }

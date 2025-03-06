@@ -21,13 +21,33 @@
             <h4>Itinerary</h4>
             <ul class="list-group">
                 {% for day in itinerary_days %}
-                <li class="list-group-item">
-                    <h5>Day {{ day.day_number }} {% if day.date %} ({{ day.date }}) {% endif %}</h5>
-                    {% if day.morning %}<p><strong>Morning:</strong> {{ day.morning }}</p>{% endif %}
-                    {% if day.afternoon %}<p><strong>Afternoon:</strong> {{ day.afternoon }}</p>{% endif %}
-                    {% if day.evening %}<p><strong>Evening:</strong> {{ day.evening }}</p>{% endif %}
-                </li>
+<li class="list-group-item">
+    <h5>Day {{ day.day_number }} {% if day.date %} ({{ day.date }}) {% endif %}</h5>
+    {% if day.morning %}<p><strong>Morning:</strong> {{ day.morning }}</p>{% endif %}
+    {% if day.afternoon %}<p><strong>Afternoon:</strong> {{ day.afternoon }}</p>{% endif %}
+    {% if day.evening %}<p><strong>Evening:</strong> {{ day.evening }}</p>{% endif %}
+
+    <!-- Admin-only Suggest Activity Button (Now inside trip details) -->
+    {% if is_admin %}
+        <a href="{% url 'suggest_activity' day.id %}" 
+           class="btn btn-warning btn-sm mt-2">
+            Suggest Activity
+        </a>
+    {% endif %}
+
+    {% if day.suggestions.exists %}
+        <div class="mt-2">
+            <strong>Suggestions:</strong>
+            <ul>
+                {% for suggestion in day.suggestions.all %}
+                    <li>{{ suggestion.suggestion }} - by {{ suggestion.suggested_by.username }}</li>
                 {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+</li>
+{% endfor %}
+
             </ul>
             {% else %}
             <p>No itinerary details available.</p>

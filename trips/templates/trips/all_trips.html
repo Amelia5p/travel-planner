@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center mb-4">All User Trips (Admin)</h2>
+
+    {% if trips %}
+        <ul class="list-group">
+            {% for trip in trips %}
+                <li class="list-group-item shadow-sm p-4 mb-3">
+                    <h4 class="mb-2" id="trips-card-title">{{ trip.trip_name }}</h4>
+                    <p class="mb-1 text-muted">
+                        <strong id="strong-color">{{ trip.location.country }}</strong><br>
+                        {{ trip.start_date|date:"M d, Y" }} - {{ trip.end_date|date:"M d, Y" }}
+                    </p>
+                    <p class="text-muted"><small>Created by: {{ trip.user.username }}</small></p>
+                    <a href="{% url 'trip_details' trip.id %}" class="btn btn-sm trip-btn">View Trip</a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p class="text-center text-muted">No trips available.</p>
+    {% endif %}
+
+    <div class="text-center mt-4">
+        <a href="{% url 'create_trip' %}" class="btn btn-success" id="my_trips_create">Create a New Trip</a>
+    </div>
+</div>
+{% endblock %}
