@@ -23,11 +23,22 @@
                 </div>
                 
                 <div class="card-body">
-                    <form method="post" enctype="multipart/form-data" id="form-wizard">
+                    <form method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         {{ wizard.management_form }}
 
-                        {% if wizard.steps.current == '4' %}
+                        {% if wizard.steps.current == '1' %}
+                            {# Trip Location Step #}
+                            {{ wizard.form|crispy }}
+                            <!-- Hidden inputs for storing selected country and cities -->
+                            <input type="hidden" id="country_input" name="country_input">
+                            <input type="hidden" id="cities_input" name="cities_input">
+                            <!-- Container for displaying city errors -->
+                            <div id="city-error" class="text-danger"></div>
+                            <!-- List for displaying selected cities -->
+                            <ul id="selected-cities" class="list-group"></ul>
+                        {% elif wizard.steps.current == '4' %}
+                            {# Itinerary Step #}
                             <div id="itinerary-forms">
                                 {{ wizard.form.management_form }}
                                 
@@ -105,7 +116,13 @@
     </div>
 </div>
 
-{% if wizard.steps.current == '4' %}
+{% if wizard.steps.current == '1' %}
+
+{% endif %}
+{% if wizard.steps.current == '1' or wizard.steps.current == '4' %}
+<script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_PLACES_API_KEY }}&libraries=places"></script>
+
+
     <script src="{% static 'js/trip_form.js' %}"></script>
 {% endif %}
 {% endblock %}

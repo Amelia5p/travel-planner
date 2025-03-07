@@ -30,13 +30,16 @@ class TripLocationForm(forms.ModelForm):
         widgets = {
             'country': forms.TextInput(attrs={
                 'id': 'country',         
-                'class': 'form-control'
+                'class': 'form-control',
+                'autocomplete': 'country' 
             }),
             'cities': forms.TextInput(attrs={
                 'id': 'cities',         
-                'class': 'form-control'
+                'class': 'form-control',
+                'autocomplete': 'address-level2'  
             }),
         }
+
 
 
 class TripDetailsForm(forms.ModelForm):

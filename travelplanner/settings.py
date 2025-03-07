@@ -85,6 +85,8 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'travelplanner.context_processors.admin_status', 
+                'travelplanner.context_processors.google_maps_api_key',
+
                 
             ],
         },
