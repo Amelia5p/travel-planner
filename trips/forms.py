@@ -24,9 +24,19 @@ class TripForm(forms.ModelForm):
         return cleaned_data
     
 class TripLocationForm(forms.ModelForm):
-     class Meta:
-          model= TripLocation
-          fields= ['country', 'cities']
+    class Meta:
+        model = TripLocation
+        fields = ['country', 'cities']
+        widgets = {
+            'country': forms.TextInput(attrs={
+                'id': 'country',         
+                'class': 'form-control'
+            }),
+            'cities': forms.TextInput(attrs={
+                'id': 'cities',         
+                'class': 'form-control'
+            }),
+        }
 
 
 class TripDetailsForm(forms.ModelForm):

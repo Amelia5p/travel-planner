@@ -95,5 +95,124 @@
 
     });
 
+    function initAutocomplete() {
+        const countryInput = document.getElementById("country");
+        const countryHiddenInput = document.getElementById("country_input");
+        const cityInput = document.getElementById("cities");
+        const cityError = document.getElementById("city-error");
+        const selectedCitiesList = document.getElementById("selected-cities");
+        const selectedCitiesInput = document.getElementById("cities_input");
+
+        // Country Autocomplete
+        if (countryInput) {
+            let countryAutocomplete = new google.maps.places.Autocomplete(countryInput, {
+                types: ["(regions)"],
+            });
+
+            countryAutocomplete.addListener("place_changed", function () {
+                let place = countryAutocomplete.getPlace();
+                if (place && place.address_components) {
+                    let countryComponent = place.address_components.find(component =>
+                        component.types.includes("country")
+                    );
+                    selectedCountryCode = countryComponent ? countryComponent.short_name : null;
+                    countryHiddenInput.value = place.formatted_address || place.name;
+                    clearCityInput();
+                    cityInput.disabled = false;
+                }
+            });
+        }
+
+        // City Autocomplete
+        if (cityInput) {
+            let cityAutocomplete = new google.maps.places.Autocomplete(cityInput, {
+                types: ["(cities)"],
+            });
+
+            cityAutocomplete.addListener("place_changed", function () {
+                let place = cityAutocomplete.getPlace();
+
+              
+                if (!place || !place.address_components) {
+                    return;
+                }
+
+                let cityName = place.name;
+                let cityCountryComponent = place.address_components.find(component =>
+                    component.types.includes("country")
+                );
+
+                if (!cityCountryComponent) {
+                    cityInput.value = "";
+                    return;
+                }
+
+                let cityCountryCode = cityCountryComponent.short_name;
+
+                if (!selectedCountryCode) {
+                    cityError.textContent = "Please select a country first.";
+                    cityInput.value = "";
+                    return;
+                }
+
+                if (cityCountryCode !== selectedCountryCode) {
+                    cityError.textContent = `Please select a city in ${countryInput.value}.`;
+                    cityInput.value = "";
+                } else {
+                    cityError.textContent = "";
+                    selectedCities.push(cityName);
+                    updateSelectedCities();
+                    cityInput.value = ""; 
+                }
+            });
+        }
+
+        function updateSelectedCities() {
+            selectedCitiesList.innerHTML = "";
+
+            selectedCities.forEach((city, index) => {
+                let li = document.createElement("li");
+                li.className = "list-group-item d-flex justify-content-between align-items-center";
+                li.textContent = city;
+
+                let removeBtn = document.createElement("button");
+                removeBtn.className = "btn btn-danger btn-sm";
+                removeBtn.textContent = "X";
+                removeBtn.onclick = function () {
+                    selectedCities.splice(index, 1);
+                    updateSelectedCities();
+                };
+
+                li.appendChild(removeBtn);
+                selectedCitiesList.appendChild(li);
+            });
+
+            selectedCitiesInput.value = selectedCities.join(","); 
+        }
+
+        function clearCityInput() {
+            selectedCities = [];
+            updateSelectedCities();
+            cityError.textContent = "";
+            cityInput.disabled = true;
+        }
+    }
+
+    if (typeof google !== "undefined" && google.maps && google.maps.places) {
+        initAutocomplete();
+    }
+});
+
+    
+    form.addEventListener("submit", function () {
+        
+        document.getElementById("country_input").value = document.getElementById("country").value;
+
+        
+        let cityElements = document.querySelectorAll("#selected-cities li");
+        let cityList = [];
+        cityElements.forEach(city => cityList.push(city.innerText.trim()));
+        document.getElementById("cities_input").value = cityList.join(",");   
     
 })();
+
