@@ -29,19 +29,27 @@
 
                         {% if wizard.steps.current == '1' %}
                             {# Trip Location Step #}
-                            {{ wizard.form|crispy }}
-                           
-                            <input type="hidden" id="selected-country" name="country_input">
-                            <input type="hidden" id="selected-cities-input" name="cities_input">
+                            <div class="form-group">
+                               
+                                {{ wizard.form.country|as_crispy_field }}
+                            </div>
+                            <div class="form-group">
+                                <input type="text" id="city-selector" placeholder="Type a city" class="form-control">
+                                
+                               
+                                {{ wizard.form.cities|as_crispy_field }}
+                            </div>
                             
-                          
-                            <div id="city-error" class="text-danger"></div>
+                      
+                            <input type="hidden" id="country_input" name="country_input">
                             
-                            <ul id="selected-cities" class="list-group mt-2"></ul>
+                            
+
                         {% elif wizard.steps.current == '4' %}
                             {# Itinerary Step #}
                             <div id="itinerary-container">
                                 {{ wizard.form.management_form }}
+                
                                 
                                 {% for form in wizard.form %}
                                     <div class="itinerary-form border rounded mb-3 p-3 position-relative">

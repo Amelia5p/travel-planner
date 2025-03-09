@@ -17,10 +17,11 @@ class Trip(models.Model):
 class TripLocation(models.Model):
     trip = models.OneToOneField(Trip, on_delete=models.CASCADE, related_name='location')
     country = models.CharField(max_length=100)
-    cities = models.TextField()
+    cities = models.TextField(blank=True)
 
     def get_cities_list(self):
         return [city.strip() for city in self.cities.split(',')]
+    
     
     def __str__(self):
         return f"{self.country}: {self.cities}"

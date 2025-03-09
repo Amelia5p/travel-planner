@@ -31,7 +31,7 @@ class TripLocationForm(forms.ModelForm):
             'country': forms.TextInput(attrs={
                 'id': 'country',         
                 'class': 'form-control',
-                'autocomplete': 'country'  # Added autocomplete attribute
+                'autocomplete': 'country' 
             }),
             'cities': forms.TextInput(attrs={
                 'id': 'cities',         
@@ -78,7 +78,10 @@ class BaseItineraryDayFormSet(BaseInlineFormSet):
     def __init__(self, *args, **kwargs):
         super(BaseItineraryDayFormSet, self).__init__(*args, **kwargs)
         if self.instance.pk:
-            self.extra = 0
+            if self.queryset.exists():
+                self.extra = 0
+            else:
+                self.extra = 1
 
 ItineraryDayFormSet = inlineformset_factory(
     Trip,
