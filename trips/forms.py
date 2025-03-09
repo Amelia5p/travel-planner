@@ -77,7 +77,6 @@ ItineraryDayFormSet = inlineformset_factory(
 class BaseItineraryDayFormSet(BaseInlineFormSet):
     def __init__(self, *args, **kwargs):
         super(BaseItineraryDayFormSet, self).__init__(*args, **kwargs)
-        # When editing don't show an extra blank form.
         if self.instance.pk:
             self.extra = 0
 

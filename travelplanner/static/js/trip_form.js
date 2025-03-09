@@ -1,79 +1,56 @@
- // Credit: Brennan Tymrak 2019-2024, see read me
+// Credit: Brennan Tymrak 2019-2024, see read me
 
- (function() {
+(function() {
     if (window.tripFormInitialized) return;
     window.tripFormInitialized = true;
 
     document.addEventListener('DOMContentLoaded', function() {
+       
         const addButton = document.getElementById('add-form');
         const formsContainer = document.getElementById('itinerary-container');
 
-        console.log('Add Button:', addButton);
-        console.log('Forms Container:', formsContainer);
-
         if (!addButton || !formsContainer) return;
 
+       
         const totalFormsInput = document.querySelector('[name$="-TOTAL_FORMS"]');
-        const initialFormsInput = document.querySelector('[name$="-INITIAL_FORMS"]');
-        const maxFormsInput = document.querySelector('[name$="-MAX_NUM_FORMS"]');
-
-        console.log('Total Forms Input:', totalFormsInput);
-        console.log('Initial Forms Input:', initialFormsInput);
-        console.log('Max Forms Input:', maxFormsInput);
-
-        // Log initial form details
-        const initialForms = formsContainer.querySelectorAll('.itinerary-form');
-        console.log('Initial Form Count:', initialForms.length);
-        initialForms.forEach((form, index) => {
-            console.log(`Form ${index} Details:`, {
-                dayNumber: form.querySelector('[name*="day_number"]')?.value,
-                morning: form.querySelector('[name*="morning"]')?.value,
-                afternoon: form.querySelector('[name*="afternoon"]')?.value,
-                evening: form.querySelector('[name*="evening"]')?.value
-            });
-        });
-
         if (!totalFormsInput) return;
 
         addButton.addEventListener('click', function() {
+            // Count current number of forms
             const forms = formsContainer.querySelectorAll('.itinerary-form');
             const formCount = forms.length;
 
-            console.log('Current Form Count Before Adding:', formCount);
-            console.log('Current Total Forms Value:', totalFormsInput.value);
-
-            // Clone form
+            // Clone the last form
             const lastForm = forms[formCount - 1];
             const newForm = lastForm.cloneNode(true);
 
+            // Update cloned form
             newForm.querySelectorAll('input, select, textarea').forEach(input => {
                 if (input.name.includes('TOTAL_FORMS') || 
                     input.name.includes('INITIAL_FORMS') || 
                     input.name.includes('MAX_NUM_FORMS')) {
-                    return;
+                    return; 
                 }
 
-                // Update form
+                // Update form index,name and id attributes
                 const nameMatch = input.name.match(/(.+?)-(\d+)-(.+)/);
                 if (nameMatch) {
                     input.name = input.name.replace(`-${nameMatch[2]}-`, `-${formCount}-`);
-                    
                     if (input.id) {
                         input.id = input.id.replace(`-${nameMatch[2]}-`, `-${formCount}-`);
                     }
                 }
 
-                // Clear input
                 if (input.type === 'text' || input.type === 'date' || input.tagName.toLowerCase() === 'textarea') {
                     input.value = '';
                 }
-
+               
                 if (input.tagName.toLowerCase() === 'select') {
                     input.selectedIndex = 0;
                 }
             });
 
-            // Increase the day number
+            // Increase the day number by 1
             const dayInput = newForm.querySelector('[name*="day"]'); 
             if (dayInput) {
                 const previousDayInput = lastForm.querySelector('[name*="day"]');
@@ -83,16 +60,13 @@
                     dayInput.value = 1;
                 }
             }
-
-            // Append the new form
+            
+            // Append the new form to the container
             formsContainer.appendChild(newForm);
 
-            // Update total forms input
+            // Update TOTAL_FORMS value
             totalFormsInput.value = formCount + 1;
-
-            console.log('Updated Total Forms Value:', totalFormsInput.value);
         });
-
     });
   
     document.addEventListener("DOMContentLoaded", function() {
@@ -100,6 +74,7 @@
         let selectedCities = [];
         let selectedCountryCode = null;
         
+        // Initialize Google Maps Autocomplete 
         function initAutocomplete() {
           const countryInput = document.getElementById("country");
           const countryHiddenInput = document.getElementById("country_input");
@@ -122,7 +97,7 @@
                 );
                 selectedCountryCode = countryComponent ? countryComponent.short_name : null;
                 countryHiddenInput.value = place.formatted_address || place.name;
-                clearCityInput();
+                clearCityInput(); 
                 cityInput.disabled = false;
               }
             });
@@ -158,7 +133,7 @@
                 cityInput.value = "";
               } else {
                 cityError.textContent = "";
-                // Only add if not already selected to avoid duplicates.
+                // Add city only if it's not already in the list
                 if (!selectedCities.includes(cityName)) {
                   selectedCities.push(cityName);
                 }
@@ -168,8 +143,8 @@
             });
           }
           
+          // Update the displayed list of selected cities
           function updateSelectedCities() {
-            // Update the list displayed to the user.
             selectedCitiesList.innerHTML = "";
             selectedCities.forEach((city, index) => {
               let li = document.createElement("li");
@@ -187,11 +162,11 @@
               li.appendChild(removeBtn);
               selectedCitiesList.appendChild(li);
             });
-            
-            // Persist selected cities in the hidden input.
+            // selected cities in hidden input field
             selectedCitiesInput.value = selectedCities.join(",");
           }
           
+          // Clear input
           function clearCityInput() {
             selectedCities = [];
             updateSelectedCities();
@@ -200,19 +175,16 @@
           }
         }
         
-        // Initialize autocomplete if Google Maps API is available.
+        
         if (typeof google !== "undefined" && google.maps && google.maps.places) {
           initAutocomplete();
         }
         
-        // Use the hidden input value (cities_input) on form submission.
+        // form submission, validate 
         const form = document.querySelector("form");
         if (form) {
           form.addEventListener("submit", function (e) {
-            // Ensure country input is updated.
             document.getElementById("country_input").value = document.getElementById("country").value;
-            
-            // Check that at least one city has been selected.
             const selectedCitiesInput = document.getElementById("cities_input");
             if (!selectedCitiesInput.value.trim()) {
               e.preventDefault();
@@ -222,7 +194,4 @@
         }
       });
       
-  })();
-
-  
-    
+})();

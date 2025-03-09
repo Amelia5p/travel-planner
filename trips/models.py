@@ -17,7 +17,7 @@ class Trip(models.Model):
 class TripLocation(models.Model):
     trip = models.OneToOneField(Trip, on_delete=models.CASCADE, related_name='location')
     country = models.CharField(max_length=100)
-    cities = models.TextField(help_text=("separate cities with ',"))
+    cities = models.TextField()
 
     def get_cities_list(self):
         return [city.strip() for city in self.cities.split(',')]
