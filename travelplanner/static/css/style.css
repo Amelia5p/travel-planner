@@ -221,11 +221,11 @@ font-family: "Poppins",sans-serif;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-
-
-
-
-
+/* Hides cities label*/
+#div_id_1-cities .form-label {
+    display: none;
+   
+}
 
 /* Responsive Design */
 @media (max-width: 767px) {

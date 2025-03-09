@@ -39,6 +39,7 @@ class TripLocationForm(forms.ModelForm):
                 'autocomplete': 'address-level2'  
             }),
         }
+        
 
 
 

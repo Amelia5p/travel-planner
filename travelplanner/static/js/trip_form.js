@@ -59,11 +59,14 @@
     });
   
     // -----------------------------
-    // Country & City Selection Code 
+    // Country & City selection
     // -----------------------------
     document.addEventListener("DOMContentLoaded", function() {
+   
       let selectedCities = [];
       let selectedCountryCode = null;
+  
+      
       const countryInput = document.getElementById("country");
       const countryHiddenInput = document.getElementById("country_input");
       const citySelector = document.getElementById("city-selector");
@@ -71,7 +74,7 @@
       const cityError = document.getElementById("city-error");
       const form = document.querySelector("form");
   
-      
+
       if (citiesInput && citiesInput.value.trim() !== "") {
         selectedCities = citiesInput.value.split(",").map(city => city.trim());
       }
@@ -95,46 +98,55 @@
         });
       }
   
-      // Initialize city autocomplete
-      if (citySelector && typeof google !== "undefined" && google.maps && google.maps.places) {
-        let cityAutocomplete = new google.maps.places.Autocomplete(citySelector, {
-          types: ["(cities)"]
-        });
-        cityAutocomplete.addListener("place_changed", function() {
-          let place = cityAutocomplete.getPlace();
-          if (!place || !place.address_components) return;
-          let cityName = place.name;
-          let cityCountryComponent = place.address_components.find(component =>
-            component.types.includes("country")
-          );
-          if (!cityCountryComponent) {
-            citySelector.value = "";
-            return;
-          }
-          let cityCountryCode = cityCountryComponent.short_name;
-          if (!selectedCountryCode) {
-            if (cityError) cityError.textContent = "Please select a country first.";
-            citySelector.value = "";
-            return;
-          }
-          if (cityCountryCode !== selectedCountryCode) {
-            if (cityError) cityError.textContent = `Please select a city in ${countryInput.value}.`;
-            citySelector.value = "";
-            return;
-          }
-         
-          if (cityError) cityError.textContent = "";
-          if (!selectedCities.includes(cityName)) {
-            selectedCities.push(cityName);
-          }
-        
-          citiesInput.value = selectedCities.join(", ");
-         
-          citySelector.value = "";
-        });
+    // Initialize city autocomplete
+if (citySelector && typeof google !== "undefined" && google.maps && google.maps.places) {
+    let cityAutocomplete = new google.maps.places.Autocomplete(citySelector, {
+      types: ["(cities)"]
+    });
+    cityAutocomplete.addListener("place_changed", function() {
+      let place = cityAutocomplete.getPlace();
+      if (!place || !place.address_components) return;
+      let cityName = place.name;
+      let cityCountryComponent = place.address_components.find(component =>
+        component.types.includes("country")
+      );
+      if (!cityCountryComponent) {
+        citySelector.value = "";
+        citySelector.focus();
+        return;
       }
-  
+      let cityCountryCode = cityCountryComponent.short_name;
+      if (!selectedCountryCode) {
+        if (cityError) cityError.textContent = "Please select a country first.";
+        citySelector.value = "";
+        citySelector.focus();
+        return;
+      }
+      if (cityCountryCode !== selectedCountryCode) {
+        if (cityError) cityError.textContent = `Please select a city in ${countryInput.value}.`;
+        citySelector.value = "";
+        citySelector.focus();
+        return;
+      }
      
+      if (cityError) cityError.textContent = "";
+      if (!selectedCities.includes(cityName)) {
+        selectedCities.push(cityName);
+      }
+    
+      citiesInput.value = selectedCities.join(", ");
+      citySelector.value = "";
+      citySelector.focus();
+    });
+    
+    citySelector.addEventListener("blur", function() {
+      setTimeout(() => {
+        citySelector.focus();
+      }, 0);
+    });
+  }
+  
+  
       if (form) {
         form.addEventListener("submit", function() {
           countryHiddenInput.value = countryInput.value;
