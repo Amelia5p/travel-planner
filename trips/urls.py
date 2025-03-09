@@ -1,6 +1,13 @@
 from django.urls import path
-from .views import PlanningWizardView, EditTripWizardView, my_trips, delete_trip, trip_details, all_trips, suggest_activity
-
+from .views import (
+    PlanningWizardView,
+    my_trips,
+    delete_trip,
+    trip_details,
+    EditTripWizardView,
+    all_trips,
+    suggest_activity,
+)
 
 urlpatterns = [
     path('create/', PlanningWizardView.as_view(), name='create_trip'),
@@ -11,4 +18,3 @@ urlpatterns = [
     path('admin/all_trips/', all_trips, name='all_trips'),
     path('itinerary_day/<int:day_id>/suggest_activity/', suggest_activity, name='suggest_activity'),
 ]
-

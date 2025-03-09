@@ -11,7 +11,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.db.models import Max
 
 
-class PlanningWizardView(SessionWizardView):
+class PlanningWizardView(LoginRequiredMixin,SessionWizardView):
     form_list = [
         ('0', TripForm),
         ('1', TripLocationForm),

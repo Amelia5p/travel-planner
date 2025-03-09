@@ -1,9 +1,19 @@
 
 
 /* Base HTML */
+html {
+    height: 100%;
+}
 body {
     background-color: #ffffff;
     font-family: lato, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+.container {
+    flex: 1;
 }
 
 .navbar {
@@ -36,6 +46,22 @@ body {
     background-color: #fff3cd;
     border: 1px solid #517664;
     color: #517664;
+}
+
+footer{
+    background-color: #517664;
+    color: #fff3cd;
+}
+
+.icon{
+    color: #fff3cd;
+    padding:2px;
+    font-size: 1.5em;
+    
+}
+
+.icon:hover{
+    color: #dbcfb6
 }
 
 /* Home page */
@@ -246,3 +272,4 @@ font-family: "Poppins",sans-serif;
         margin-bottom: 20px;
     }
 }
+

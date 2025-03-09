@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.core.validators import MinValueValidator
 
 class Trip(models.Model):
     user = models.ForeignKey(User, on_delete =models.CASCADE, related_name= 'trips')
@@ -54,7 +55,7 @@ class TripDetails(models.Model):
 
 class TripBudget(models.Model):
     trip = models.OneToOneField(Trip, on_delete=models.CASCADE, related_name='budget')
-    budget= models.DecimalField(max_digits=10, decimal_places=2)
+    budget= models.DecimalField(max_digits=10, decimal_places=2, validators=[MinValueValidator(0.01)] )
 
     def __str__(self):
         return f"{self.budget} for {self.trip.trip_name}"

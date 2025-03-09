@@ -22,7 +22,7 @@
                     <div class="card-body">
                         <h5 class="card-title">Create Trips</h5>
                         <p class="card-text">Organise trips with us seamlessly.</p>
-                        <a href="#" class="btn" id="home-btn">Create</a>
+                        <a href="{% url 'create_trip' %}" class="btn" id="home-btn">Create</a>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                     <div class="card-body">
                         <h5 class="card-title">All Your Trips in One Place</h5>
                         <p class="card-text">View multiple trips on your dashboard.</p>
-                        <a href="#" class="btn" id="home-btn" >View</a>
+                        <a href="{% url 'my_trips' %}" class="btn" id="home-btn" >View</a>
                     </div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                     <div class="card-body" id="home-card">
                         <h5 class="card-title">Plan Every Detail</h5>
                         <p class="card-text">Save and manage all trip details effortlessly.</p>
-                        <a href="#" class="btn" id="home-btn">Details</a>
+                        <a href="{% url 'my_trips' %}" class="btn" id="home-btn">Details</a>
                     </div>
                 </div>
             </div>

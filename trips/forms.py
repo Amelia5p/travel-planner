@@ -1,6 +1,5 @@
 from django import forms
 from .models import Trip, TripLocation, TripDetails,TripBudget, ItineraryDay, ActivitySuggestion
-from datetime import timedelta
 from django.forms import inlineformset_factory, BaseInlineFormSet
 
 
