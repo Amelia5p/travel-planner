@@ -21,6 +21,7 @@ from .views import custom_404, custom_500, custom_403
 from django.conf import settings
 from django.conf.urls import handler403, handler404, handler500
 from django.shortcuts import render
+from . import views
 
 
 
@@ -29,7 +30,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('users/', include('users.urls')),
     path('trips/', include('trips.urls')),
-    path('', include('core.urls')),
+    path('', views.home, name='home'),
 ]
 
  

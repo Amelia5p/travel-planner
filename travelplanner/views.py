@@ -1,3 +1,6 @@
+def home(request):
+    return render(request, 'home.html')
+
 # Error Views
 
 from django.shortcuts import render
@@ -10,4 +13,6 @@ def custom_404(request, exception):
 
 def custom_500(request):
     return render(request, "errors/500.html", status=500)
+
+
 

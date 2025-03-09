@@ -1,9 +1,19 @@
 
 
 /* Base HTML */
+html {
+    height: 100%;
+}
 body {
     background-color: #ffffff;
     font-family: lato, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+}
+.container {
+    flex: 1;
 }
 
 .navbar {
@@ -36,6 +46,29 @@ body {
     background-color: #fff3cd;
     border: 1px solid #517664;
     color: #517664;
+}
+
+.nav-link.active {
+    border-bottom: 2px solid #fff3cd;
+}
+
+  
+
+footer{
+    background-color: #517664;
+    color: #fff3cd;
+}
+
+.icon{
+    color: #fff3cd;
+    padding:2px;
+    font-size: 1.5em;
+    text-decoration: none;
+    
+}
+
+.icon:hover{
+    color: #dbcfb6
 }
 
 /* Home page */
@@ -77,6 +110,7 @@ body {
 .hero-section .btn:hover {
     background-color: #40614b;
 }
+
 
 /* Features Section */
 .features-background {
@@ -221,6 +255,12 @@ font-family: "Poppins",sans-serif;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Hides cities label*/
+#div_id_1-cities .form-label {
+    display: none;
+   
+}
+
 /* Responsive Design */
 @media (max-width: 767px) {
     .features-section .card {
@@ -240,3 +280,4 @@ font-family: "Poppins",sans-serif;
         margin-bottom: 20px;
     }
 }
+

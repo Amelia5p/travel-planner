@@ -48,6 +48,12 @@ body {
     color: #517664;
 }
 
+.nav-link.active {
+    border-bottom: 2px solid #fff3cd;
+}
+
+  
+
 footer{
     background-color: #517664;
     color: #fff3cd;
@@ -104,6 +110,7 @@ footer{
 .hero-section .btn:hover {
     background-color: #40614b;
 }
+
 
 /* Features Section */
 .features-background {
