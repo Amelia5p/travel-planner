@@ -104,7 +104,7 @@ class PlanningWizardView(SessionWizardView):
 def trip_details(request, trip_id):
     trip = get_object_or_404(Trip, id=trip_id)
 
-    if trip.user != request.user and not request.user.groups.filter(name='Admin').exists():
+    if trip.user != request.user and not request.user.groups.filter(name='Admin').xists():
         raise Http404("You do not have permission to view this trip.")
 
     formset = ItineraryDayFormSet(request.POST or None, instance=trip)

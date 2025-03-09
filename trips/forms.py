@@ -31,15 +31,14 @@ class TripLocationForm(forms.ModelForm):
             'country': forms.TextInput(attrs={
                 'id': 'country',         
                 'class': 'form-control',
-                'autocomplete': 'off'  # Use "off" or "country" as needed.
+                'autocomplete': 'country'  # Added autocomplete attribute
             }),
             'cities': forms.TextInput(attrs={
                 'id': 'cities',         
                 'class': 'form-control',
-                'autocomplete': 'off'  # Use "off" or "address-level2" as needed.
+                'autocomplete': 'address-level2'  
             }),
         }
-
 
 
 

@@ -30,13 +30,13 @@
                         {% if wizard.steps.current == '1' %}
                             {# Trip Location Step #}
                             {{ wizard.form|crispy }}
-                            <!-- Hidden inputs for storing selected country and cities -->
+                           
                             <input type="hidden" id="selected-country" name="country_input">
                             <input type="hidden" id="selected-cities-input" name="cities_input">
                             
-                            <!-- Container for displaying city errors -->
+                          
                             <div id="city-error" class="text-danger"></div>
-                            <!-- List for displaying selected cities below the visible input -->
+                            
                             <ul id="selected-cities" class="list-group mt-2"></ul>
                         {% elif wizard.steps.current == '4' %}
                             {# Itinerary Step #}
