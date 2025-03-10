@@ -25,17 +25,23 @@
           <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {{ wizard.management_form }}
-
+            
             {% if wizard.steps.current == '1' %}
-              {# Trip Location Step #}
-              <div class="form-group">
-                {{ wizard.form.country|as_crispy_field }}
-              </div>
+            {# Trip Location Step #}
+            <div class="form-group">
+              <label for="country">Country</label>
+              <input type="text" id="country" name="country" 
+                     class="form-control"
+                     pattern="[A-Za-z\s]+" 
+                     title="Please enter a valid country name."
+                     required>
+            </div>
               <div class="form-group">
                 <label for="city-selector">Selected Cities</label>
                 
                 <div id="selected-cities-container"></div>
-                <input type="text" id="city-selector" placeholder="Type a city" class="form-control">
+                <input type="text" id="city-selector" name="city" placeholder="Type a city" class="form-control" pattern="[A-Za-z\s]+" title="Only letters and spaces are allowed.">
+
                 {{ wizard.form.cities|as_crispy_field }}
               
                 <div id="city-error" class="invalid-feedback" style="display: block;"></div>
