@@ -30,16 +30,19 @@ class TripLocationForm(forms.ModelForm):
             'country': forms.TextInput(attrs={
                 'id': 'country',         
                 'class': 'form-control',
-                'autocomplete': 'country' 
+                'autocomplete': 'country',
+                'pattern': '^[A-Za-z\s\-\'\.]+$',
+                'title': 'Please enter a valid country name (letters, spaces, hyphens, apostrophes, and periods only)'
             }),
             'cities': forms.TextInput(attrs={
                 'id': 'cities',         
                 'class': 'form-control',
-                'autocomplete': 'address-level2'  
+                'autocomplete': 'address-level2',
+                'pattern': '^[A-Za-z\s\-\'\.,;]+$',
+                'title': 'Please enter valid city names (letters, spaces, and basic punctuation only)'
             }),
         }
         
-
 
 
 class TripDetailsForm(forms.ModelForm):

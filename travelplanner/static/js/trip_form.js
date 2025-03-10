@@ -58,100 +58,95 @@
       });
     });
   
-    // -----------------------------
-    // Country & City selection
+   // -----------------------------
+    // City Selection Code (Two-Input Approach)
     // -----------------------------
     document.addEventListener("DOMContentLoaded", function() {
-   
-      let selectedCities = [];
-      let selectedCountryCode = null;
-  
-      
-      const countryInput = document.getElementById("country");
-      const countryHiddenInput = document.getElementById("country_input");
-      const citySelector = document.getElementById("city-selector");
-      const citiesInput = document.getElementById("cities");
-      const cityError = document.getElementById("city-error");
-      const form = document.querySelector("form");
-  
-
-      if (citiesInput && citiesInput.value.trim() !== "") {
-        selectedCities = citiesInput.value.split(",").map(city => city.trim());
-      }
-  
-      // Initialize country autocomplete
-      if (countryInput && typeof google !== "undefined" && google.maps && google.maps.places) {
-        let countryAutocomplete = new google.maps.places.Autocomplete(countryInput, {
-          types: ["(regions)"]
-        });
-        countryAutocomplete.addListener("place_changed", function() {
-          let place = countryAutocomplete.getPlace();
-          if (place && place.address_components) {
-            let countryComponent = place.address_components.find(component =>
+        // Global array to store selected cities
+        let selectedCities = [];
+        let selectedCountryCode = null;
+    
+        // Grab DOM elements
+        const countryInput = document.getElementById("country");
+        const countryHiddenInput = document.getElementById("country_input");
+        // The autocomplete field where the user types to get suggestions
+        const citySelector = document.getElementById("city-selector");
+        // The main input that will hold all selected cities (comma-separated) and be submitted
+        const citiesInput = document.getElementById("cities");
+        const cityError = document.getElementById("city-error");
+        const form = document.querySelector("form");
+    
+        // If editing an existing trip, prepopulate the cities array from citiesInput.
+        if (citiesInput && citiesInput.value.trim() !== "") {
+          selectedCities = citiesInput.value.split(",").map(city => city.trim());
+        }
+    
+        // Initialize country autocomplete
+        if (countryInput && typeof google !== "undefined" && google.maps && google.maps.places) {
+          let countryAutocomplete = new google.maps.places.Autocomplete(countryInput, {
+            types: ["(regions)"]
+          });
+          countryAutocomplete.addListener("place_changed", function() {
+            let place = countryAutocomplete.getPlace();
+            if (place && place.address_components) {
+              let countryComponent = place.address_components.find(component =>
+                component.types.includes("country")
+              );
+              selectedCountryCode = countryComponent ? countryComponent.short_name : null;
+              countryHiddenInput.value = place.formatted_address || place.name;
+              // Clear any error and enable city selection
+              if (cityError) cityError.textContent = "";
+              if (citySelector) citySelector.disabled = false;
+            }
+          });
+        }
+    
+        // Initialize autocomplete on the citySelector input
+        if (citySelector && typeof google !== "undefined" && google.maps && google.maps.places) {
+          let cityAutocomplete = new google.maps.places.Autocomplete(citySelector, {
+            types: ["(cities)"]
+          });
+          cityAutocomplete.addListener("place_changed", function() {
+            let place = cityAutocomplete.getPlace();
+            if (!place || !place.address_components) return;
+            let cityName = place.name;
+            let cityCountryComponent = place.address_components.find(component =>
               component.types.includes("country")
             );
-            selectedCountryCode = countryComponent ? countryComponent.short_name : null;
-            countryHiddenInput.value = place.formatted_address || place.name;
+            if (!cityCountryComponent) {
+              citySelector.value = "";
+              return;
+            }
+            let cityCountryCode = cityCountryComponent.short_name;
+            if (!selectedCountryCode) {
+              if (cityError) cityError.textContent = "Please select a country first.";
+              citySelector.value = "";
+              return;
+            }
+            if (cityCountryCode !== selectedCountryCode) {
+              if (cityError) cityError.textContent = `Please select a city in ${countryInput.value}.`;
+              citySelector.value = "";
+              return;
+            }
+            
             if (cityError) cityError.textContent = "";
-            if (citySelector) citySelector.disabled = false;
-          }
-        });
-      }
-  
-    // Initialize city autocomplete
-if (citySelector && typeof google !== "undefined" && google.maps && google.maps.places) {
-    let cityAutocomplete = new google.maps.places.Autocomplete(citySelector, {
-      types: ["(cities)"]
-    });
-    cityAutocomplete.addListener("place_changed", function() {
-      let place = cityAutocomplete.getPlace();
-      if (!place || !place.address_components) return;
-      let cityName = place.name;
-      let cityCountryComponent = place.address_components.find(component =>
-        component.types.includes("country")
-      );
-      if (!cityCountryComponent) {
-        citySelector.value = "";
-        citySelector.focus();
-        return;
-      }
-      let cityCountryCode = cityCountryComponent.short_name;
-      if (!selectedCountryCode) {
-        if (cityError) cityError.textContent = "Please select a country first.";
-        citySelector.value = "";
-        citySelector.focus();
-        return;
-      }
-      if (cityCountryCode !== selectedCountryCode) {
-        if (cityError) cityError.textContent = `Please select a city in ${countryInput.value}.`;
-        citySelector.value = "";
-        citySelector.focus();
-        return;
-      }
-     
-      if (cityError) cityError.textContent = "";
-      if (!selectedCities.includes(cityName)) {
-        selectedCities.push(cityName);
-      }
+            if (!selectedCities.includes(cityName)) {
+              selectedCities.push(cityName);
+            }
+            
+            citiesInput.value = selectedCities.join(", ");
+           
+            citySelector.value = "";
+          });
+        }
     
-      citiesInput.value = selectedCities.join(", ");
-      citySelector.value = "";
-      citySelector.focus();
-    });
-    
-    citySelector.addEventListener("blur", function() {
-      setTimeout(() => {
-        citySelector.focus();
-      }, 0);
-    });
-  }
-  
-  
-      if (form) {
-        form.addEventListener("submit", function() {
-          countryHiddenInput.value = countryInput.value;
-          console.log("Submitting with cities:", citiesInput.value);
-        });
-      }
-    });
-  })();
+       
+        if (form) {
+          form.addEventListener("submit", function() {
+            countryHiddenInput.value = countryInput.value;
+            console.log("Submitting with cities:", citiesInput.value);
+          });
+        }
+      });
+    })();
+
