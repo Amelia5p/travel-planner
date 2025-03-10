@@ -1,113 +1,106 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags static %}
-
 {% block content %}
 <div class="container py-4">
-  <div class="row justify-content-center">
-    <div class="col-md-8 trip-form">
-      <div class="card shadow-sm">
-        <div class="card-header trip-header">
-          <h2 class="mb-0 trip-title">
-            {% if wizard.steps.current == '0' %}
-              Create New Trip
-            {% elif wizard.steps.current == '1' %}
-              Select Trip Location
-            {% elif wizard.steps.current == '2' %}
-              Trip Details
-            {% elif wizard.steps.current == '3' %}
-              Budget Planning
-            {% elif wizard.steps.current == '4' %}
-              Create Itinerary
-            {% endif %}
-          </h2>
-        </div>
-        <div class="card-body">
-          <form method="post" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ wizard.management_form }}
-
-            {% if wizard.steps.current == '1' %}
-              {# Trip Location Step #}
-              <div class="form-group">
-                {{ wizard.form.country|as_crispy_field }}
-              </div>
-              <div class="form-group">
-                <label for="city-selector">Selected Cities</label>
-                
-                <div id="selected-cities-container"></div>
-                <input type="text" id="city-selector" placeholder="Type a city" class="form-control">
-                {{ wizard.form.cities|as_crispy_field }}
-              
-                <div id="city-error" class="invalid-feedback" style="display: block;"></div>
-              </div>
-              <input type="hidden" id="country_input" name="country_input">
-            {% elif wizard.steps.current == '4' %}
-              {# Itinerary Step #}
-              <div id="itinerary-container">
-                {{ wizard.form.management_form }}
-                {% for form in wizard.form %}
-                  <div class="itinerary-form border rounded mb-3 p-3 position-relative">
-                    <div class="row">
-                      <div class="col-md-2">
-                        {{ form.day_number|as_crispy_field }}
-                      </div>
-                      <div class="col-md-10">
-                        <div class="row">
-                          <div class="col-md-4">
-                            {{ form.morning|as_crispy_field }}
-                          </div>
-                          <div class="col-md-4">
-                            {{ form.afternoon|as_crispy_field }}
-                          </div>
-                          <div class="col-md-4">
-                            {{ form.evening|as_crispy_field }}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    {% if form.instance.pk %}
-                      <div class="position-absolute top-0 end-0 m-2">
-                        {{ form.DELETE }}
-                        <label for="{{ form.DELETE.id_for_label }}" class="btn btn-sm btn-danger">
-                          <i class="fas fa-trash"></i> Delete
-                        </label>
-                      </div>
-                    {% endif %}
-                    {{ form.id }}
-                  </div>
-                {% endfor %}
-              </div>
-              <button type="button" id="add-form" class="btn btn-secondary mb-3">
-                <i class="fas fa-plus"></i> Add Another Day
-              </button>
-            {% else %}
-              {{ wizard.form|crispy }}
-            {% endif %}
-
-            <div class="d-flex justify-content-between mt-3">
-              {% if wizard.steps.prev %}
-                <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.prev }}" class="btn trip-btn">
-                  <i class="fas fa-arrow-left"></i> Previous
-                </button>
-              {% else %}
-                <div></div>
-              {% endif %}
-
-              <button type="submit" class="btn trip-btn">
-                {% if wizard.steps.next %}
-                  Next <i class="fas fa-arrow-right"></i>
-                {% else %}
-                  Create Trip <i class="fas fa-check"></i>
-                {% endif %}
-              </button>
+   <div class="row justify-content-center">
+      <div class="col-md-8 trip-form">
+         <div class="card shadow-sm">
+            <div class="card-header trip-header">
+               <h2 class="mb-0 trip-title">
+                  {% if wizard.steps.current == '0' %}
+                  Create New Trip
+                  {% elif wizard.steps.current == '1' %}
+                  Select Trip Location
+                  {% elif wizard.steps.current == '2' %}
+                  Trip Details
+                  {% elif wizard.steps.current == '3' %}
+                  Budget Planning
+                  {% elif wizard.steps.current == '4' %}
+                  Create Itinerary
+                  {% endif %}
+               </h2>
             </div>
-          </form>
-        </div>
+            <div class="card-body">
+               <form method="post" enctype="multipart/form-data">
+                  {% csrf_token %}
+                  {{ wizard.management_form }}
+                  {% if wizard.steps.current == '1' %}
+                  {# Trip Location Step #}
+                  <div class="form-group">
+                     {{ wizard.form.country|as_crispy_field }}
+                  </div>
+                  <div class="form-group">
+                     <label for="city-selector">Selected Cities</label>
+                     <div id="selected-cities-container"></div>
+                     <input type="text" id="city-selector" placeholder="Type a city" class="form-control">
+                     {{ wizard.form.cities|as_crispy_field }}
+                     <div id="city-error" class="invalid-feedback" style="display: block;"></div>
+                  </div>
+                  <input type="hidden" id="country_input" name="country_input">
+                  {% elif wizard.steps.current == '4' %}
+                  {# Itinerary Step #}
+                  <div id="itinerary-container">
+                     {{ wizard.form.management_form }}
+                     {% for form in wizard.form %}
+                     <div class="itinerary-form border rounded mb-3 p-3 position-relative">
+                        <div class="row">
+                           <div class="col-md-2">
+                              {{ form.day_number|as_crispy_field }}
+                           </div>
+                           <div class="col-md-10">
+                              <div class="row">
+                                 <div class="col-md-4">
+                                    {{ form.morning|as_crispy_field }}
+                                 </div>
+                                 <div class="col-md-4">
+                                    {{ form.afternoon|as_crispy_field }}
+                                 </div>
+                                 <div class="col-md-4">
+                                    {{ form.evening|as_crispy_field }}
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        {% if form.instance.pk %}
+                        <div class="position-absolute top-0 end-0 m-2">
+                           {{ form.DELETE }}
+                           <label for="{{ form.DELETE.id_for_label }}" class="btn btn-sm btn-danger">
+                           <i class="fas fa-trash"></i> Delete
+                           </label>
+                        </div>
+                        {% endif %}
+                        {{ form.id }}
+                     </div>
+                     {% endfor %}
+                  </div>
+                  <button type="button" id="add-form" class="btn btn-secondary mb-3">
+                  <i class="fas fa-plus"></i> Add Another Day
+                  </button>
+                  {% else %}
+                  {{ wizard.form|crispy }}
+                  {% endif %}
+                  <div class="d-flex justify-content-between mt-3">
+                     {% if wizard.steps.prev %}
+                     <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.prev }}" class="btn trip-btn">
+                     <i class="fas fa-arrow-left"></i> Previous
+                     </button>
+                     {% else %}
+                     <div></div>
+                     {% endif %}
+                     <button type="submit" class="btn trip-btn">
+                     {% if wizard.steps.next %}
+                     Next <i class="fas fa-arrow-right"></i>
+                     {% else %}
+                     Create Trip <i class="fas fa-check"></i>
+                     {% endif %}
+                     </button>
+                  </div>
+               </form>
+            </div>
+         </div>
       </div>
-    </div>
-  </div>
+   </div>
 </div>
-
 {% if wizard.steps.current == '1' or wizard.steps.current == '4' %}
 <script src="https://maps.googleapis.com/maps/api/js?key={{ GOOGLE_PLACES_API_KEY }}&libraries=places"></script>
 <script src="{% static 'js/trip_form.js' %}"></script>

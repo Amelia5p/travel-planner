@@ -2,36 +2,31 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container mt-5">
-    <h2 class="text-center mb-4" id ="my-trips-title">My Trips</h2>
-
-    {% if trips %}
-    <div class="row">
-        {% for trip in trips %}
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="card shadow-lg border-0 mb-4">
-                    <div class="card-body text-center">
-                        <h5 class="card-title" id="trips-card-title">{{ trip.trip_name }}</h5>
-                        <p class="card-text text-muted">
-                            <strong id="strong-color">{{ trip.location.country }}</strong><br>
-                            {{ trip.start_date|date:"M d, Y" }} - {{ trip.end_date|date:"M d, Y" }}
-                        </p>
-                        <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
-                            <a href="{% url 'trip_details' trip.id %}" class="btn btn-sm trip-btn">View Trip</a>
-                            <a href="{% url 'edit_trip_wizard' trip.id %}" class="btn btn-sm trip-btn">Edit Trip</a>
-                            <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm trip-btn">Delete Trip</a>
-                        </div>
-                    </div>
-                </div>
+   <h2 class="text-center mb-4" id ="my-trips-title">My Trips</h2>
+   {% if trips %}
+   <div class="row">
+      {% for trip in trips %}
+      <div class="col-12 col-sm-6 col-lg-4">
+         <div class="card shadow-lg border-0 mb-4">
+            <div class="card-body text-center">
+               <h5 class="card-title" id="trips-card-title">{{ trip.trip_name }}</h5>
+               <p class="card-text text-muted">
+                  <strong id="strong-color">{{ trip.location.country }}</strong><br>
+                  {{ trip.start_date|date:"M d, Y" }} - {{ trip.end_date|date:"M d, Y" }}
+               </p>
+               <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
+                  <a href="{% url 'trip_details' trip.id %}" class="btn btn-sm trip-btn">View Trip</a>
+                  <a href="{% url 'edit_trip_wizard' trip.id %}" class="btn btn-sm trip-btn">Edit Trip</a>
+                  <a href="{% url 'delete_trip' trip.id %}" class="btn btn-sm trip-btn">Delete Trip</a>
+               </div>
             </div>
-        {% endfor %}
-    </div>
-    {% endif %}
-
-    <div class="text-center mt-4">
-        <a href="{% url 'create_trip' %}" class="btn btn-success" id="my_trips_create">Create a New Trip</a>
-    </div>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+   {% endif %}
+   <div class="text-center mt-4">
+      <a href="{% url 'create_trip' %}" class="btn btn-success" id="my_trips_create">Create a New Trip</a>
+   </div>
 </div>
 {% endblock %}
-
-
-

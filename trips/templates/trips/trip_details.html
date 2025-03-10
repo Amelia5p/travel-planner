@@ -2,75 +2,69 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container mt-4">
-    <div class="card shadow-lg">
-        <div class="card-header trip-header">
-            <h2 class="text-center">{{ trip.trip_name }}</h2>
-        </div>
-        <div class="card-body">
-            <p><strong>Destination:</strong> {{ trip.location.country }}</p>
-            <p><strong>Cities:</strong>
-                {% for city in trip.location.get_cities_list %}
-                    {{ city }}{% if not forloop.last %}, {% endif %}
-                {% empty %}
-                    No cities saved.
-                {% endfor %}
-            </p>
-            
-            <p><strong>Start Date:</strong> {{ trip.start_date }}</p>
-            <p><strong>End Date:</strong> {{ trip.end_date }}</p>
-            <p><strong>Duration:</strong> {{ trip.duration_days }} days</p>
-            <p><strong>Budget:</strong> €{{ trip.budget.budget }}</p>
-            <p><strong>Accommodation Type:</strong> {{ trip.details.get_accommodation_type_display }}</p>
-            <p><strong>Transport Type:</strong> {{ trip.details.get_transport_type_display }}</p>
-
-            {% if itinerary_days %}
-            <hr>
-            <h4>Itinerary</h4>
-            <ul class="list-group">
-                {% for day in itinerary_days %}
-                <li class="list-group-item">
-                    <h5>Day {{ day.day_number }} {% if day.date %} ({{ day.date }}) {% endif %}</h5>
-                    {% if day.morning %}
-                        <p><strong>Morning:</strong> {{ day.morning }}</p>
-                    {% endif %}
-                    {% if day.afternoon %}
-                        <p><strong>Afternoon:</strong> {{ day.afternoon }}</p>
-                    {% endif %}
-                    {% if day.evening %}
-                        <p><strong>Evening:</strong> {{ day.evening }}</p>
-                    {% endif %}
-
-                    {% if is_admin %}
-                        <a href="{% url 'suggest_activity' day.id %}" 
-                           class="btn btn-warning btn-sm mt-2">
-                            Suggest Activity
-                        </a>
-                    {% endif %}
-
-                    {% if day.suggestions.exists %}
-                        <div class="mt-2">
-                            <strong>Suggestions:</strong>
-                            <ul>
-                                {% for suggestion in day.suggestions.all %}
-                                    <li>{{ suggestion.suggestion }} - by {{ suggestion.suggested_by.username }}</li>
-                                {% endfor %}
-                            </ul>
-                        </div>
-                    {% endif %}
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-                <p>No itinerary details available.</p>
-            {% endif %}
-
-            <hr>
-           
-            <div class="mt-4">
-                <a href="{% url 'my_trips' %}" class="btn btn-secondary">Back to My Trips</a>
-                <a href="{% url 'delete_trip' trip.id %}" class="btn btn-danger">Delete Trip</a>
-            </div>
-        </div>
-    </div>
+   <div class="card shadow-lg">
+      <div class="card-header trip-header">
+         <h2 class="text-center">{{ trip.trip_name }}</h2>
+      </div>
+      <div class="card-body">
+         <p><strong>Destination:</strong> {{ trip.location.country }}</p>
+         <p><strong>Cities:</strong>
+            {% for city in trip.location.get_cities_list %}
+            {{ city }}{% if not forloop.last %}, {% endif %}
+            {% empty %}
+            No cities saved.
+            {% endfor %}
+         </p>
+         <p><strong>Start Date:</strong> {{ trip.start_date }}</p>
+         <p><strong>End Date:</strong> {{ trip.end_date }}</p>
+         <p><strong>Duration:</strong> {{ trip.duration_days }} days</p>
+         <p><strong>Budget:</strong> €{{ trip.budget.budget }}</p>
+         <p><strong>Accommodation Type:</strong> {{ trip.details.get_accommodation_type_display }}</p>
+         <p><strong>Transport Type:</strong> {{ trip.details.get_transport_type_display }}</p>
+         {% if itinerary_days %}
+         <hr>
+         <h4>Itinerary</h4>
+         <ul class="list-group">
+            {% for day in itinerary_days %}
+            <li class="list-group-item">
+               <h5>Day {{ day.day_number }} {% if day.date %} ({{ day.date }}) {% endif %}</h5>
+               {% if day.morning %}
+               <p><strong>Morning:</strong> {{ day.morning }}</p>
+               {% endif %}
+               {% if day.afternoon %}
+               <p><strong>Afternoon:</strong> {{ day.afternoon }}</p>
+               {% endif %}
+               {% if day.evening %}
+               <p><strong>Evening:</strong> {{ day.evening }}</p>
+               {% endif %}
+               {% if is_admin %}
+               <a href="{% url 'suggest_activity' day.id %}" 
+                  class="btn btn-warning btn-sm mt-2">
+               Suggest Activity
+               </a>
+               {% endif %}
+               {% if day.suggestions.exists %}
+               <div class="mt-2">
+                  <strong>Suggestions:</strong>
+                  <ul>
+                     {% for suggestion in day.suggestions.all %}
+                     <li>{{ suggestion.suggestion }} - by {{ suggestion.suggested_by.username }}</li>
+                     {% endfor %}
+                  </ul>
+               </div>
+               {% endif %}
+            </li>
+            {% endfor %}
+         </ul>
+         {% else %}
+         <p>No itinerary details available.</p>
+         {% endif %}
+         <hr>
+         <div class="mt-4">
+            <a href="{% url 'my_trips' %}" class="btn btn-secondary">Back to My Trips</a>
+            <a href="{% url 'delete_trip' trip.id %}" class="btn btn-danger">Delete Trip</a>
+         </div>
+      </div>
+   </div>
 </div>
 {% endblock %}

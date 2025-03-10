@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 {% load crispy_forms_tags %}
-
 {% block content %}
 <div class="container my-4">
-    <h2>Suggest Activity for Day {{ day.day_number }}</h2>
-    <form method="post">
-        {% csrf_token %}
-        {{ form|crispy }}
-        <button type="submit" class="btn btn-success">Submit Suggestion</button>
-        <a href="{% url 'trip_details' day.trip.id %}" class="btn btn-secondary">Cancel</a>
-    </form>
+   <h2>Suggest Activity for Day {{ day.day_number }}</h2>
+   <form method="post">
+      {% csrf_token %}
+      {{ form|crispy }}
+      <button type="submit" class="btn btn-success">Submit Suggestion</button>
+      <a href="{% url 'trip_details' day.trip.id %}" class="btn btn-secondary">Cancel</a>
+   </form>
 </div>
 {% endblock %}
