@@ -4,6 +4,8 @@ from django.urls import path
 from . import views
 from users.views import logout_view
 
+
+
 urlpatterns = [
 
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'),name = 'login'),
@@ -14,6 +16,9 @@ urlpatterns = [
     path('signup/', views.signup, name = 'signup'),
     path('login/', auth_views.LoginView.as_view(template_name='users/login.html'), name='login'),
     path('signup/', views.signup, name='signup'),
+  
+
+
 
     
 ] 

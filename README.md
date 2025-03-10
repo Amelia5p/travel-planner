@@ -49,7 +49,27 @@ models
 
 ## Testing
 
-Testing and results can be found 
+| Page                  Result
+|----------------------|------------|
+|      
+| base.html            | No errors  | 
+| home.html            | No errors  |
+| all.trips.html       | No errors  | 
+| create_trip.html     | No errors  | 
+| delete_trip.html     | No errors  | 
+| edit_trip.html       | No errors  | 
+| my_trips.html        | No errors  | 
+| suggest_activity.html| No errors  | 
+| trip_details.html    | No errors  |
+| profile.html         | No errors  |  
+| delete_profile.html  | No errors  | 
+| edit_profile.html    | No errors  | 
+| login.html           | No errors  |
+| logout.html          | No errors  | 
+| signup.html          | No errors  |
+| 403.html             | No errors  |
+| 404.html             | No errors  | 
+| 500.html             | No errors  | 
 
 ## Security Features
 
