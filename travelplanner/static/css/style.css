@@ -215,13 +215,11 @@ footer{
     font-family: "Poppins",sans-serif;
     padding-bottom: 20px ;
 }
-#trips-card-title {
+.trips-card-title {
 font-family: "Poppins",sans-serif;
 }
 
-#strong-color{
-    color: black;
-}
+
 
 /* Create Trips Page*/
 .trip-form {

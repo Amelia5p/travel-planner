@@ -6,9 +6,9 @@
    <ul class="list-group">
       {% for trip in trips %}
       <li class="list-group-item shadow-sm p-4 mb-3">
-         <h4 class="mb-2" id="trips-card-title">{{ trip.trip_name }}</h4>
+         <h4 class="mb-2">{{ trip.trip_name }}</h4>
          <p class="mb-1 text-muted">
-            <strong id="strong-color">{{ trip.location.country }}</strong><br>
+            <strong>{{ trip.location.country }}</strong><br>
             {{ trip.start_date|date:"M d, Y" }} - {{ trip.end_date|date:"M d, Y" }}
          </p>
          <p class="text-muted"><small>Created by: {{ trip.user.username }}</small></p>

@@ -2,16 +2,16 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container mt-5">
-   <h2 class="text-center mb-4" id ="my-trips-title">My Trips</h2>
+   <h2 class="text-center mb-4" class ="my-trips-title">My Trips</h2>
    {% if trips %}
    <div class="row">
       {% for trip in trips %}
       <div class="col-12 col-sm-6 col-lg-4">
          <div class="card shadow-lg border-0 mb-4">
             <div class="card-body text-center">
-               <h5 class="card-title" id="trips-card-title">{{ trip.trip_name }}</h5>
+               <h5 class="card-title" class="trips-card-title">{{ trip.trip_name }}</h5>
                <p class="card-text text-muted">
-                  <strong id="strong-color">{{ trip.location.country }}</strong><br>
+                  <strong>{{ trip.location.country }}</strong><br>
                   {{ trip.start_date|date:"M d, Y" }} - {{ trip.end_date|date:"M d, Y" }}
                </p>
                <div class="d-flex flex-wrap justify-content-center gap-2 mt-2">
