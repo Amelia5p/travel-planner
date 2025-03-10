@@ -1,80 +1,77 @@
 {% extends 'base.html' %}
 {% load static %}
-
 {% block title %}Home - Travel Planner{% endblock %}
-
 {% block content %}
 <!-- Hero Section -->
 <header class="hero-section d-flex align-items-center">
-    <div class="container text-center text-white">
-        <h1 class="display-4" id="hero-title">Plan Your Next Adventure</h1>
-        <p class="lead">Organise your itinerary, track expenses, and make the most of your travels.</p>
-        <a href="{% url 'create_trip' %}" class="btn btn-lg mt-3 w-30 w-sm-auto">Get Started</a>
-    </div>
+   <div class="container text-center text-white">
+      <h1 class="display-4" id="hero-title">Plan Your Next Adventure</h1>
+      <p class="lead">Organise your itinerary, track expenses, and make the most of your travels.</p>
+      <a href="{% url 'create_trip' %}" class="btn btn-lg mt-3 w-30 w-sm-auto">Get Started</a>
+   </div>
 </header>
-
-
+<!--Features section-->
 <div class="features-background">
-    <div class="features-section py-5">
-        <div class="row text-center my-5">
-            <div class="col-12 col-md-4 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">Create Trips</h5>
-                        <p class="card-text">Organise trips with us seamlessly.</p>
-                        <a href="{% url 'create_trip' %}" class="btn" id="home-btn">Create</a>
-                    </div>
-                </div>
+   <div class="features-section py-5">
+      <div class="container">
+         <div class="row g-4 text-center">
+            <div class="col-12 col-sm-6 col-md-4">
+               <div class="card h-100">
+                  <div class="card-body">
+                     <h5 class="card-title">Create Trips</h5>
+                     <p class="card-text">Organise trips with us seamlessly.</p>
+                     <a href="{% url 'create_trip' %}" class="btn">Create</a>
+                  </div>
+               </div>
             </div>
-            <div class="col-12 col-md-4 mb-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h5 class="card-title">All Your Trips in One Place</h5>
-                        <p class="card-text">View multiple trips on your dashboard.</p>
-                        <a href="{% url 'my_trips' %}" class="btn" id="home-btn" >View</a>
-                    </div>
-                </div>
+            <div class="col-12 col-sm-6 col-md-4">
+               <div class="card h-100">
+                  <div class="card-body">
+                     <h5 class="card-title">All Your Trips in One Place</h5>
+                     <p class="card-text">View multiple trips on your dashboard.</p>
+                     <a href="{% url 'my_trips' %}" class="btn">View</a>
+                  </div>
+               </div>
             </div>
-            <div class="col-12 col-md-4 mb-3">
-                <div class="card">
-                    <div class="card-body" id="home-card">
-                        <h5 class="card-title">Plan Every Detail</h5>
-                        <p class="card-text">Save and manage all trip details effortlessly.</p>
-                        <a href="{% url 'my_trips' %}" class="btn" id="home-btn">Details</a>
-                    </div>
-                </div>
+            <div class="col-12 col-sm-6 col-md-4">
+               <div class="card h-100">
+                  <div class="card-body">
+                     <h5 class="card-title">Plan Every Detail</h5>
+                     <p class="card-text">Save and manage all trip details effortlessly.</p>
+                     <a href="{% url 'my_trips' %}" class="btn">Details</a>
+                  </div>
+               </div>
             </div>
-        </div>
-    </div>
+         </div>
+      </div>
+   </div>
 </div>
-
 <!-- Testimonials Section -->
 <div class="container my-5">
-    <h2 class="text-center mb-4">What Our Users Say</h2>
-    <div class="row">
-        <div class="col-md-4">
-            <div class="testimonial text-center p-3">
-                <p>"This app made my travels so much easier! Highly recommended."</p>
-                <h6>- Sarah L.</h6>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="testimonial text-center p-3">
-                <p>"Love how I can keep track of my expenses while planning my trip!"</p>
-                <h6>- Mike D.</h6>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="testimonial text-center p-3">
-                <p>"A must-have app for any traveler! Super helpful."</p>
-                <h6>- Emma W.</h6>
-            </div>
-        </div>
-    </div>
+   <h2 class="text-center mb-4">What Our Users Say</h2>
+   <div class="row">
+      <div class="col-md-4">
+         <div class="testimonial text-center p-3">
+            <p>"This app made my travels so much easier! Highly recommended."</p>
+            <h6>- Sarah L.</h6>
+         </div>
+      </div>
+      <div class="col-md-4">
+         <div class="testimonial text-center p-3">
+            <p>"Love how I can keep track of my expenses while planning my trip!"</p>
+            <h6>- Mike D.</h6>
+         </div>
+      </div>
+      <div class="col-md-4">
+         <div class="testimonial text-center p-3">
+            <p>"A must-have app for any traveler! Super helpful."</p>
+            <h6>- Emma W.</h6>
+         </div>
+      </div>
+   </div>
 </div>
-
 <div class="text-center my-5">
-    <h3>Join thousands of travelers planning stress-free trips!</h3>
-    <a href="{% url 'create_trip' %}" class="btn btn-lg mt-3 start-planning">Start Planning</a>
+   <h3>Join thousands of travelers planning stress-free trips!</h3>
+   <a href="{% url 'create_trip' %}" class="btn btn-lg mt-3 start-planning">Start Planning</a>
 </div>
 {% endblock %}

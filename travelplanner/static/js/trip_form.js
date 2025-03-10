@@ -1,12 +1,12 @@
 // Credit: Brennan Tymrak 2019-2024, see read me
-
+/* global google */ 
 (function() {
     if (window.tripFormInitialized) return;
     window.tripFormInitialized = true;
   
-    // -----------------------------
+   
     // Itinerary Form Code
-    // -----------------------------
+   
     document.addEventListener('DOMContentLoaded', function() {
       const addButton = document.getElementById('add-form');
       const formsContainer = document.getElementById('itinerary-container');
@@ -58,9 +58,9 @@
       });
     });
   
-   // -----------------------------
+   
     // City Selection Code 
-    // -----------------------------
+ 
     document.addEventListener("DOMContentLoaded", function() {
       
         let selectedCities = [];
@@ -140,6 +140,7 @@
           
         }
     
+        // Form submission
        
         if (form) {
           form.addEventListener("submit", function() {
