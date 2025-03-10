@@ -137,7 +137,9 @@
             citiesInput.value = selectedCities.join(", ");
            
             citySelector.value = "";
+            citySelector.focus();
           });
+          
         }
     
        
