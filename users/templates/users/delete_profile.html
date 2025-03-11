@@ -10,9 +10,9 @@
                {% csrf_token %}
                {{ form.as_p }}
                <p>Are you sure you want to delete your profile?</p>
-               <button type="submit" class="btn btn-danger w-100 mt-3">Delete</button>
+               <button type="submit" class="btn btn-danger w-100 mt-3" aria-label="delete profile">Delete</button>
             </form>
-            <a href="{% url 'profile' %}" class="btn trip-btn w-100 mt-2">Cancel</a>
+            <a href="{% url 'profile' %}" class="btn trip-btn w-100 mt-2" aria-label="cancel">Cancel</a>
          </div>
       </div>
    </div>

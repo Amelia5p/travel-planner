@@ -23,7 +23,7 @@
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container">
-            <a class="navbar-brand" href="/">TripMaster</a>
+            <a class="navbar-brand" href="/" aria-label="TripMaster homepage">TripMaster</a>
 
             <!-- Toggler Button for Small Screens -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" 
@@ -56,7 +56,7 @@
                         <li class="nav-item">
                             <form action="{% url 'logout' %}" method="post" class="logout-form">
                                 {% csrf_token %}
-                                <button type="submit" id="nav" class="nav-link logout-button">Logout</button>
+                                <button type="submit" id="nav" class="nav-link logout-button" aria-label="Log out of your account">Logout</button>
                             </form>
                         </li>
                     {% else %}

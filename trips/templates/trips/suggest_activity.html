@@ -6,8 +6,8 @@
    <form method="post">
       {% csrf_token %}
       {{ form|crispy }}
-      <button type="submit" class="btn btn-success">Submit Suggestion</button>
-      <a href="{% url 'trip_details' day.trip.id %}" class="btn btn-secondary">Cancel</a>
+      <button type="submit" class="btn btn-success" aria-label="submit suggestion">Submit Suggestion</button>
+      <a href="{% url 'trip_details' day.trip.id %}" class="btn btn-secondary" aria-label="cancel">Cancel</a>
    </form>
 </div>
 {% endblock %}

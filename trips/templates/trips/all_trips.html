@@ -12,7 +12,7 @@
             {{ trip.start_date|date:"M d, Y" }} - {{ trip.end_date|date:"M d, Y" }}
          </p>
          <p class="text-muted"><small>Created by: {{ trip.user.username }}</small></p>
-         <a href="{% url 'trip_details' trip.id %}" class="btn btn-sm trip-btn">View Trip</a>
+         <a href="{% url 'trip_details' trip.id %}" class="btn btn-sm trip-btn" aria-label="View trip details">View Trip</a>
       </li>
       {% endfor %}
    </ul>
@@ -20,7 +20,7 @@
    <p class="text-center text-muted">No trips available.</p>
    {% endif %}
    <div class="text-center mt-4">
-      <a href="{% url 'create_trip' %}" class="btn btn-success" id="my_trips_create">Create a New Trip</a>
+      <a href="{% url 'create_trip' %}" class="btn btn-success" id="my_trips_create" aria-label="Create a new trip">Create a New Trip</a>
    </div>
 </div>
 {% endblock %}

@@ -266,4 +266,6 @@ https://imageresizer.com/
 
 BUGS= getting 405 error when clicking logout, fixed by changing the url
 some users do not have a Profile associated with them- fixed by using django signals to auto make profile when sign up.
-couldnt get the country form field to work with google api- reliased i was using the wrong ID
+couldnt get the country form field to work with google api- reliased i was using the wrong ID.
+
+sign up html getting errors- field help texts weren't being wrapped correctly within the expected HTML elements. fixed by changing {{ form.as_p }} to {{ form.as_div }}

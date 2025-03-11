@@ -64,7 +64,7 @@
                         {% if form.instance.pk %}
                         <div class="position-absolute top-0 end-0 m-2">
                            {{ form.DELETE }}
-                           <label for="{{ form.DELETE.id_for_label }}" class="btn btn-sm btn-danger">
+                           <label for="{{ form.DELETE.id_for_label }}" class="btn btn-sm btn-danger" aria-label="Delete itinerary entry">
                            <i class="fas fa-trash"></i> Delete
                            </label>
                         </div>
@@ -73,7 +73,7 @@
                      </div>
                      {% endfor %}
                   </div>
-                  <button type="button" id="add-form" class="btn btn-secondary mb-3">
+                  <button type="button" id="add-form" class="btn btn-secondary mb-3" aria-label="Add another day to the trip itinerary">
                   <i class="fas fa-plus"></i> Add Another Day
                   </button>
                   {% else %}
@@ -81,13 +81,13 @@
                   {% endif %}
                   <div class="d-flex justify-content-between mt-3">
                      {% if wizard.steps.prev %}
-                     <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.prev }}" class="btn trip-btn">
+                     <button type="submit" name="wizard_goto_step" value="{{ wizard.steps.prev }}" class="btn trip-btn" aria-label="go to previous step">
                      <i class="fas fa-arrow-left"></i> Previous
                      </button>
                      {% else %}
                      <div></div>
                      {% endif %}
-                     <button type="submit" class="btn trip-btn">
+                     <button type="submit" class="btn trip-btn" aria-label="go to next step">
                      {% if wizard.steps.next %}
                      Next <i class="fas fa-arrow-right"></i>
                      {% else %}

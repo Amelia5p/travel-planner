@@ -39,7 +39,7 @@
                {% endif %}
                {% if is_admin %}
                <a href="{% url 'suggest_activity' day.id %}" 
-                  class="btn btn-warning btn-sm mt-2">
+                  class="btn btn-warning btn-sm mt-2" aria-label="suggest an activity">
                Suggest Activity
                </a>
                {% endif %}
@@ -61,8 +61,8 @@
          {% endif %}
          <hr>
          <div class="mt-4">
-            <a href="{% url 'my_trips' %}" class="btn btn-secondary">Back to My Trips</a>
-            <a href="{% url 'delete_trip' trip.id %}" class="btn btn-danger">Delete Trip</a>
+            <a href="{% url 'my_trips' %}" class="btn btn-secondary" aria-label="go to my trips">Back to My Trips</a>
+            <a href="{% url 'delete_trip' trip.id %}" class="btn btn-danger" aria-label="delete trip">Delete Trip</a>
          </div>
       </div>
    </div>

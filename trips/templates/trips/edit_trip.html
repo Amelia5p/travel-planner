@@ -50,7 +50,7 @@
                         <div class="text-end my-2">
                            <div class="form-check">
                               {{ form.DELETE }}
-                              <label for="{{ form.DELETE.id_for_label }}" class="btn btn-danger btn-sm">
+                              <label for="{{ form.DELETE.id_for_label }}" class="btn btn-danger btn-sm" aria-label="Delete day">
                               Delete Day
                               </label>
                            </div>
@@ -59,7 +59,7 @@
                      </div>
                      {% endfor %}
                   </div>
-                  <button type="button" id="add-form" class="btn btn-secondary mb-3">
+                  <button type="button" id="add-form" class="btn btn-secondary mb-3" aria-label="Add another day to the trip itinerary">
                   <i class="fas fa-plus"></i> Add Another Day
                   </button>
                   {% elif wizard.steps.current == '1' %}
@@ -83,13 +83,14 @@
                         name="wizard_goto_step" 
                         value="{{ wizard.steps.prev }}" 
                         class="btn trip-btn"
+                        aria-label="go to previous step"
                         >
                      <i class="trip-btn"></i> Previous
                      </button>
                      {% else %}
                      <div></div>
                      {% endif %}
-                     <button type="submit" class="btn trip-btn">
+                     <button type="submit" class="btn trip-btn" aria-label="go to next step">
                      {% if wizard.steps.next %}
                      Next 
                      {% else %}
