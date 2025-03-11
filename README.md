@@ -49,6 +49,8 @@ models
 
 ## Testing
 
+### HTML
+
 HTML was passed through the W3C validator with no errors.
 
 | Page                  Result
@@ -72,6 +74,18 @@ HTML was passed through the W3C validator with no errors.
 | 404.html             | No errors  | 
 | 500.html             | No errors  | 
 
+### CSS
+
+CSS was passed through W3C validator with no errors.
+
+### JavaScript
+
+JavaScript was passed through JShint with no errors.
+
+### Python
+
+Python code was passed through the PEP8 CI linter with no errors.
+
 ### Lighthouse
 
 Lighthouse validation was run on all pages (both mobile and desktop).  Here are the scores: 
@@ -79,9 +93,23 @@ Lighthouse validation was run on all pages (both mobile and desktop).  Here are 
 | Page           | Performance  | Accessibility | Best Practices  | SEO |
 |----------------|:------------:|:-------------:|:---------------:|:---:|
 |                |              |               |                 |     |
-| Desktop        |              |               |                 |     |
-| Home           |          96  |           98  |             100 | 90  |
-| My Trips       | 
+| Desktop  
+|                |              |               |     
+| Home           |          97  |           98  |             100 | 100 |
+| My Trips       |          98  |           98  |             100 | 100 |
+| Trip Details   |          99  |           98  |             100 | 100 |
+| Delete trip*   |          99  |           98  |             100 | 100 |
+| Create trip*   |          99  |           98  |             100 | 100 |
+|SuggestActivity |          100 |           100 |             100 | 100 |
+| Delete Trip    |          100 |           100 |             100 | 90  |
+| Edit Trip      |          90  |           100 |             100 | 100 |
+|All Trips(admin)|          89  |           98  |             100 | 90  |
+| Profile        |          98  |           98  |             100 | 100 |
+| Login          |          99  |           99  |             100 | 100 |
+| Signup         |          100 |           99  |             100 | 100 |
+| Edit Profile   |          98  |           100 |             100 | 100 |
+| Delete Profile |          98  |           100 |             100 | 91  |
+
 
 ## Security Features
 
@@ -130,7 +158,7 @@ Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this 
 
 **Log Out**
 
-- Django allauth was installed and used to create the Sign up, Log in and Log out functionality. 
+- Django allauth was installed and used to create Log in and Log out functionality. 
 - Success messages inform the user if they have logged in/ logged out successfully.
 
 

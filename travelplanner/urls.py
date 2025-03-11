@@ -16,14 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.urls import path
 from .views import custom_404, custom_500, custom_403
-from django.conf import settings
-from django.conf.urls import handler403, handler404, handler500
-from django.shortcuts import render
 from . import views
-
-
 
 
 urlpatterns = [
@@ -33,11 +27,7 @@ urlpatterns = [
     path('', views.home, name='home'),
 ]
 
- 
+
 handler403 = custom_403
 handler404 = custom_404
 handler500 = custom_500
-
-
-
-
