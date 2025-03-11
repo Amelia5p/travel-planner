@@ -49,6 +49,8 @@ models
 
 ## Testing
 
+HTML was passed through the W3C validator with no errors.
+
 | Page                  Result
 |----------------------|------------|
 |      
@@ -69,6 +71,17 @@ models
 | 403.html             | No errors  |
 | 404.html             | No errors  | 
 | 500.html             | No errors  | 
+
+### Lighthouse
+
+Lighthouse validation was run on all pages (both mobile and desktop).  Here are the scores: 
+
+| Page           | Performance  | Accessibility | Best Practices  | SEO |
+|----------------|:------------:|:-------------:|:---------------:|:---:|
+|                |              |               |                 |     |
+| Desktop        |              |               |                 |     |
+| Home           |          96  |           98  |             100 | 90  |
+| My Trips       | 
 
 ## Security Features
 
