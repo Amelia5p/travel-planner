@@ -14,11 +14,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 import os
-from django.conf import settings
-
-
-
-
 
 
 # Load environment variables from .env file
@@ -36,7 +31,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['.herokuapp.com','127.0.0.1','localhost']
+ALLOWED_HOSTS = ['.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -83,20 +78,19 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'travelplanner.context_processors.admin_status', 
+                'travelplanner.context_processors.admin_status',
                 'travelplanner.context_processors.google_maps_api_key',
-                 'django.template.context_processors.request',
+                'django.template.context_processors.request',
 
-                
+
             ],
         },
     },
-  
+
 
 ]
 
 WSGI_APPLICATION = 'travelplanner.wsgi.application'
-
 
 
 # Database
@@ -116,22 +110,26 @@ LOGIN_URL = '/users/login/'  # Redirects to your defined login page
 LOGIN_REDIRECT_URL = 'my_trips'  # Redirects after login
 
 
-
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
     {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+        'NAME':
+        'django.contrib.auth.password_'
+        'validation.UserAttributeSimilarityValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+        'NAME': 'django.contrib.auth.password_validation.'
+        'MinimumLengthValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+        'NAME': 'django.contrib.auth.password_'
+        'validation.CommonPasswordValidator',
     },
     {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+        'NAME': 'django.contrib.auth.password_validation'
+        '.NumericPasswordValidator',
     },
 ]
 
