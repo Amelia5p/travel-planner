@@ -12,7 +12,7 @@ The live link can be found here - [TripMaster](https://travelplannerapp-889b39b3
 
 
   
-## Features
+
 
 
 ## User Stories
@@ -146,6 +146,96 @@ I chose Poppins and Lato as my fonts. I find Poppins stands out with its modern 
 </details>
 
 
+## Features
+
+### Navigation Bar
+
+- The navigation at the top of each page provides easy access to all main sections of the website.
+
+![Navigation Bar](docs/readme-images/nav-bar.png)
+
+### Footer
+
+- The footer is at the bottom of each page and contains social links. I made sure these links opened in another tab to prevet users from being driven away from the site.
+
+![Footer](docs/readme-images/footer.png)
+
+### Home Page
+
+- The homepage features a welcoming hero section, it includes engaging imagery and the site's purpose is cleaar. It also Has call-to-action buttons to encourage user engagement.
+
+![Homepage](docs/readme-images/home1.png)
+![Homepage](docs/readme-images/home2.png)
+![Homepage](docs/readme-images/home3.png)
+
+### Create Trip Page
+
+- The create trip page is simple and clean, the form is broken up into five seperate forms, revealed one step at a time, this was done to make sure the user doesn't get overwhelmed and the process is easy, enjoyable and stress free.
+
+![Create Trip 1](docs/readme-images/create1.png)
+![Create Trip 2](docs/readme-images/create2.png)
+![Create Trip 3](docs/readme-images/create3.png)
+![Create Trip 4](docs/readme-images/create4.png)
+![Create Trip 5](docs/readme-images/create5.png)
+
+### Edit Trip Page
+
+- The edit trip page takes after the original create trip forms, for ease of use.
+
+![Edit Trip](docs/readme-images/edit-trip.png)
+
+### Delete Trip Page
+
+- The delete trip page is simple and effective, confirming with the user if they would like to delte their trip.
+
+![Delete Trip](docs/readme-images/delete-trip.png)
+
+### My Trips Page
+
+- The my trips page shows a few details on each of the users trips, in a dashboard style. Keeping the users trips in the one place making them easy to find.
+
+![My Trips](docs/readme-images/my-trips.png)
+
+### Trip Details Page
+
+- The trip details page is organised and easy to read.
+
+![Trip Details](docs/readme-images/trip-details.png)
+
+### All Trips Page (admin only)
+
+- The All Trips page lists all trips in an organised fashion, showing the creator of each trip.
+
+![All Trips](docs/readme-images/all-trips.png)
+
+### Profile
+
+- The profile page has user's personal information, providing this is optional.
+
+![Profile](docs/readme-images/profile.png)
+
+### Sign Up
+
+- When a user signs up, a profile is automatically created for them.
+
+![Sign Up](docs/readme-images/signup.png)
+
+### Log In
+
+- The log in page is simple and clean.
+
+![Log In](docs/readme-images/login.png)
+
+### Error pages
+- I created my own error pages and these have navigation buttons.
+
+![Log In](docs/readme-images/error.png)
+
+### Success Messages
+- Success messages inform the user if they have made any changes to their trips or profile and if they have logged out successfully.
+
+![Success](docs/readme-images/success.png)
+
 
 ## Agile Methodology
 
@@ -244,65 +334,6 @@ The database url and secret key are stored in the .env file to prevent unwanted 
 Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this site.
 
 
-## Features
-
-### Navigation Bar
-
-![Navigation Bar](docs/readme-images/nav-bar.png)
-
-### Footer
-
-![Footer](docs/readme-images/footer.png)
-
-### Home Page
-
-![Homepage](docs/readme-images/home1.png)
-![Homepage](docs/readme-images/home2.png)
-![Homepage](docs/readme-images/home3.png)
-
-### Create Trip Page
-
-![Create Trip 1](docs/readme-images/create1.png)
-![Create Trip 2](docs/readme-images/create2.png)
-![Create Trip 3](docs/readme-images/create3.png)
-![Create Trip 4](docs/readme-images/create4.png)
-![Create Trip 5](docs/readme-images/create5.png)
-
-### Edit Trip Page
-
-![Edit Trip](docs/readme-images/edit-trip.png)
-
-### Delete Trip Page
-
-![Delete Trip](docs/readme-images/delete-trip.png)
-
-### My Trips Page
-
-![My Trips](docs/readme-images/my-trips.png)
-
-### Trip Details Page
-
-![Trip Details](docs/readme-images/trip-details.png)
-
-### All Trips Page
-
-
-
-
-
-
-### User Account Pages
-
-**Sign Up**
-
-
-**Log In**
-
-
-**Log Out**
-
-- Django allauth was installed and used to create Log in and Log out functionality. 
-- Success messages inform the user if they have logged in/ logged out successfully.
 
 
 ### Programs used
