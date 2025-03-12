@@ -68,7 +68,7 @@ footer{
 }
 
 .icon:hover{
-    color: #dbcfb6
+    color: #F0E1CA
 }
 
 /* Home page */
@@ -240,13 +240,10 @@ font-family: "Poppins",sans-serif;
     font-family: Poppins,sans-serif;
 }
 
-/* Profile Page*/
-
-
 /*Error pages*/
 
 .error-card{
-    background-color: #dbcfb6;
+    background-color: #F0E1CA;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 

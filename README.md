@@ -10,27 +10,46 @@ The live link can be found here -
 
 
   
-## User Experience (UX)
+## Features
 
 
-### User Stories
-
-- As a Site User I can register an account so that I can
+## User Stories
 
 
+-  As a user, I want to sign up with a username and password so that I can create an account.
+-  As a user, I want to log in so that I can access my trips.
+-  As a user, I want to log out securely so that my account remains private.
+-  As a user, I want to add a new trip so that I can plan my travels.
+-  As a user, I want to see all my saved trips in a dashboard format so I can easily manage them.
+-  As a user, I want to click on a trip to see its details so that I can review my plans.
+-  As a user, I want to modify a trip’s details so that I can update my plans.
+-  As a user, I want to remove a trip so that I can keep my trip list organized.
+-  As a user, I want to receive confirmation messages when I create, edit, or delete a trip so that I know my actions were successful.
+-  As a user, I want to have a profile, so that I can view and update my personal information.
+-  As an administrator, I can suggest activities for itinerary days so regular users benefit from expert recommendations.
 
-### Design
+
+## Design
 
 
 
 #### Colour Scheme
 
+This particular colour scheme was chosen as the colours are calming, earthy, natural and welcoming which feels fitting for a travel planning site. I used the colours throughout the website so that the design remains cohesive.
+
+![Colour Palette](docs/readme-images/colours.png)
 
 #### Imagery
 
+The one image on the site was taken from Pexels and compressed for optimisation. I used CSS rules to style it and make it responsive.
 
 #### Fonts
 
+I chose Poppins and Lato as my fonts. I find Poppins stands out with its modern and fun look, making it great for headlines and key elements. Lato is very readable and works well for body text. Together, they provide both style and clarity for my site.
+
+![Poppins](docs/readme-images/poppins.png)
+
+![Lato](docs/readme-images/lato.png)
 
 #### Wireframes
 
@@ -38,7 +57,9 @@ The live link can be found here -
 
 ## Agile Methodology
 
-Github projects was used to manage the development process using an agile approach. Please see link to project board 
+Github projects was used to manage the development process using an agile approach. Please see link to my project board:
+
+[Project Board](https://github.com/users/Amelia5p/projects/7/views/1)
 
 
 
@@ -46,7 +67,7 @@ Github projects was used to manage the development process using an agile approa
 
 This is the data model I designed. It has the Django built-in user model that handles authentication and basic user information. The profile extends the User model with added personal information. Trip is the central entity, which has a one-to-one relationship with Trip Location, Trip Details, Trip Budget and Itinerary, in which the itinerary can have have multiple days.
 
-![Database Schema](docs/readme-images/ERD.png)
+![Database Schema](docs/readme-images/erd.png)
 
 
 
@@ -56,26 +77,26 @@ This is the data model I designed. It has the Django built-in user model that ha
 
 HTML was passed through the W3C validator with no errors.
 
-| Page                  Result
-|----------------------|------------|
-|      
-| base.html            | No errors  | 
-| home.html            | No errors  |
-| all.trips.html       | No errors  | 
-| create_trip.html     | No errors  | 
-| delete_trip.html     | No errors  | 
-| edit_trip.html       | No errors  | 
-| my_trips.html        | No errors  | 
-| suggest_activity.html| No errors  | 
-| trip_details.html    | No errors  |
-| profile.html         | No errors  |  
-| delete_profile.html  | No errors  | 
-| edit_profile.html    | No errors  | 
-| login.html           | No errors  |
-| signup.html          | No errors  |
-| 403.html             | No errors  |
-| 404.html             | No errors  | 
-| 500.html             | No errors  | 
+| Page                   | Result     |
+|------------------------|------------|
+| base.html              | No errors  |
+| home.html              | No errors  |
+| all.trips.html         | No errors  |
+| create_trip.html       | No errors  |
+| delete_trip.html       | No errors  |
+| edit_trip.html         | No errors  |
+| my_trips.html          | No errors  |
+| suggest_activity.html  | No errors  |
+| trip_details.html      | No errors  |
+| profile.html           | No errors  |
+| delete_profile.html    | No errors  |
+| edit_profile.html      | No errors  |
+| login.html             | No errors  |
+| signup.html            | No errors  |
+| 403.html               | No errors  |
+| 404.html               | No errors  |
+| 500.html               | No errors  |
+
 
 ### CSS
 
@@ -181,6 +202,8 @@ Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this 
 - [Favicon](https://favicon.io/) - used to create the favicon.
 - [Mermaid](https://mermaid.live/) - used to create the database schema design
 - [Bootstrap 5](https://getbootstrap.com/docs/5.0/):Framework for developing responsiveness and styling
+- [Am I responsive](https://ui.dev/amiresponsive) used for responsive picture
+- [Coolors](https://coolors.co/) used for creating colour palette
 
 
 
