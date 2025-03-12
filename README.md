@@ -282,6 +282,8 @@ Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this 
 
 ### Trip Details Page
 
+![Trip Details](docs/readme-images/trip-details.png)
+
 ### All Trips Page
 
 
