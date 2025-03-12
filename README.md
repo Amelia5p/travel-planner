@@ -43,7 +43,10 @@ Github projects was used to manage the development process using an agile approa
 
 
 ## Data Model
-models
+
+This is the data model I designed. It has the Django built-in user model that handles authentication and basic user information. The profile extends the User model with added personal information. Trip is the central entity, which has a one-to-one relationship with Trip Location, Trip Details, Trip Budget and Itinerary, in which the itinerary can have have multiple days.
+
+![Database Schema](docs/readme-images/ERD.png)
 
 
 
@@ -111,6 +114,7 @@ Lighthouse validation was run on all pages (both mobile and desktop).  Here are 
 | Delete Profile |          98  |           100 |             100 | 91  |
 
 
+
 ## Security Features
 
 ### User Authentication
@@ -160,6 +164,23 @@ Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this 
 
 - Django allauth was installed and used to create Log in and Log out functionality. 
 - Success messages inform the user if they have logged in/ logged out successfully.
+
+
+### Programs used
+- [Django](https://www.djangoproject.com/): main python framework used in the development of this project.
+- [PostgreSQL](https://www.postgresql.org/) used as the database for this project.
+- [Heroku](https://dashboard.heroku.com/login) - used as the cloud based platform to deploy the site on.
+- [Balsamiq](https://balsamiq.com/) - used to generate Wireframe images.
+- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - used for overall development and testing.
+- [Font Awesome](https://fontawesome.com/) - used for icons.
+- [GitHub](https://github.com/) - used for agile tool.
+- [Google Fonts](https://fonts.google.com/) - used to import fonts.
+- [W3C](https://www.w3.org/) - used for HTML & CSS Validation.
+- [PEP8 CI Linter](https://pep8ci.herokuapp.com/) - used to validate all the Python code.
+- [Jshint](https://jshint.com/) - used to validate javascript.
+- [Favicon](https://favicon.io/) - used to create the favicon.
+- [Mermaid](https://mermaid.live/) - used to create the database schema design
+- [Bootstrap 5](https://getbootstrap.com/docs/5.0/):Framework for developing responsiveness and styling
 
 
 
