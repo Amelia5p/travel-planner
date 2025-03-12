@@ -8,23 +8,86 @@ The live link can be found here - [TripMaster](https://travelplannerapp-889b39b3
 
 ## Table of Contents
 
+## Table of Contents
 
-  
+1. [TripMaster](#tripmaster)
+2. [Live Link](#live-link)
+3. [Epics and User Stories](#user-stories)
+4. [Design](#design)
+   - [Colour Scheme](#colour-scheme)
+   - [Imagery](#imagery)
+   - [Fonts](#fonts)
+   - [Wireframes](#wireframes)
+5. [Features](#features)
+   - [Navigation Bar](#navigation-bar)
+   - [Footer](#footer)
+   - [Home Page](#home-page)
+   - [Create Trip Page](#create-trip-page)
+   - [Edit Trip Page](#edit-trip-page)
+   - [Delete Trip Page](#delete-trip-page)
+   - [My Trips Page](#my-trips-page)
+   - [Trip Details Page](#trip-details-page)
+   - [All Trips Page (admin only)](#all-trips-page-admin-only)
+   - [Profile](#profile)
+   - [Sign Up](#sign-up)
+   - [Log In](#log-in)
+   - [Error Pages](#error-pages)
+   - [Success Messages](#success-messages)
+6. [CRUD Functionality](#crud-functionality)
+7. [Agile Methodology](#agile-methodology)
+8. [Data Model](#data-model)
+9. [Testing](#testing)
+   - [HTML Validation](#html)
+   - [CSS Validation](#css)
+   - [JavaScript Validation](#javascript)
+   - [Python Validation](#python)
+   - [General Testing](#general-testing)
+   - [Lighthouse Reports](#lighthouse)
+   - [Browser Testing](#browser-testing)
+10. [Security Features](#security-features)
+    - [User Authentication](#user-authentication)
+    - [Form Validation](#form-validation)
+    - [Database Security](#database-security)
+11. [Programs Used](#programs-used)
+12. [Future Features](#future-features)
+13. [Deployment - Heroku](#deployment---heroku)
+    - [Config Vars](#config-vars)
+14. [Cloning Repository](#cloning-repository)
+15. [Forking Repository](#forking-repository)
+16. [Languages](#languages)
+17. [Frameworks - Libraries - Programs Used](#frameworks---libraries---programs-used)
+18. [Bugs](#bugs)
+19. [Credits](#credits)
+20. [Acknowledgements](#acknowledgements)
 
 
 
-## User Stories
+
+## Epics and User Stories
+
+Here is a list of my Epics with corresponding user stories, tasks are listed on my Kanban board on Github.
+
+Epic 1: User Authentication
 
 -  As a user, I want to sign up with a username and password so that I can create an account.
 -  As a user, I want to log in so that I can access my trips.
 -  As a user, I want to log out securely so that my account remains private.
+
+Epic 2: Trip Management
+
 -  As a user, I want to add a new trip so that I can plan my travels.
 -  As a user, I want to see all my saved trips in a dashboard format so I can easily manage them.
 -  As a user, I want to click on a trip to see its details so that I can review my plans.
 -  As a user, I want to modify a trip’s details so that I can update my plans.
 -  As a user, I want to remove a trip so that I can keep my trip list organized.
 -  As a user, I want to receive confirmation messages when I create, edit, or delete a trip so that I know my actions were successful.
+
+Epic 3: User Profile Management
+
 -  As a user, I want to have a profile, so that I can view and update my personal information.
+
+Epic 4: Itinerary Recommendations
+
 -  As an administrator, I can suggest activities for itinerary days so regular users benefit from expert recommendations.
 
 ## Design
