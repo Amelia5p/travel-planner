@@ -3,7 +3,9 @@
 TripMaster is a trip planning app which is designed to take the stress out of organising and planning trips all over the world. The app is targeted towards users who like to travel.
 
 
-The live link can be found here - 
+The live link can be found here - [TripMaster](https://travelplannerapp-889b39b313ee.herokuapp.com/)
+
+![Am I Responsive](docs/readme-images/responsive.png)
 
 
 ## Table of Contents
@@ -31,8 +33,6 @@ The live link can be found here -
 
 ## Design
 
-
-
 #### Colour Scheme
 
 This particular colour scheme was chosen as the colours are calming, earthy, natural and welcoming which feels fitting for a travel planning site. I used the colours throughout the website so that the design remains cohesive.
@@ -51,7 +51,99 @@ I chose Poppins and Lato as my fonts. I find Poppins stands out with its modern 
 
 ![Lato](docs/readme-images/lato.png)
 
+
+
 #### Wireframes
+
+<details>
+
+ <summary>Homepage</summary>
+
+![Homepage](docs/wireframes/homepage-wireframe.png)
+</details>
+
+<details>
+
+<summary>Create Trip</summary>
+
+![Create Trip](docs/wireframes/create-trip-wireframe.png)
+</details>
+
+
+<details>
+
+<summary>My Trips</summary>
+
+![My Trips](docs/wireframes/my-trips-wireframe.png)
+</details>
+
+<details>
+
+<summary>Edit Trip</summary>
+
+![Edit Trip](docs/wireframes/edit-trip-wireframe.png)
+</details>
+
+<details>
+
+<summary>Trip Details</summary>
+
+![Trip Details](docs/wireframes/trip-details-wireframe.png)
+</details>
+<details>
+
+<summary>Delete Trip</summary>
+
+![Delete Trip](docs/wireframes/delete-trip-wireframe.png)
+</details>
+<details>
+
+<summary>All Trips (admin)</summary>
+
+![All Trips](docs/wireframes/all-trips-wireframe.png)
+</details>
+
+<details>
+
+<summary>Profile</summary>
+
+![Profile](docs/wireframes/profile-wireframe.png)
+</details>
+<details>
+
+<summary>Login</summary>
+
+![Login](docs/wireframes/login-wireframe.png)
+</details>
+<details>
+
+<summary>Edit Profie</summary>
+
+![Edit Profile](docs/wireframes/edit-profile-wireframe.png)
+</details>
+<details>
+
+<summary>Delete Profile</summary>
+
+![Delete Profile](docs/wireframes/delete-profile-wireframe.png)
+</details>
+
+<details>
+
+<summary>Sign Up</summary>
+
+![Sign up](docs/wireframes/signup-wireframe.png)
+</details>
+<details>
+<summary>Suggest Activity</summary>
+
+![Suggest Activity](docs/wireframes/suggest-activity-wireframe.png)
+</details>
+<details>
+<summary>Error Pages</summary>
+
+![Error Pages](docs/wireframes/error-pages-wireframe.png)
+</details>
 
 
 
