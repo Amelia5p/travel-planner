@@ -236,30 +236,53 @@ The Website was tested on Google Chrome, Firefox, Safari browsers with no issues
 
 
 ### Form Validation
-If incorrect or empty data 
+Incorrect or in certain cases empty data in forms is not accepted and the user is made aware.
 
 ### Database Security
-The database url and secret key are stored in the .env file to 
+The database url and secret key are stored in the .env file to prevent unwanted connections.
 
 Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this site.
 
 
 ## Features
 
-### Header
+### Navigation Bar
 
-
-**Logo**
-
-
-**Navigation Bar**
-
-
+![Navigation Bar](docs/readme-images/nav-bar.png)
 
 ### Footer
 
+![Footer](docs/readme-images/footer.png)
 
 ### Home Page
+
+![Homepage](docs/readme-images/home1.png)
+![Homepage](docs/readme-images/home2.png)
+![Homepage](docs/readme-images/home3.png)
+
+### Create Trip Page
+
+![Create Trip 1](docs/readme-images/create1.png)
+![Create Trip 2](docs/readme-images/create2.png)
+![Create Trip 3](docs/readme-images/create3.png)
+![Create Trip 4](docs/readme-images/create4.png)
+![Create Trip 5](docs/readme-images/create5.png)
+
+### Edit Trip Page
+
+![Edit Trip](docs/readme-images/edit-trip.png)
+
+### Delete Trip Page
+
+![Delete Trip](docs/readme-images/delete-trip.png)
+
+### My Trips Page
+
+![My Trips](docs/readme-images/my-trips.png)
+
+### Trip Details Page
+
+### All Trips Page
 
 
 
