@@ -209,13 +209,13 @@ I chose Poppins and Lato as my fonts. I find Poppins stands out with its modern 
 
 ### Footer
 
-- The footer is at the bottom of each page and contains social links. I made sure these links opened in another tab to prevet users from being driven away from the site.
+- The footer is at the bottom of each page and contains social links. I made sure these links opened in another tab to prevent users from being driven away from the site.
 
 ![Footer](docs/readme-images/footer.png)
 
 ### Home Page
 
-- The homepage features a welcoming hero section, it includes engaging imagery and the site's purpose is cleaar. It also Has call-to-action buttons to encourage user engagement.
+- The homepage features a welcoming hero section, it includes engaging imagery and the site's purpose is clear. It also Has call-to-action buttons to encourage user engagement.
 
 ![Homepage](docs/readme-images/home1.png)
 ![Homepage](docs/readme-images/home2.png)
@@ -239,7 +239,7 @@ I chose Poppins and Lato as my fonts. I find Poppins stands out with its modern 
 
 ### Delete Trip Page
 
-- The delete trip page is simple and effective, confirming with the user if they would like to delte their trip.
+- The delete trip page is simple and effective, confirming with the user if they would like to delete their trip.
 
 ![Delete Trip](docs/readme-images/delete-trip.png)
 
@@ -288,6 +288,13 @@ I chose Poppins and Lato as my fonts. I find Poppins stands out with its modern 
 - Success messages inform the user if they have made any changes to their trips or profile and if they have logged out successfully.
 
 ![Success](docs/readme-images/success.png)
+
+## Future Features
+
+In the future I would like to add the following features to further improve the site:
+- Add multiple Countries to one trip.
+- Import booking details from various sites, eg. flight and hotel bookings.
+- Make trips public, share them on social media.
 
 ## CRUD Functionality
 
@@ -392,30 +399,6 @@ The database url and secret key are stored in the .env file to prevent unwanted 
 
 Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this site.
 
-### Programs used
-- [Django](https://www.djangoproject.com/): main python framework used in the development of this project.
-- [PostgreSQL](https://www.postgresql.org/) used as the database for this project.
-- [Heroku](https://dashboard.heroku.com/login) - used as the cloud based platform to deploy the site on.
-- [Balsamiq](https://balsamiq.com/) - used to generate Wireframe images.
-- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - used for overall development and testing.
-- [Font Awesome](https://fontawesome.com/) - used for icons.
-- [GitHub](https://github.com/) - used for agile tool.
-- [Google Fonts](https://fonts.google.com/) - used to import fonts.
-- [W3C](https://www.w3.org/) - used for HTML & CSS Validation.
-- [PEP8 CI Linter](https://pep8ci.herokuapp.com/) - used to validate all the Python code.
-- [Jshint](https://jshint.com/) - used to validate javascript.
-- [Favicon](https://favicon.io/) - used to create the favicon.
-- [Mermaid](https://mermaid.live/) - used to create the database schema design
-- [Bootstrap 5](https://getbootstrap.com/docs/5.0/):Framework for developing responsiveness and styling
-- [Am I responsive](https://ui.dev/amiresponsive) used for responsive picture
-- [Coolors](https://coolors.co/) used for creating colour palette
-
-## Future Features
-
-In the future I would like to add the following features to further improve the site:
-- Add multiple Countries to one trip.
-- Import booking details from various sites, eg. flight and hotel bookings.
-- Make trips public, share them on social media.
 
 ## Deployment - Heroku
 
@@ -488,20 +471,23 @@ There is now a forked copy on GitHub.
 - CSS
 - Javascript
 
-## Frameworks - Libraries - Programs Used
-- [Django](https://www.djangoproject.com/): Main python framework used in the development of this project
-- [Django-allauth](https://django-allauth.readthedocs.io/en/latest/installation.html): authentication library used to create the user accounts
-- [PostgreSQL](https://www.postgresql.org/) was used as the database for this project.
-- [Heroku](https://dashboard.heroku.com/login) - was used as the cloud based platform to deploy the site on.
-- [Balsamiq](https://balsamiq.com/) - Used to generate Wireframe images.
-- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - Used for overall development 
-- [GitHub](https://github.com/) - Used for version control and agile tool.
-- [Google Fonts](https://fonts.google.com/) - Used to import and alter fonts on the page.
-- [W3C](https://www.w3.org/) - Used for HTML & CSS Validation.
-- [PEP8 Online](http://pep8online.com/) - used to validate all the Python code
-- [Jshint](https://jshint.com/) - used to validate javascript
-- [Grammerly](https://app.grammarly.com/) - used to proof read the README.md
-- [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) used to manage Django Forms
+### Programs used
+- [Django](https://www.djangoproject.com/): main python framework used in the development of this project.
+- [PostgreSQL](https://www.postgresql.org/) used as the database for this project.
+- [Heroku](https://dashboard.heroku.com/login) - used as the cloud based platform to deploy the site on.
+- [Balsamiq](https://balsamiq.com/) - used to generate Wireframe images.
+- [Chrome Dev Tools](https://developer.chrome.com/docs/devtools/) - used for overall development and testing.
+- [Font Awesome](https://fontawesome.com/) - used for icons.
+- [GitHub](https://github.com/) - used for agile tool.
+- [Google Fonts](https://fonts.google.com/) - used to import fonts.
+- [W3C](https://www.w3.org/) - used for HTML & CSS Validation.
+- [PEP8 CI Linter](https://pep8ci.herokuapp.com/) - used to validate all the Python code.
+- [Jshint](https://jshint.com/) - used to validate javascript.
+- [Favicon](https://favicon.io/) - used to create the favicon.
+- [Mermaid](https://mermaid.live/) - used to create the database schema design
+- [Bootstrap 5](https://getbootstrap.com/docs/5.0/):Framework for developing responsiveness and styling
+- [Am I responsive](https://ui.dev/amiresponsive) used for responsive picture
+- [Coolors](https://coolors.co/) used for creating colour palette
 
 ## Bugs
 
@@ -526,5 +512,3 @@ There is now a forked copy on GitHub.
 
 ## Acknowledgements 
 This is project four, created for the Code Institutes Full Stack Web Developer (eCommerce) course. I would like to thank my cohort facilitator and the Code Institute team for their support.
-
-
