@@ -2,11 +2,9 @@
 
 TripMaster is a trip planning app which is designed to take the stress out of organising and planning trips all over the world. The app is targeted towards users who like to travel.
 
-
 The live link can be found here - [TripMaster](https://travelplannerapp-889b39b313ee.herokuapp.com/)
 
 ![Am I Responsive](docs/readme-images/responsive.png)
-
 
 ## Table of Contents
 
@@ -16,7 +14,6 @@ The live link can be found here - [TripMaster](https://travelplannerapp-889b39b3
 
 
 ## User Stories
-
 
 -  As a user, I want to sign up with a username and password so that I can create an account.
 -  As a user, I want to log in so that I can access my trips.
@@ -29,7 +26,6 @@ The live link can be found here - [TripMaster](https://travelplannerapp-889b39b3
 -  As a user, I want to receive confirmation messages when I create, edit, or delete a trip so that I know my actions were successful.
 -  As a user, I want to have a profile, so that I can view and update my personal information.
 -  As an administrator, I can suggest activities for itinerary days so regular users benefit from expert recommendations.
-
 
 ## Design
 
@@ -51,8 +47,6 @@ I chose Poppins and Lato as my fonts. I find Poppins stands out with its modern 
 
 ![Lato](docs/readme-images/lato.png)
 
-
-
 #### Wireframes
 
 <details>
@@ -68,7 +62,6 @@ I chose Poppins and Lato as my fonts. I find Poppins stands out with its modern 
 
 ![Create Trip](docs/wireframes/create-trip-wireframe.png)
 </details>
-
 
 <details>
 
@@ -144,7 +137,6 @@ I chose Poppins and Lato as my fonts. I find Poppins stands out with its modern 
 
 ![Error Pages](docs/wireframes/error-pages-wireframe.png)
 </details>
-
 
 ## Features
 
@@ -236,6 +228,9 @@ I chose Poppins and Lato as my fonts. I find Poppins stands out with its modern 
 
 ![Success](docs/readme-images/success.png)
 
+## CRUD Functionality
+
+- User's can Create, Read, Update and Delete both their Trips and their profile. 
 
 ## Agile Methodology
 
@@ -243,15 +238,11 @@ Github projects was used to manage the development process using an agile approa
 
 [Project Board](https://github.com/users/Amelia5p/projects/7/views/1)
 
-
-
 ## Data Model
 
 This is the data model I designed. It has the Django built-in user model that handles authentication and basic user information. The profile extends the User model with added personal information. Trip is the central entity, which has a one-to-one relationship with Trip Location, Trip Details, Trip Budget and Itinerary, in which the itinerary can have have multiple days.
 
 ![Database Schema](docs/readme-images/erd.png)
-
-
 
 ## Testing
 
@@ -292,6 +283,16 @@ JavaScript was passed through JShint with no errors.
 
 Python code was passed through the PEP8 CI linter with no errors.
 
+## General Testing
+
+
+| Test             | Action                                                                 | Success Criteria                                                 |
+| --------------- | ---------------------------------------------------------------------- | ---------------------------------------------------------------- |
+| **Homepage loads**  | Navigate to website URL                                            | Page loads with no errors                     |
+| **Links**          | Click on each navigation link, CTAs, buttons, logo, and footer links  | Correct page loads or correct action performed, new tab opens if applicable |
+| **Form validation** | Enter data into each input field, ensuring only valid data is accepted  | Form does not submit until correct data is entered, and an error message is shown |
+| **Responsiveness**  | Resize viewport window from 320px upwards using Chrome DevTools. Test various devices  | Page layout remains intact and adapts correctly to different screen sizes |
+
 ### Lighthouse
 
 Lighthouse validation was run on all pages (both mobile and desktop).  Here are the scores: 
@@ -299,7 +300,7 @@ Lighthouse validation was run on all pages (both mobile and desktop).  Here are 
 | Page           | Performance  | Accessibility | Best Practices  | SEO |
 |----------------|:------------:|:-------------:|:---------------:|:---:|
 |                |              |               |                 |     |
-| Desktop  
+| 
 |                |              |               |     
 | Home           |          97  |           98  |             100 | 100 |
 | My Trips       |          98  |           98  |             100 | 100 |
@@ -322,8 +323,7 @@ The Website was tested on Google Chrome, Firefox, Safari browsers with no issues
 ## Security Features
 
 ### User Authentication
-
-
+Authorisation is required to reach certain pages such as All Trips. Requesting these pages while unauthprised will redirect users to the Login page.
 
 ### Form Validation
 Incorrect or in certain cases empty data in forms is not accepted and the user is made aware.
@@ -332,9 +332,6 @@ Incorrect or in certain cases empty data in forms is not accepted and the user i
 The database url and secret key are stored in the .env file to prevent unwanted connections.
 
 Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this site.
-
-
-
 
 ### Programs used
 - [Django](https://www.djangoproject.com/): main python framework used in the development of this project.
@@ -354,63 +351,75 @@ Cross-Site Request Forgery (CSRF) tokens were used on all forms throughout this 
 - [Am I responsive](https://ui.dev/amiresponsive) used for responsive picture
 - [Coolors](https://coolors.co/) used for creating colour palette
 
+## Future Features
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### CRUD
-
- 
-
-### Page
-
-
-
-### Page
-
-
-
-### Error Pages
-
-Custom Error Pages were created to give the user more information on the error 
-
-### Future Features
-
+In the future I would like to add the following features to further improve the site:
+- Add multiple Countries to one trip.
+- Import booking details from various sites, eg. flight and hotel bookings.
+- Make trips public, share them on social media.
 
 ## Deployment - Heroku
 
 To deploy this page to Heroku from its GitHub repository, the following steps were taken:
 
-### Create the Heroku App:
+1. Login to the Heroku dashboard and create a new app.
+2. Connect your GitHub repository to your Heroku app.
+3. Set environment variables in the Config Vars section of the Settings tab.
+4. In the Deploy tab, enable automatic deploys from your GitHub repository.
+5. Click the "Deploy Branch" button to deploy the app.
+6. Once the app has been deployed, click the "Open App" button to view the app.
 
-### Attach the Postgres database:
+-  Under 'Config Vars' the following variables to be set:
 
+    - `DATABASE_URL` - the URL for your Postgres database.
+    - `NAME` - the name of your database.
+    - `USER` - the username for your database.
+    - `PASSWORD` - the password for your database.
+    - `HOST` - the host for your database.
+    - `PORT` - the port for your database.
+    - Django settings:
+    - `SECRET_KEY` - the secret key for your Django project. (kept in .env file)
+    - `DEBUG` - set to `True` for development, `False` for production.
 
+## Cloning Repository
 
+### <ins> Step 1: </ins>
 
+From the <a href="https://github.com/Amelia5p/travel-planner" target="_blank">GitHub repository</a> click on the 'code' button.
 
+### <ins> Step 2:</ins>
 
-### Update Heroku Config Vars
+Click 'local' on the top of the drop down menu and copy the URL.
 
+### <ins>Step 3: </ins>
 
-### Deploy
+Open Git Bash on windows and change the working directory to the location where you want the cloned directory.
 
-## Forking this repository
+### <ins>Step 4: </ins>
 
+Type 'Git clone' followed by a space and paste the URL previously copied, hit enter.
 
-## Cloning this repository
-To clone this repository follow the below steps: 
+### <ins> Result: </ins> 
+
+You now have a local copy of the Github repository.
+
+## Forking Repository
+
+### <ins>Step 1:</ins>
+
+From the <a href="https://github.com/Amelia5p/travel-planner" target="_blank">GitHub repository</a> click on the 'fork' button in the top right corner of the page. 
+
+### <ins>Step 2:</ins> 
+
+Choose to copy only the main branch or all branches to the new fork.
+
+### <ins>Step 3: </ins>
+
+Click Create a Fork.
+
+### <ins>Result:</ins>
+
+There is now a forked copy on GitHub.
 
 
 ## Languages
@@ -435,71 +444,28 @@ To clone this repository follow the below steps:
 - [Grammerly](https://app.grammarly.com/) - used to proof read the README.md
 - [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) used to manage Django Forms
 
+## BUGS
+
+- Getting 405 error when clicking logout, fixed by changing the url path.
+- Some users do not have a Profile associated with them- fixed by using django signals to auto make profile when sign up.
+- I couldnt get the country form field to work with google API- reliased I was using the wrong ID so fixed this.
+- Sign up html getting errors in validator- field help texts weren't being wrapped correctly within the expected HTML elements. Fixed by changing `{{ form.as_p }}` to `{{ form.as_div }}`.
+
+- Focus was staying on cities input on second page of create a trip, fixed this by changing the JS placement that calls `.focus()`
+
 
 ## Credits
-
-- [W3Schools](https://www.w3schools.com/)
-
-- [Pexels](https://www.pexels.com/): All imagery on the site was sourced from Pexels.com
-
 - [Code Institute - Blog Walkthrough Project](https://github.com/Code-Institute-Solutions/Django3blog)
-- 
-
-## Acknowledgments
-
-
-
-
-
+- [Brennan Tymrak](https://www.brennantymrak.com/articles/django-dynamic-formsets-javascript)cloning the form, updating the form field names and IDs, clearing the input values, and incrementing the day number.
+- For overriding instance in itinerary: (https://docs.djangoproject.com/en/5.1/topics/forms/modelforms/#inline-formsets)
+- Views (https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html)
+-  Date picker: (https://stackoverflow.com/questions/47066555/remove-time-after-converting-date-toisostring)
+- (https://www.youtube.com/watch?v=8xb9s3jnRF8&t=499s ) 
+- (https://archive.ph/20241031172621/https://awstip.com/django-inline-formset-factory-with-examples-27576b915b5a)
 
 
 
+## Acknowledgements 
+This is project four, created for the Code Institutes Full Stack Web Developer (eCommerce) course. I would like to thank my cohort facilitator and the Code Institute team for their support.
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-credits for code/ code logic: cloning the form, updating the form field names and IDs, clearing the input values, and incrementing the day number(Brennan Tymrak, https://www.brennantymrak.com/articles/django-dynamic-formsets-javascript)
-for overriding instance in itinerary: https://docs.djangoproject.com/en/5.1/topics/forms/modelforms/#inline-formsets
-
-
-
-Views : https://simpleisbetterthancomplex.com/tutorial/2017/02/18/how-to-create-user-sign-up-view.html
-Form create trip inspo: https://www.youtube.com/watch?v=X8ECf3Ow3ww&t=1116s
-JS progress bar: https://stackoverflow.com/questions/49460091/javascript-progressbar-update-on-the-fly
-and https://www.youtube.com/watch?v=CCtgLbL4qE8 
-JS Dynamic form: https://medium.com/@AlexanderObregon/beginners-guide-to-creating-dynamic-forms-with-javascript-10aef6a8843d
-Date picker: https://stackoverflow.com/questions/47066555/remove-time-after-converting-date-toisostring
-https://javascript.plainenglish.io/why-cloning-html-templates-is-a-must-know-trick-425be9ee664b
-EVENTUALLY USED: https://www.youtube.com/watch?v=8xb9s3jnRF8&t=499s  wizard
-https://awstip.com/django-inline-formset-factory-with-examples-27576b915b5a (https://archive.ph/20241031172621/https://awstip.com/django-inline-formset-factory-with-examples-27576b915b5a)
-
-USED:
-https://www.pexels.com/search/vacation/?color=fff3cd&orientation=landscape
-https://fonts.google.com/selection/embed
-https://imageresizer.com/
-
-
-
-BUGS= getting 405 error when clicking logout, fixed by changing the url
-some users do not have a Profile associated with them- fixed by using django signals to auto make profile when sign up.
-couldnt get the country form field to work with google api- reliased i was using the wrong ID.
-
-sign up html getting errors- field help texts weren't being wrapped correctly within the expected HTML elements. fixed by changing {{ form.as_p }} to {{ form.as_div }}
