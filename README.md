@@ -242,7 +242,7 @@ Github projects was used to manage the development process using an agile approa
 
 This is the data model I designed. It has the Django built-in user model that handles authentication and basic user information. The profile extends the User model with added personal information. Trip is the central entity, which has a one-to-one relationship with Trip Location, Trip Details, Trip Budget and Itinerary, in which the itinerary can have have multiple days.
 
-![Database Schema](docs/readme-images/erd.png)
+![Database Schema](docs/readme-images/dataschema.png)
 
 ## Testing
 
@@ -300,8 +300,6 @@ Lighthouse validation was run on all pages (both mobile and desktop).  Here are 
 | Page           | Performance  | Accessibility | Best Practices  | SEO |
 |----------------|:------------:|:-------------:|:---------------:|:---:|
 |                |              |               |                 |     |
-| 
-|                |              |               |     
 | Home           |          97  |           98  |             100 | 100 |
 | My Trips       |          98  |           98  |             100 | 100 |
 | Trip Details   |          99  |           98  |             100 | 100 |
