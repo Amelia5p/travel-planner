@@ -8,8 +8,6 @@ The live link can be found here - [TripMaster](https://travelplannerapp-889b39b3
 
 ## Table of Contents
 
-## Table of Contents
-
 1. [TripMaster](#tripmaster)
 2. [Live Link](#live-link)
 3. [Epics and User Stories](#user-stories)
@@ -505,7 +503,7 @@ There is now a forked copy on GitHub.
 - [Grammerly](https://app.grammarly.com/) - used to proof read the README.md
 - [Crispy Forms](https://django-crispy-forms.readthedocs.io/en/latest/) used to manage Django Forms
 
-## BUGS
+## Bugs
 
 - Getting 405 error when clicking logout, fixed by changing the url path.
 - Some users do not have a Profile associated with them- fixed by using django signals to auto make profile when sign up.
