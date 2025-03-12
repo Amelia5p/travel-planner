@@ -226,7 +226,8 @@ Lighthouse validation was run on all pages (both mobile and desktop).  Here are 
 | Edit Profile   |          98  |           100 |             100 | 100 |
 | Delete Profile |          98  |           100 |             100 | 91  |
 
-
+## Browser Testing
+The Website was tested on Google Chrome, Firefox, Safari browsers with no issues.
 
 ## Security Features
 
